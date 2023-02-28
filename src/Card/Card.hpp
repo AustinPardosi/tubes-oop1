@@ -8,6 +8,7 @@ using namespace std;
 class Card {
 public:
 	// Konstruktor untuk menginisialisasi kartu
+    Card();
 	Card(int, int);
 
     // Cctor 
