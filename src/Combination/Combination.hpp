@@ -1,7 +1,7 @@
 #include "../Card/Card.hpp"
 
 class Combination {
-    protected :
+    private :
         float score;
         Card* totalHand;
         // int highestCombo; // 0 : high card, 1 : pair, 2 : two pair, ..., 8 : straight flush

@@ -55,23 +55,23 @@ void Combination::checkHighCard() {
     score += totalHand[6].getCardColor() * 0.03;
 }
 void Combination::checkPair() {
-    // Rumus : 1.39 + nomor kartu/10 + kode warna kartu tertinggi (0 untuk hijau/0.03 untuk biru/0.06 untuk kuning/0.09 untuk merah)
+    // Rumus : 1.39 + nomor kartu/10 + kode warna tertinggi (0 untuk hijau/0.03 untuk biru/0.06 untuk kuning/0.09 untuk merah)
     // Nilai maksimum : 2.78
     bool foundPair = false;
-    int i = 0;
-    while (!foundPair && i < 6) {
-        if (totalHand[i].getCardNumber() == totalHand[i+1].getCardNumber()) {
+    int i = 6;
+    while (!foundPair && i > 0) {
+        if (totalHand[i].getCardNumber() == totalHand[i-1].getCardNumber()) {
             foundPair = true;
         } else {
-            i++;
+            i--;
         }
     }
     if (foundPair) {
         score = 1.39 + totalHand[i].getCardNumber()/10;
-        if (totalHand[i] > totalHand[i+1]) {
+        if (totalHand[i] > totalHand[i-1]) {
             score += totalHand[i].getCardColor() * 0.03;
         } else {
-            score += totalHand[i].getCardColor() * 0.03;
+            score += totalHand[i-1].getCardColor() * 0.03;
         }
     }
 }
@@ -80,37 +80,25 @@ void Combination::checkTwoPair() {
     // Nilai maksimum : 4.17
     int pairCount = 0;
     int firstPairIdx = -1;
-    int secondPairIdx = -1;
-    int i = 0;
-    while (pairCount < 2 && i < 6) {
-        if (totalHand[i].getCardNumber() == totalHand[i+1].getCardNumber()) {
+    int i = 6;
+    while (pairCount < 2 && i > 0) {
+        if (totalHand[i].getCardNumber() == totalHand[i-1].getCardNumber()) {
             pairCount++;
             if (pairCount == 1) {
                 firstPairIdx = i;
-            } else {
-                secondPairIdx = i;
             }
-            i += 2;
+            i -= 2;
         } 
-        else if (pairCount < 2) {
-            i++;
+        else {
+            i--;
         }
     }
     if (pairCount == 2) {
-        if (totalHand[firstPairIdx].getCardNumber() >= totalHand[secondPairIdx].getCardNumber()) {
-            score = 2.78 + totalHand[firstPairIdx].getCardNumber()/10;
-            if (totalHand[firstPairIdx] > totalHand[firstPairIdx+1]) {
-                score += totalHand[firstPairIdx].getCardColor() * 0.03;
-            } else {
-                score += totalHand[firstPairIdx+1].getCardColor() * 0.03;
-            }
+        score = 2.78 + totalHand[firstPairIdx].getCardNumber()/10;
+        if (totalHand[firstPairIdx] > totalHand[firstPairIdx-1]) {
+            score += totalHand[firstPairIdx].getCardColor() * 0.03;
         } else {
-            score = 2.78 + totalHand[secondPairIdx].getCardNumber()/10;
-            if (totalHand[secondPairIdx] > totalHand[secondPairIdx+1]) {
-                score += totalHand[secondPairIdx].getCardColor() * 0.03;
-            } else {
-                score += totalHand[secondPairIdx+1].getCardColor() * 0.03;
-            }
+            score += totalHand[firstPairIdx-1].getCardColor() * 0.03;
         }
     }
 }
@@ -118,6 +106,22 @@ void Combination::checkThreeKind() {
     // Rumus : 4.17 + Nomor kartu/10 + Warna tertinggi
     // Nilai maksimum : 5.56
     bool foundThreeKind = false;
+    int i = 6;
+    while (!foundThreeKind && i > 1) {
+        if (totalHand[i].getCardNumber() == totalHand[i-1].getCardNumber() && totalHand[i-1].getCardNumber() == totalHand[i-2].getCardNumber()) {
+            foundThreeKind = true;
+        } else {
+            i--;
+        }
+    }
+    if (foundThreeKind) {
+        score = 1.39 + totalHand[i].getCardNumber()/10;
+        if (totalHand[i] > totalHand[i-1]) {
+            score += totalHand[i].getCardColor() * 0.03;
+        } else {
+            score += totalHand[i-1].getCardColor() * 0.03;
+        }
+    }
 }
 void Combination::checkStraight() {
     // Rumus : 5.56 + Nomor kartu terbesar/10 + Warna tertinggi
