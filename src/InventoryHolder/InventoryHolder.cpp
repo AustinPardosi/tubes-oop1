@@ -3,9 +3,15 @@
 
 #include "InventoryHolder.hpp"
 
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 InventoryHolder::InventoryHolder() {}
 
 InventoryHolder::~InventoryHolder() {}
+
+/*--------------------------------------------------------------------*/
+/*---------------------ADDITIONAL METHOD SEGMENT----------------------*/
 
 Card InventoryHolder::getFirstCard() const {
     return this->listOfCard[0];

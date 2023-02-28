@@ -1,9 +1,9 @@
 // File: CardTableDriver.cpp
 // Berisi driver dari kelas CardTable untuk keperluan testing
-// Compile command: 
-/* g++ -o testCardTable CardTableDriver.cpp CardTable.cpp "../InventoryHolder/InventoryHolder.cpp" "../Card/Card.cpp"
-   ./testCardTable  
-                                                                                                     */ 
+/* Compile command: 
+   g++ -o testCardTable CardTableDriver.cpp CardTable.cpp "../InventoryHolder/InventoryHolder.cpp" "../Card/Card.cpp"
+   ./testCardTable                                                                                                   */ 
+
 #include "CardTable.hpp"
 
 int main() {

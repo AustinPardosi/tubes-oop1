@@ -3,6 +3,9 @@
 
 #include "CardTable.hpp"
 
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 CardTable::CardTable() {}
 
 CardTable::CardTable(const vector<Card>& listOfCard) {
@@ -17,6 +20,7 @@ CardTable& CardTable::operator=(const CardTable& other) {
 }
 
 /*--------------------------------------------------------------------*/
+/*------------------------ADDING CARDS SEGMENT------------------------*/
 
 void CardTable::addCards(const InventoryHolder& other) {
     *this = *this + other.getFirstCard();
@@ -29,6 +33,7 @@ CardTable CardTable::operator+(const Card& card) {
 }
 
 /*--------------------------------------------------------------------*/
+/*-----------------------REMOVING CARDS SEGMENT-----------------------*/
 
 void CardTable::removeCards(int cardsRemoved) {
     this->listOfCard.clear();
