@@ -41,6 +41,25 @@ bool Card::checkGreaterNumber (int _cardNumber) {
     return (this->cardNumber > _cardNumber);
 }
 
+string Card::convertColor (int _cardColor) {
+    string color;
+    if (_cardColor == 3) {
+        color = "Merah";
+    } else if (_cardColor == 2) {
+        color = "Kuning";
+    } else if (_cardColor == 1) {
+        color = "Biru";
+    } else if (_cardColor == 0) {
+        color = "Hijau";
+    }
+    return color;
+}
+
+void Card::printInfoCard () {
+    string color = Card::convertColor (this->cardColor);
+    cout << this->cardNumber << " (" << color << ")" << endl;
+}
+
 // Operator
 bool Card::operator< (const Card& c) {
     bool check = true;
