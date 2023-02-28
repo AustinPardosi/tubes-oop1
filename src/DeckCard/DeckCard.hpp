@@ -4,6 +4,9 @@
 #ifndef DECKCARD_HPP
 #define DECKCARD_HPP
 
+#include <chrono>
+#include <random>
+
 #include "../InventoryHolder/InventoryHolder.hpp"
 
 class DeckCard : public InventoryHolder {
@@ -18,7 +21,7 @@ class DeckCard : public InventoryHolder {
         DeckCard(const vector<Card>& listOfCard);
 
         // dtor
-        ~DeckCard() {};
+        ~DeckCard();
 
         // operator= 
         DeckCard& operator=(const DeckCard& other);
