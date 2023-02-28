@@ -2,7 +2,7 @@
 #ifndef ABILITY_CARD_HPP
 #define ABILITY_CARD_HPP
 
-#include "Command.hpp"
+#include "../Command/Command.hpp"
 
 class AbilityCard : public Command {
     public:

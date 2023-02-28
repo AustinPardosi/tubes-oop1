@@ -22,8 +22,8 @@ public:
     //  Member Function
     bool checkGreaterColor (int);
     bool checkGreaterNumber (int);
-    string convertColor (int);
-    void printInfoCard ();
+    string convertColor (int) const;
+    void printInfoCard () const;
 
     // Operator 
     bool operator< (const Card&);
