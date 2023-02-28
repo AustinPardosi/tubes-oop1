@@ -1,4 +1,6 @@
-// AbilitylessCard.hpp
+// File: AbilitylessCard.hpp
+// Berisi deklarasi dari kelas AbilitylessCard
+
 #ifndef ABILITYLESS_CARD_HPP
 #define ABILITYLESS_CARD_HPP
 
@@ -14,7 +16,7 @@ class AbilitylessCard : public AbilityCard {
         
         // Member Function
         // Menggunakan kartu yang dimiliki
-        void useCard();
+        void useCard(const Game& game);
 };
 
 #endif

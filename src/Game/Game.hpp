@@ -1,6 +1,6 @@
 // Half.hpp
-#ifndef COMMAND_HALF_HPP
-#define COMMAND_HALF_HPP
+#ifndef GAME_HPP
+#define GAME_HPP
 
 // #include "../Inventory Holder/DeckCard.hpp"
 // #include "../Inventory Holder/TableCard.hpp"

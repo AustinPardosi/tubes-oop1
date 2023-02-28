@@ -1,4 +1,6 @@
-// RerollCard.hpp
+// File: RerollCard.hpp
+// Berisi deklarasi dari kelas RerollCard
+
 #ifndef REROLL_CARD_HPP
 #define REROLL_CARD_HPP
 
@@ -14,7 +16,7 @@ class RerollCard : public AbilityCard {
         
         // Member Function
         // Menggunakan kartu yang dimiliki
-        void useCard();
+        void useCard(const Game& game);
 };
 
 #endif

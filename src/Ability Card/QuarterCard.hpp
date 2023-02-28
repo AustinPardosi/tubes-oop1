@@ -1,4 +1,6 @@
-// QuarterCard.hpp
+// File: QuarterCard.hpp
+// Berisi deklarasi dari kelas QuarterCard
+
 #ifndef QUARTER_CARD_HPP
 #define QUARTER_CARD_HPP
 
@@ -14,7 +16,7 @@ class QuarterCard : public AbilityCard {
         
         // Member Function
         // Menggunakan kartu yang dimiliki
-        void useCard();
+        void useCard(const Game& game);
 };
 
 #endif

@@ -1,4 +1,6 @@
-// Double.hpp
+// File: Double.hpp
+// Berisi deklarasi dari kelas Double
+
 #ifndef COMMAND_DOUBLE_HPP
 #define COMMAND_DOUBLE_HPP
 
@@ -11,7 +13,7 @@ class Double : public Command {
         
         // Member Function
         // Menjalankan command
-        void doCommand();
+        void doCommand(const Game& game);
 };
 
 #endif

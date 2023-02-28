@@ -1,4 +1,6 @@
-// QuadrupleCard.hpp
+// File: QuadrupleCard.hpp
+// Berisi deklarasi dari kelas QuadrupleCard
+
 #ifndef QUADRUPLE_CARD_HPP
 #define QUADRUPLE_CARD_HPP
 
@@ -14,7 +16,7 @@ class QuadrupleCard : public AbilityCard {
         
         // Member Function
         // Menggunakan kartu yang dimiliki
-        void useCard();
+        void useCard(const Game& game);
 };
 
 #endif

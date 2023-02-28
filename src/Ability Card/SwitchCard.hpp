@@ -1,4 +1,6 @@
-// SwitchCard.hpp
+// File: SwitchCard.hpp
+// Berisi deklarasi dari kelas SwitchCard
+
 #ifndef SWITCH_CARD_HPP
 #define SWITCH_CARD_HPP
 
@@ -14,7 +16,7 @@ class SwitchCard : public AbilityCard {
         
         // Member Function
         // Menggunakan kartu yang dimiliki
-        void useCard();
+        void useCard(const Game& game);
 };
 
 #endif
