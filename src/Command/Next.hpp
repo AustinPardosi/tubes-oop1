@@ -1,4 +1,6 @@
-// Next.hpp
+// File: Next.hpp
+// Berisi deklarasi dari kelas Next
+
 #ifndef COMMAND_NEXT_HPP
 #define COMMAND_NEXT_HPP
 
@@ -11,7 +13,7 @@ class Next : public Command {
         
         // Member Function
         // Menjalankan command
-        void doCommand();
+        void doCommand(const Game& game);
 };
 
 #endif

@@ -1,21 +1,22 @@
-// Command.hpp
+// File: Command.hpp
+// Berisi deklarasi dari kelas Command
+
 #ifndef COMMAND_HPP
 #define COMMAND_HPP
+
+#include "../Game/Game.hpp"
 
 class Command {
     public:
         // Konstruktor command
         Command();
         
-        // Getter dan setter
-        bool isPlayerActive() const;
-        
         // Member Function
         // Menjalankan command
-        virtual void doCommand() = 0;
+        virtual void doCommand(const Game& game) = 0;
 
     protected:
-        bool activeplayer; // berisi flag untuk mengecek apakah pemain ini sedang dala giliran
+        int commandID; // ID command yang bisa diakses user
 };
 
 #endif

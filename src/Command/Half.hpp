@@ -1,4 +1,6 @@
-// Half.hpp
+// File: Half.hpp
+// Berisi deklarasi dari kelas Half
+
 #ifndef COMMAND_HALF_HPP
 #define COMMAND_HALF_HPP
 
@@ -11,7 +13,7 @@ class Half : public Command {
         
         // Member Function
         // Menjalankan command
-        void doCommand();
+        void doCommand(const Game& game);
 };
 
 #endif

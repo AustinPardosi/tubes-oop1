@@ -2,6 +2,8 @@
 #include "Card.hpp"
 
 // Konstruktor untuk menginisialisasi kartu
+Card::Card() : Card(-1,-1)  {}
+
 Card::Card(int _cardColor, int _cardNumber) {
     this->cardColor = _cardColor;
     this->cardNumber = _cardNumber;
