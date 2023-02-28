@@ -10,6 +10,9 @@ public:
 	// Konstruktor untuk menginisialisasi kartu
 	Card(int, int);
 
+    // Cctor 
+    Card(const Card&);
+
 	// Getter, Setter
 	void setCardNumber(int);
 	int getCardNumber() const;

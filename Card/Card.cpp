@@ -7,6 +7,12 @@ Card::Card(int _cardColor, int _cardNumber) {
     this->cardNumber = _cardNumber;
 }
 
+// Cctor
+Card::Card(const Card& c) {
+    this->cardColor = c.cardColor;
+    this->cardNumber = c.cardNumber;
+}
+
 // Getter, Setter
 void Card::setCardNumber(int _cardNumber) {
     this->cardNumber = _cardNumber;
