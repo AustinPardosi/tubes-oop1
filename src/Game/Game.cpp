@@ -22,16 +22,16 @@ int Game::roundRobin() {
 }
 
 // Getter & Setter
-Pemain Game::getPemain() {
-    return this->pemain;
+Player* Game::getPlayerList() {
+    return this->playerList;
 }
 
 DeckCard Game::getDeckCard() {
     return this->deckCard;
 }
 
-TableCard Game::getTableCard() {
-    return this->TableCard;
+CardTable Game::getCardTable() {
+    return this->cardTable;
 }
 
 int Game::getRound() {
@@ -46,23 +46,23 @@ int Game::getTurn() {
     return this->turn;
 }
 
-void Game::setPemain() {
-    this->(*pemain);
+void Game::setPlayerList(Player& playerList) {
+    *this->playerList = playerList;
 }
 
 void Game::setDeckCard(DeckCard& dc) {
     this->deckCard = dc;
 }
 
-void Game::setTableCard(TableCard& tc) {
-    this->TableCard = tc;
+void Game::setCardTable(CardTable& tc) {
+    this->cardTable = tc;
 }
 
 void Game::setRound(int round) {
     this->round = round;
 }
 
-void setBonusPoint(float bonusPoint) {
+void Game::setBonusPoint(float bonusPoint) {
     this->bonusPoint = bonusPoint;
 }
 

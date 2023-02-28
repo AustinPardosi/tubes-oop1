@@ -2,9 +2,9 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "../Inventory Holder/DeckCard.hpp"
-#include "../Inventory Holder/TableCard.hpp"
-#include "../Inventory Holder/Pemain.hpp"
+#include "../DeckCard/DeckCard.hpp"
+#include "../CardTable/CardTable.hpp"
+#include "../Player/Player.hpp"
 #include "../Ability Card/AbilityCard.hpp"
 
 class Game {
@@ -21,27 +21,27 @@ class Game {
         int roundRobin();
         
         // Getter & Setter
-        Pemain getPemain();
+        Player* getPlayerList();
         DeckCard getDeckCard();
-        TableCard getTableCard();
+        CardTable getCardTable();
         int getRound();
         float getBonusPoint();
         int getTurn();
 
-        void setPemain(Pemain&);
+        void setPlayerList(Player&);
         void setDeckCard(DeckCard&);
-        void setTableCard(TableCard&);
+        void setCardTable(CardTable&);
         void setRound(int);
         void setBonusPoint(float);
         void setTurn(int);
 
     private:
-        Pemain pemain[7];
+        Player playerList[7];
         DeckCard deckCard;
-        TableCard tableCard;
+        CardTable cardTable;
         int round = 1; 
         float bonusPoint;
-        int turn; // Diisi dengan id pemain saat ini, didapatkan dengan roundRobin()
+        int turn; // Diisi dengan id Player saat ini, didapatkan dengan roundRobin()
 };
 
 #endif
