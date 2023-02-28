@@ -1,6 +1,6 @@
 // Game.hpp
-#ifndef GAME
-#define GAME
+#ifndef GAME_HPP
+#define GAME_HPP
 
 #include "../Inventory Holder/DeckCard.hpp"
 #include "../Inventory Holder/TableCard.hpp"

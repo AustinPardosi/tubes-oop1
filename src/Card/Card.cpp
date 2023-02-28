@@ -2,9 +2,17 @@
 #include "Card.hpp"
 
 // Konstruktor untuk menginisialisasi kartu
+Card::Card() : Card(-1,-1)  {}
+
 Card::Card(int _cardColor, int _cardNumber) {
     this->cardColor = _cardColor;
     this->cardNumber = _cardNumber;
+}
+
+// Cctor
+Card::Card(const Card& c) {
+    this->cardColor = c.cardColor;
+    this->cardNumber = c.cardNumber;
 }
 
 // Getter, Setter
@@ -33,6 +41,25 @@ bool Card::checkGreaterColor (int _cardColor) {
 
 bool Card::checkGreaterNumber (int _cardNumber) {
     return (this->cardNumber > _cardNumber);
+}
+
+string Card::convertColor (int _cardColor) const {
+    string color;
+    if (_cardColor == 3) {
+        color = "Merah";
+    } else if (_cardColor == 2) {
+        color = "Kuning";
+    } else if (_cardColor == 1) {
+        color = "Biru";
+    } else if (_cardColor == 0) {
+        color = "Hijau";
+    }
+    return color;
+}
+
+void Card::printInfoCard () const {
+    string color = Card::convertColor (this->cardColor);
+    cout << this->cardNumber << " (" << color << ")" << endl;
 }
 
 // Operator

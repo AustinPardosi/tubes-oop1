@@ -1,4 +1,6 @@
-// ReverseCard.hpp
+// File: ReverseCard.hpp
+// Berisi deklarasi dari kelas ReverseCard
+
 #ifndef REVERSE_CARD_HPP
 #define REVERSE_CARD_HPP
 
@@ -14,7 +16,7 @@ class ReverseCard : public AbilityCard {
         
         // Member Function
         // Menggunakan kartu yang dimiliki
-        void useCard();
+        void useCard(const Game& game);
 };
 
 #endif

@@ -1,5 +1,4 @@
 // Game.cpp
-
 #include "Game.hpp"
 
 // Konstruktor Game

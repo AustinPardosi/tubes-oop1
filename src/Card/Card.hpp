@@ -8,7 +8,11 @@ using namespace std;
 class Card {
 public:
 	// Konstruktor untuk menginisialisasi kartu
+    Card();
 	Card(int, int);
+
+    // Cctor 
+    Card(const Card&);
 
 	// Getter, Setter
 	void setCardNumber(int);
@@ -19,6 +23,8 @@ public:
     //  Member Function
     bool checkGreaterColor (int);
     bool checkGreaterNumber (int);
+    string convertColor (int) const;
+    void printInfoCard () const;
 
     // Operator 
     bool operator< (const Card&);
