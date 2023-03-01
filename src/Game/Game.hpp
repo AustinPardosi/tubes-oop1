@@ -3,6 +3,7 @@
 #define GAME_HPP
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // #include "../Inventory Holder/DeckCard.hpp"
 // #include "../Inventory Holder/TableCard.hpp"
 // #include "../Inventory Holder/Pemain.hpp"
@@ -11,6 +12,11 @@
 #include "../Inventory Holder/DeckCard.hpp"
 #include "../Inventory Holder/TableCard.hpp"
 #include "../Inventory Holder/Pemain.hpp"
+=======
+#include "../DeckCard/DeckCard.hpp"
+#include "../CardTable/CardTable.hpp"
+#include "../Player/Player.hpp"
+>>>>>>> 904ec04bf91a059483f3cb9b3199a2ba5d18445e
 #include "../Ability Card/AbilityCard.hpp"
 >>>>>>> f764f8617402b8a836c94ed120b93c39a7e8b538
 
@@ -28,27 +34,27 @@ class Game {
         int roundRobin();
         
         // Getter & Setter
-        Pemain getPemain();
+        Player* getPlayerList();
         DeckCard getDeckCard();
-        TableCard getTableCard();
+        CardTable getCardTable();
         int getRound();
         float getBonusPoint();
         int getTurn();
 
-        void setPemain(Pemain&);
+        void setPlayerList(Player&);
         void setDeckCard(DeckCard&);
-        void setTableCard(TableCard&);
+        void setCardTable(CardTable&);
         void setRound(int);
         void setBonusPoint(float);
         void setTurn(int);
 
     private:
-        Pemain pemain[7];
+        Player playerList[7];
         DeckCard deckCard;
-        TableCard tableCard;
+        CardTable cardTable;
         int round = 1; 
         float bonusPoint;
-        int turn; // Diisi dengan id pemain saat ini, didapatkan dengan roundRobin()
+        int turn; // Diisi dengan id Player saat ini, didapatkan dengan roundRobin()
 };
 
 #endif
