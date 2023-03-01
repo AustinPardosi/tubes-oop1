@@ -11,9 +11,6 @@ class SwitchCard : public AbilityCard {
         // Konstruktor kartu switch
         SwitchCard();
         
-        // Getter dan setter
-        bool getCardStatus() const;
-        
         // Member Function
         // Menggunakan kartu yang dimiliki
         void doCommand(Game& game);

@@ -11,9 +11,6 @@ class RerollCard : public AbilityCard {
         // Konstruktor kartu re-roll
         RerollCard();
         
-        // Getter dan setter
-        bool getCardStatus() const;
-        
         // Member Function
         // Menggunakan kartu yang dimiliki
         void doCommand(Game& game);

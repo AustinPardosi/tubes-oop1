@@ -9,10 +9,7 @@
 class QuarterCard : public AbilityCard {
     public:
         // Konstruktor kartu quarter
-        QuarterCard();
-        
-        // Getter dan setter
-        bool getCardStatus() const;
+        QuarterCard();       
         
         // Member Function
         // Menggunakan kartu yang dimiliki

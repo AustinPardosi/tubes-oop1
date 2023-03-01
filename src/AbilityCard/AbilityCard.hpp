@@ -12,15 +12,9 @@ class AbilityCard : public Command {
         // Konstruktor kartu ability
         AbilityCard();
         
-        // Getter dan setter
-        bool getCardStatus() const;
-        
         // Member Function
         // Menggunakan kartu yang dimiliki
         virtual void doCommand(Game& game) = 0;
-
-    protected:
-        bool status; // berisi status dari penggunaan kartu ability
 };
 
 #endif

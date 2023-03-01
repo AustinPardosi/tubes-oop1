@@ -8,12 +8,6 @@ using namespace std;
 // Konstruktor kartu reverse
 ReverseCard::ReverseCard() {
     this->commandID = 8;
-    this->status = true;
-}
-
-// Getter dan setter
-bool ReverseCard::getCardStatus() const {
-    return this->status;
 }
 
 // Member Function

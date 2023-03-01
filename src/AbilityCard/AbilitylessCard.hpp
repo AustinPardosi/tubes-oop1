@@ -11,9 +11,6 @@ class AbilitylessCard : public AbilityCard {
         // Konstruktor kartu abilityless
         AbilitylessCard();
         
-        // Getter dan setter
-        bool getCardStatus() const;
-        
         // Member Function
         // Menggunakan kartu yang dimiliki
         void doCommand(Game& game);

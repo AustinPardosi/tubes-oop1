@@ -8,12 +8,6 @@ using namespace std;
 // Konstruktor kartu quadruple
 QuadrupleCard::QuadrupleCard() {
     this->commandID = 5;
-    this->status = true;
-}
-
-// Getter dan setter
-bool QuadrupleCard::getCardStatus() const {
-    return this->status;
 }
 
 // Member Function

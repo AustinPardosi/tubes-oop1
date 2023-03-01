@@ -8,12 +8,6 @@ using namespace std;
 // Konstruktor kartu quarter
 QuarterCard::QuarterCard() {
     this->commandID = 6;
-    this->status = true;
-}
-
-// Getter dan setter
-bool QuarterCard::getCardStatus() const {
-    return this->status;
 }
 
 // Member Function

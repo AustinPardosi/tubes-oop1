@@ -11,9 +11,6 @@ class SwapCard : public AbilityCard {
         // Konstruktor kartu swap
         SwapCard();
         
-        // Getter dan setter
-        bool getCardStatus() const;
-        
         // Member Function
         // Menggunakan kartu yang dimiliki
         void doCommand(Game& game);

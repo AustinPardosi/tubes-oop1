@@ -11,9 +11,6 @@ class QuadrupleCard : public AbilityCard {
         // Konstruktor kartu quadruple
         QuadrupleCard();
         
-        // Getter dan setter
-        bool getCardStatus() const;
-        
         // Member Function
         // Menggunakan kartu yang dimiliki
         void doCommand(Game& game);
