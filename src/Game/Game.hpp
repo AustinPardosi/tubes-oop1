@@ -2,23 +2,10 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-// #include "../Inventory Holder/DeckCard.hpp"
-// #include "../Inventory Holder/TableCard.hpp"
-// #include "../Inventory Holder/Pemain.hpp"
 #include "../AbilityCard/AbilityCard.hpp"
-=======
-#include "../Inventory Holder/DeckCard.hpp"
-#include "../Inventory Holder/TableCard.hpp"
-#include "../Inventory Holder/Pemain.hpp"
-=======
 #include "../DeckCard/DeckCard.hpp"
 #include "../CardTable/CardTable.hpp"
 #include "../Player/Player.hpp"
->>>>>>> 904ec04bf91a059483f3cb9b3199a2ba5d18445e
-#include "../Ability Card/AbilityCard.hpp"
->>>>>>> f764f8617402b8a836c94ed120b93c39a7e8b538
 
 class Game {
     public:
