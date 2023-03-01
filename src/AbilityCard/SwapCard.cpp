@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "SwapCard.hpp"
+#include "../Game/Game.hpp"
 using namespace std;
 
 // Konstruktor kartu swap

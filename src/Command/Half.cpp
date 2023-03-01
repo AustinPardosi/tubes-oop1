@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Half.hpp"
+#include "../Game/Game.hpp"
 using namespace std;
 
 // Konstruktor half

@@ -6,6 +6,8 @@
 
 #include "AbilityCard.hpp"
 
+class Game;
+
 class RerollCard : public AbilityCard {
     public:
         // Konstruktor kartu re-roll

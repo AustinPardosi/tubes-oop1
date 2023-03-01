@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Double.hpp"
+#include "../Game/Game.hpp"
 using namespace std;
 
 // Konstruktor double

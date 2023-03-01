@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "SwitchCard.hpp"
+#include "../Game/Game.hpp"
 using namespace std;
 
 // Konstruktor kartu switch

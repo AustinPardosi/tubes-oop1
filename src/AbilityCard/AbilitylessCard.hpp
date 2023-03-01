@@ -6,6 +6,8 @@
 
 #include "AbilityCard.hpp"
 
+class Game;
+
 class AbilitylessCard : public AbilityCard {
     public:
         // Konstruktor kartu abilityless

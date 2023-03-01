@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Next.hpp"
+#include "../Game/Game.hpp"
 using namespace std;
 
 // Konstruktor next

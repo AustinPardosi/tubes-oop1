@@ -6,6 +6,8 @@
 
 #include "Command.hpp"
 
+class Game;
+
 class Half : public Command {
     public:
         // Konstruktor command

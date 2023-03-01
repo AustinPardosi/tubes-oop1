@@ -5,7 +5,8 @@
 #define ABILITY_CARD_HPP
 
 #include "../Command/Command.hpp"
-#include "../Game/Game.hpp"
+
+class Game;
 
 class AbilityCard : public Command {
     public:

@@ -6,6 +6,8 @@
 
 #include "AbilityCard.hpp"
 
+class Game;
+
 class ReverseCard : public AbilityCard {
     public:
         // Konstruktor kartu reverse

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Command.hpp"
+#include "../Game/Game.hpp"
 using namespace std;
 
 // Konstruktor command

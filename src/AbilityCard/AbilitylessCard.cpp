@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "AbilitylessCard.hpp"
+#include "../Game/Game.hpp"
 using namespace std;
 
 // Konstruktor kartu abilityless

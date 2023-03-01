@@ -6,6 +6,8 @@
 
 #include "AbilityCard.hpp"
 
+class Game;
+
 class SwapCard : public AbilityCard {
     public:
         // Konstruktor kartu swap
