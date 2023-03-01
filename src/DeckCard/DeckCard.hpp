@@ -6,6 +6,7 @@
 
 #include <chrono>
 #include <random>
+#include <map>
 
 #include "../InventoryHolder/InventoryHolder.hpp"
 
