@@ -17,7 +17,7 @@ class AbilityCard : public Command {
         
         // Member Function
         // Menggunakan kartu yang dimiliki
-        virtual void useCard(const Game& game) = 0;
+        virtual void doCommand(Game& game) = 0;
 
     protected:
         bool status; // berisi status dari penggunaan kartu ability

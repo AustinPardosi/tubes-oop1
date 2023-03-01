@@ -16,7 +16,7 @@ class QuarterCard : public AbilityCard {
         
         // Member Function
         // Menggunakan kartu yang dimiliki
-        void useCard(const Game& game);
+        void doCommand(Game& game);
 };
 
 #endif
