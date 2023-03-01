@@ -23,7 +23,7 @@ CardTable& CardTable::operator=(const CardTable& other) {
 /*------------------------ADDING CARDS SEGMENT------------------------*/
 
 void CardTable::addCards(const InventoryHolder& other) {
-    *this = *this + other.getFirstCard();
+    *this = *this + other.getCard(0);
 }
 
 CardTable CardTable::operator+(const Card& card) {

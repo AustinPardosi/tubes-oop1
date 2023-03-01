@@ -39,8 +39,8 @@ class InventoryHolder {
         /*--------------------------------------------------------------------*/
         /*---------------------ADDITIONAL METHOD SEGMENT----------------------*/
 
-        // Get the first card in the listOfCard
-        Card getFirstCard() const;
+        // Get the card at the index position in the listOfCard
+        Card getCard(int index) const;
 
         // Show current cards in inventory
         void showCards() const;

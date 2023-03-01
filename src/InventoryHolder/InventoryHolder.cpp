@@ -13,8 +13,8 @@ InventoryHolder::~InventoryHolder() {}
 /*--------------------------------------------------------------------*/
 /*---------------------ADDITIONAL METHOD SEGMENT----------------------*/
 
-Card InventoryHolder::getFirstCard() const {
-    return this->listOfCard[0];
+Card InventoryHolder::getCard(int index) const {
+    return this->listOfCard[index];
 }
 
 void InventoryHolder::showCards() const {
