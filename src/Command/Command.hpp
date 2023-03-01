@@ -13,7 +13,7 @@ class Command {
         
         // Member Function
         // Menjalankan command
-        virtual void doCommand(const Game& game) = 0;
+        virtual void doCommand(Game& game) = 0;
 
     protected:
         int commandID; // ID command yang bisa diakses user

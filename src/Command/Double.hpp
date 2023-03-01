@@ -13,7 +13,7 @@ class Double : public Command {
         
         // Member Function
         // Menjalankan command
-        void doCommand(const Game& game);
+        void doCommand(Game& game);
 };
 
 #endif
