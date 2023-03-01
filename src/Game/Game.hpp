@@ -5,7 +5,7 @@
 // #include "../Inventory Holder/DeckCard.hpp"
 // #include "../Inventory Holder/TableCard.hpp"
 // #include "../Inventory Holder/Pemain.hpp"
-#include "../Ability Card/AbilityCard.hpp"
+#include "../AbilityCard/AbilityCard.hpp"
 
 class Game {
     public:
