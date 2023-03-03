@@ -160,7 +160,7 @@ int Combination::checkStraight() {
     }
 }
 int Combination::checkFlush() {
-    // Rumus : 6.95 + Nomor kartu terbesar/10
+    // Rumus : 6.95 + Nomor kartu terbesar/10 + Kode warna
     // Nilai maksimum : 8.34
     // Hitung jumlah kemunculan setiap warna
     int colorCount[] = {0,0,0,0};
@@ -182,14 +182,72 @@ int Combination::checkFlush() {
 void Combination::checkFullHouse() {
     // Rumus : 8.34 + (Nomor kartu yang ada 3)/10
     // Nilai maksimum : 9.64
+    bool foundThree = false;
+    int i=6;
+    bool foundTwo = false;
+    while (!foundThree && i>=2) {
+        if (totalHand[i].getCardNumber() == totalHand[i-1].getCardNumber() && totalHand[i-1].getCardNumber() == totalHand[i-2].getCardNumber()) {
+            foundThree == true;
+        } else {
+            i--;
+        }
+    }
+    if (foundThree) {
+        int j=6;
+        while (!foundTwo && j >= 1) {
+            if ((j > i || j < i-2) && (j-1 > i || j-1 < i-2)) {
+                if (totalHand[j].getCardNumber() == totalHand[j-1].getCardNumber()) {
+                    foundTwo = true;
+                } else {
+                    j--;
+                }
+            }
+        }
+    }
+    if (foundThree && foundTwo) {
+        score = 8.34 + totalHand[i].getCardNumber()/10;
+    }
 }
 void Combination::checkFourKind() {
     // Rumus : 9.64 + Nomor kartu /10
     // Nilai maksimum : 10.94
+    int i=6;
+    bool foundFour = false;
+    while (!foundFour && i >=3) {
+        if (totalHand[i].getCardNumber() == totalHand[i-1].getCardNumber() && 
+            totalHand[i-1].getCardNumber() == totalHand[i-2].getCardNumber() &&
+            totalHand[i-2].getCardNumber() == totalHand[i-3].getCardNumber()) {
+                foundFour = true;
+        } else {
+            i--;
+        }
+    }
+    if (foundFour) {
+        score = 9.64 + totalHand[i].getCardNumber()/10;
+    }
 }
 void Combination::checkStraightFlush() {
     // Rumus : 10.94 + Nomor kartu tertinggi /10 + kode warna
     // Nilai maksimum : 12.33
+    bool foundStraightFlush = false;
+    int i = 6;
+    while (!foundStraightFlush && i >= 4) {
+        int j = i-1;
+        Card previous = totalHand[i];
+        while (j >= i-4 && previous.getCardNumber()-totalHand[j].getCardNumber() == 1 && previous.getCardColor() == totalHand[j].getCardColor()) {
+            previous = totalHand[j];
+            j--;
+        }
+        if (j < i-4) {
+            foundStraightFlush= true;
+        } else {
+            i--;
+        }
+    }
+
+    if (foundStraightFlush) {
+        score = 10.94 + totalHand[i].getCardNumber()/10 + totalHand[i].getCardColor() * 0.03;
+    }
 }
 
 void Combination::calculateScore() {
@@ -198,7 +256,6 @@ void Combination::calculateScore() {
     checkTwoPair();
     checkThreeKind();
     checkStraight();
-    sortHandByColor();
     checkFlush();
     checkFullHouse();
     checkFourKind();

@@ -1,16 +1,24 @@
-#include "../Card/Card.hpp"
+#ifndef COMBINATION_HPP
+#define COMBINATION_HPP
 
-class Combination {
+#include "../Card/Card.hpp"
+#include "../Score/Score.hpp"
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
+class Combination : public Score {
     private :
         float score;
-        Card* totalHand;
+        vector<Card> totalHand;
+        const int NOT_FOUND_IDX = -1;
         // int highestCombo; // 0 : high card, 1 : pair, 2 : two pair, ..., 8 : straight flush
 
     public :
-        Combination(Card* playerCard, Card* tableCard);
-        ~Combination();
+        Combination(vector<Card> playerCard, vector<Card> tableCard);
         float getScore();
         void setScore(float);
+        void value();
         // Operator overloading
         bool operator>(const Combination&);
         bool operator<(const Combination&);
@@ -20,13 +28,15 @@ class Combination {
         void sortHandByColor();
         // Cek kombinasi dan ubah score
         void checkHighCard();
-        void checkPair();
-        void checkTwoPair();
-        void checkThreeKind();
-        void checkStraight();
-        void checkFlush();
+        int checkPair();
+        int checkTwoPair();
+        int checkThreeKind();
+        int checkStraight();
+        int checkFlush();
         void checkFullHouse();
         void checkFourKind();
         void checkStraightFlush();
         void calculateScore();
 };
+
+#endif
