@@ -6,26 +6,29 @@
 /*--------------------------------------------------------------------*/
 /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
 
-Player::Player() : currentPoin(0), alreadyPlayed(false), abilityUsed(false), abilityless(false) {}
+Player::Player() : name(""), commandId(0), abilityId(0), currentPoin(0), alreadyPlayed(false), abilityUsed(false), abilityless(false) {}
 
-// still not done
-Player::Player(const Player& other) : currentPoin(other.currentPoin), alreadyPlayed(other.alreadyPlayed), abilityUsed(other.abilityUsed), abilityless(other.abilityless) {
+Player::Player(vector<Card> listCards, string name, int commandId, int abilityId, int currentPoin, bool alreadyPlayed, bool abilityUsed, bool abilityless) {
+    this->listOfCard = listCards;
+    this->name = name;
+    this->commandId = commandId;
+    this->abilityId = abilityId;
+    this->currentPoin = currentPoin;
+    this->alreadyPlayed = alreadyPlayed;
+    this->abilityUsed = abilityUsed;
+    this->abilityless = abilityless;
+}
+
+Player::Player(const Player& other) : name(other.name), commandId(other.commandId), abilityId(other.abilityId), currentPoin(other.currentPoin), alreadyPlayed(other.alreadyPlayed), abilityUsed(other.abilityUsed), abilityless(other.abilityless) {
     this->listOfCard = other.listOfCard;
 }
 
-// still not done
-Player::~Player() {
-    delete this->action;
-    delete this->ability;
-}
+Player::~Player() {}
 
-// still not done
 Player Player::operator=(const Player& other) {
-    delete this->action;
-    delete this->ability;
-
-    this->action = other.action;
-    this->ability = other.ability;
+    this->name = other.name;
+    this->commandId = other.commandId;
+    this->abilityId = other.abilityId;
     this->currentPoin = other.currentPoin;
     this->alreadyPlayed = other.alreadyPlayed;
     this->abilityUsed = other.abilityUsed;
@@ -36,6 +39,21 @@ Player Player::operator=(const Player& other) {
 
 /*--------------------------------------------------------------------*/
 /*---------------------GETTER AND SETTER SEGMENT----------------------*/
+
+void Player::askForName(int i) {
+    string name;
+    cout << "Please enter player " << i << " name" << endl;
+    cout << ">> ";
+    cin >> name;
+    if (name == "") {
+        throw "Please input a valid name\n";
+    }
+    this->name = name;
+}
+
+void Player::setAbilityID(int abilityId) {
+    this->abilityId = abilityId;
+}
 
 bool Player::getAlreadyPlayed() const {
     return this->alreadyPlayed;
@@ -89,9 +107,52 @@ Player Player::operator-(int cardsRemoved) {
 }
 
 /*--------------------------------------------------------------------*/
+/*-----------------------ASKING ACTION SEGMENT------------------------*/
+
+void Player::fillMapsOfCommand(map<string, int>& listCommands) {
+    listCommands.insert(pair<string, int> ("double", 1));
+    listCommands.insert(pair<string, int> ("half", 2));
+    listCommands.insert(pair<string, int> ("next", 3));
+    listCommands.insert(pair<string, int> ("abilityless", 4));
+    listCommands.insert(pair<string, int> ("quadruple", 5));
+    listCommands.insert(pair<string, int> ("quarter", 6));
+    listCommands.insert(pair<string, int> ("re-roll", 7));
+    listCommands.insert(pair<string, int> ("reverse", 8));
+    listCommands.insert(pair<string, int> ("swapcard", 9));
+    listCommands.insert(pair<string, int> ("switch", 10));
+}
+
+void Player::askForAction() {
+    map<string, int> listCommands;
+    fillMapsOfCommand(listCommands);
+    
+    string command;
+    cout << ">> ";
+    cin >> command;
+    transform(command.begin(), command.end(), command.begin(), ::tolower);
+
+    if (listCommands.find(command) == listCommands.end()) {
+        throw "Please input a valid command\n";
+    }
+
+    if (listCommands[command] >= 4) {
+        if (listCommands[command] != this->abilityId) {
+            throw "Sorry, you do not have the ability card. Please input another command\n";
+        }
+        if (this->abilityUsed) {
+            throw "Sorry, you already used the " + command + " ability card. Please input another command\n";
+        }
+        if (this->abilityless) {
+            throw "Sorry, your " + command + " ability card has been rendered useless. Please input another command\n";
+        }
+    }
+
+    this->commandId = listCommands[command];
+}
+
+/*--------------------------------------------------------------------*/
 /*---------------------POINT MANAGEMENT SEGMENT-----------------------*/
+
 Player Player::operator+(int poinHadiah) {
-    Player temp(*this);
-    temp.currentPoin += poinHadiah;
-    return Player(temp);
+    return Player(this->listOfCard, this->name, this->commandId, this->abilityId, this->currentPoin + poinHadiah, this->alreadyPlayed, this->abilityUsed, this->abilityless);
 }
