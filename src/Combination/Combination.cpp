@@ -173,13 +173,15 @@ void Combination::checkFlush() {
         i--;
     }
     if (i >= 0) {
+        // Ada warna yang jumlah kemunculannya 5
         int j = 6;
-        while (totalHand[j].getCardColor() != i) {
-            j--;
-        }
+        int counter = 0;
         score = 7;
-        for (int k=0; k<5; k++) {
-            score += totalHand[j-k].getCardNumber()/(10 * pow(100,k));
+        while (counter < 5) {
+            if (totalHand[j].getCardColor() == i) {
+                score += totalHand[j].getCardNumber()/(10 * pow(100,counter));
+            }
+            j--;
         }
     }
 }
