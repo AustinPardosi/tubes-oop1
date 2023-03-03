@@ -18,21 +18,29 @@ class Game {
         void action();
 
         // Menjalankan round robin
-        int roundRobin();
-        
+        int roundRobin(); // Mengubah isi turnList sesuai dengan aturan round robin
+        // Jadi nanti pengaksesan current turn pemain tinggal iterasi array turnList yang isinya indeks pemain awal
+
+        // Menambahkan player ke game
+        void addPlayerToList();
+
         // Getter & Setter
         Player* getPlayerList();
         DeckCard getDeckCard();
         CardTable getCardTable();
         int getRound();
         float getBonusPoint();
-        int getTurn();
+        int getIndexTurn();
+        int getPlayerTurn();
+        int getTurnList(int);
 
         void setPlayerList(Player&);
+        void setTurnList(int, int);
         void setDeckCard(DeckCard&);
         void setCardTable(CardTable&);
         void setRound(int);
         void setBonusPoint(float);
+        void setIndexTurn();
         void setTurn(int);
 
     private:
@@ -41,7 +49,8 @@ class Game {
         CardTable cardTable;
         int round = 1; 
         float bonusPoint;
-        int turn; // Diisi dengan id Player saat ini, didapatkan dengan roundRobin()
+        int* turnList; // Berisi dengan indeks pemain ketika awal diinisiasi
+        int turn; // Diisi dengan indeks dari turnList
 };
 
 #endif

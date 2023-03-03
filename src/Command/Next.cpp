@@ -14,5 +14,10 @@ Next::Next() {
 // Member Function
 // Menjalankan command
 void Next::doCommand(Game& game) {
-    
+    if (game.getIndexTurn() != 6) { // Jika turn belum mencapai pemain terakhir
+        game.setTurn(game.getIndexTurn()+1);
+    } 
+
+    // Jika sudah mencapai pemain terakhir maka tidak lakukan apa2
+    // Round robin akan dijalankan di Game
 }
