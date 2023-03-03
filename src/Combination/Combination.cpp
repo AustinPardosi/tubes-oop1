@@ -1,5 +1,6 @@
 #include "Combination.hpp"
 #include "../Helper/ArrayFunct.hpp"
+#include <cmath>
 
 using namespace std;
 
@@ -160,8 +161,8 @@ void Combination::checkStraight() {
     }
 }
 void Combination::checkFlush() {
-    // Rumus : 6.95 + Nomor kartu terbesar/10 + Kode warna
-    // Nilai maksimum : 8.34
+    // Rumus : 7 + Nomor kartu terbesar/10 + Nomor kartu terbesar kedua/1000 + Nomor kartu ketiga terbesar / 100000 dst.
+    // Nilai maksimum : 8.313131312
     // Hitung jumlah kemunculan setiap warna
     int colorCount[] = {0,0,0,0};
     for (int i=0; i<7; i++) {
@@ -176,12 +177,15 @@ void Combination::checkFlush() {
         while (totalHand[j].getCardColor() != i) {
             j--;
         }
-        score = 6.95 + totalHand[j].getCardNumber()/10;
+        score = 7;
+        for (int k=0; k<5; k++) {
+            score += totalHand[j-k].getCardNumber()/(10 * pow(100,k));
+        }
     }
 }
 void Combination::checkFullHouse() {
-    // Rumus : 8.34 + (Nomor kartu yang ada 3)/10
-    // Nilai maksimum : 9.64
+    // Rumus : 9 + (Nomor kartu yang ada 3)/10
+    // Nilai maksimum : 10.3
     bool foundThree = false;
     int i=6;
     bool foundTwo = false;
@@ -201,16 +205,18 @@ void Combination::checkFullHouse() {
                 } else {
                     j--;
                 }
+            } else {
+                j--;
             }
         }
     }
     if (foundThree && foundTwo) {
-        score = 8.34 + totalHand[i].getCardNumber()/10;
+        score = 9 + totalHand[i].getCardNumber()/10;
     }
 }
 void Combination::checkFourKind() {
-    // Rumus : 9.64 + Nomor kartu /10
-    // Nilai maksimum : 10.94
+    // Rumus : 10.3 + Nomor kartu /10
+    // Nilai maksimum : 11.6
     int i=6;
     bool foundFour = false;
     while (!foundFour && i >=3) {
@@ -223,12 +229,12 @@ void Combination::checkFourKind() {
         }
     }
     if (foundFour) {
-        score = 9.64 + totalHand[i].getCardNumber()/10;
+        score = 10.3 + totalHand[i].getCardNumber()/10;
     }
 }
 void Combination::checkStraightFlush() {
-    // Rumus : 10.94 + Nomor kartu tertinggi /10 + kode warna
-    // Nilai maksimum : 12.33
+    // Rumus : 11.6 + Nomor kartu tertinggi /10 + kode warna
+    // Nilai maksimum : 12.99
     bool foundStraightFlush = false;
     int i = 6;
     while (!foundStraightFlush && i >= 4) {
@@ -246,12 +252,14 @@ void Combination::checkStraightFlush() {
     }
 
     if (foundStraightFlush) {
-        score = 10.94 + totalHand[i].getCardNumber()/10 + totalHand[i].getCardColor() * 0.03;
+        score = 11.6 + totalHand[i].getCardNumber()/10 + totalHand[i].getCardColor() * 0.03;
     }
 }
 
 void Combination::calculateScore() {
+    // calculateScore default, cek semua kombinasi
     sortHandByValue();
+    checkHighCard();
     checkPair();
     checkTwoPair();
     checkThreeKind();
@@ -260,4 +268,45 @@ void Combination::calculateScore() {
     checkFullHouse();
     checkFourKind();
     checkStraightFlush();
+}
+
+void Combination::calculateScore(int untilWhichParam) {
+    // calculateScore untuk tiebreaker, dibatasi sampe kombinasi mana yang dicek
+    /*
+        9 : sampe straightflush
+        8 : sampe four of a kind
+        7 : sampe full house
+        6 : sampe flush
+        5 : sampe straight
+        4 : sampe three of a kind
+        3 : sampe two pair
+        2 : sampe pair
+        1 : sampe high card
+    */
+    sortHandByValue();
+    checkHighCard();
+    if (untilWhichParam >= 2) {
+        checkPair();
+    }
+    if (untilWhichParam >= 3) {
+        checkTwoPair();
+    }
+    if (untilWhichParam >= 4) {
+        checkThreeKind();
+    }
+    if (untilWhichParam >= 5) {
+        checkStraight();
+    }
+    if (untilWhichParam >= 6) {
+        checkFlush();
+    }
+    if (untilWhichParam >= 7) {
+        checkFullHouse();
+    }
+    if (untilWhichParam >= 8) {
+        checkFourKind();
+    }
+    if (untilWhichParam >= 9) {
+        checkStraightFlush();
+    }
 }

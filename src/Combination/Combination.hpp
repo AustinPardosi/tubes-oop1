@@ -37,6 +37,7 @@ class Combination : public Score {
         void checkFourKind();
         void checkStraightFlush();
         void calculateScore();
+        void calculateScore(int);
 };
 
 #endif
