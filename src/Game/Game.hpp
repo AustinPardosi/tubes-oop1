@@ -2,6 +2,7 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
+#include <vector>
 #include "../AbilityCard/AbilityCard.hpp"
 #include "../DeckCard/DeckCard.hpp"
 #include "../CardTable/CardTable.hpp"
@@ -32,7 +33,8 @@ class Game {
         float getBonusPoint();
         int getIndexTurn();
         int getPlayerTurn();
-        int getTurnList(int);
+        vector<int> getTurnList();
+        int getTurnListByIdx(int);
 
         void setPlayerList(Player&);
         void setTurnList(int, int);
@@ -49,7 +51,7 @@ class Game {
         CardTable cardTable;
         int round = 1; 
         float bonusPoint;
-        int* turnList; // Berisi dengan indeks pemain ketika awal diinisiasi
+        vector <int> turnList; // Berisi dengan indeks pemain ketika awal diinisiasi
         int turn; // Diisi dengan indeks dari turnList
 };
 

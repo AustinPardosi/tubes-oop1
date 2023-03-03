@@ -8,7 +8,7 @@ Game::Game() {
     CardTable cardTable;
     int round = 1; 
     float bonusPoint = 0;
-    int turnList[] = {0,1,2,3,4,5,6};
+    vector <int> turnList = {0,1,2,3,4,5,6};
     int turn = 0;
 }
 
@@ -26,11 +26,8 @@ void Game::action() {
 int Game::roundRobin() {
     this->turn = 0; // Reset ulang indeks turn jadi 0
     this->round++; // Mengubah nilai round yang sudah dimainkan
-    int temp = this->turnList[0];
-    for (int i = 0; i < 6; i++) {
-        this->turnList[i] = this->turnList[i+1];
-    }
-    this->turnList[6] = temp;
+    this->turnList.push_back(this->turnList[0]);
+    this->turnList.erase(this->turnList.begin());
 }
 
 void Game::addPlayerToList() {
@@ -71,9 +68,14 @@ int Game::getPlayerTurn() {
     return this->turnList[this->turn];
 }
 
-int Game::getTurnList(int idx) {
+int Game::getTurnListByIdx(int idx) {
     // Mengakses turnList dengan indeks idx
     return this->turnList[idx];
+}
+
+vector<int> Game::getTurnList() {
+    // Mengakses turnList
+    return this->turnList;
 }
 
 void Game::setPlayerList(Player& playerList) {
@@ -102,16 +104,4 @@ void Game::setBonusPoint(float bonusPoint) {
 
 void Game::setTurn(int turn) {
     this->turn = turn;
-}
-
-// Member Function
-// Menggunakan kartu yang dimiliki
-void doCommand(Game& game) {
-    int turnIdx = game.getIndexTurn() + 1;
-    int temp;
-    for (int i = turnIdx, j = 6; i < j; i++, j--) {
-        temp = game.getTurnList(i);
-        game.setTurnList(i, game.getTurnList(j));
-        game.setTurnList(j, temp);
-    }
 }
