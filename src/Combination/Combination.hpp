@@ -28,11 +28,11 @@ class Combination : public Score {
         void sortHandByColor();
         // Cek kombinasi dan ubah score
         void checkHighCard();
-        int checkPair();
-        int checkTwoPair();
-        int checkThreeKind();
-        int checkStraight();
-        int checkFlush();
+        void checkPair();
+        void checkTwoPair();
+        void checkThreeKind();
+        void checkStraight();
+        void checkFlush();
         void checkFullHouse();
         void checkFourKind();
         void checkStraightFlush();
