@@ -4,13 +4,16 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#include <map>
+
 #include "../InventoryHolder/InventoryHolder.hpp"
 #include "../AbilityCard/AbilityCard.hpp"
 
 class Player : public InventoryHolder {
     private:
-        Command* action;
-        AbilityCard* ability;
+        string name;
+        int commandId;
+        int abilityId;
         int currentPoin;
         bool alreadyPlayed;
         bool abilityUsed;
@@ -22,6 +25,9 @@ class Player : public InventoryHolder {
         
         // ctor
         Player();
+
+        // user-defined ctor
+        Player(vector<Card> listCards, string name, int commandId, int abilityId, int currentPoin, bool alreadyPlayed, bool abilityUsed, bool abilityless);
 
         // cctor
         Player(const Player& other);
@@ -35,10 +41,16 @@ class Player : public InventoryHolder {
         /*--------------------------------------------------------------------*/
         /*---------------------GETTER AND SETTER SEGMENT----------------------*/
 
-        // get alreadyPlayed attribute;
+        // ask for name of player
+        void askForName(int i);
+
+        // set ability id
+        void setAbilityID(int abilityId);
+
+        // get alreadyPlayed attribute        
         bool getAlreadyPlayed() const;
 
-        // set alreadyPlayer attribute;
+        // set alreadyPlayed attribute;
         void setAlreadyPlayed(bool alreadyPlayer);
 
         // get abilityUsed attribute;
@@ -73,10 +85,17 @@ class Player : public InventoryHolder {
 
         /*--------------------------------------------------------------------*/
         /*-----------------------ASKING ACTION SEGMENT------------------------*/
+        
+        // Fill list of commands with pair<string, int>
+        void fillMapsOfCommand(map<string, int>& listCommands);
+
+        // Ask for player action, throw exception if not valid
         void askForAction();
 
         /*--------------------------------------------------------------------*/
         /*---------------------POINT MANAGEMENT SEGMENT-----------------------*/
+        
+        // Add the prize point to player own point
         Player operator+(int poinHadiah);
 
 
