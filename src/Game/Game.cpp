@@ -23,7 +23,7 @@ void Game::action() {
 }
 
 // Menjalankan round robin
-int Game::roundRobin() {
+void Game::roundRobin() {
     this->turn = 0; // Reset ulang indeks turn jadi 0
     this->round++; // Mengubah nilai round yang sudah dimainkan
     this->turnList.push_back(this->turnList[0]);

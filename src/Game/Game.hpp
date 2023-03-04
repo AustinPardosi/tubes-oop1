@@ -19,7 +19,7 @@ class Game {
         void action();
 
         // Menjalankan round robin
-        int roundRobin(); // Mengubah isi turnList sesuai dengan aturan round robin
+        void roundRobin(); // Mengubah isi turnList sesuai dengan aturan round robin
         // Jadi nanti pengaksesan current turn pemain tinggal iterasi array turnList yang isinya indeks pemain awal
 
         // Menambahkan player ke game
