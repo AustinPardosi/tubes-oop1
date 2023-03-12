@@ -8,7 +8,7 @@ using namespace std;
 
 // Konstruktor kartu swap
 SwapCard::SwapCard() {
-    this->commandID = 8;
+    this->commandID = 9;
 }
 
 // Member Function
