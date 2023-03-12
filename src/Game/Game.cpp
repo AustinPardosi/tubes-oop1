@@ -133,6 +133,33 @@ void Game::roundRobin() {
     this->turnList.erase(this->turnList.begin());
 }
 
+
+// Validasi angka input
+int Game::validateInputNum(int size) {
+    bool valid = false;
+    string temp;
+
+    while (!valid) {
+        try {
+            cout << "Choose your option!" << endl;
+            cout << ">> ";
+            cin >> temp;
+
+            if ( (!(!temp.empty() && all_of(temp.begin(), temp.end(), ::isdigit))) 
+                 || (stoi(temp) > 0 && stoi(temp) <= size)) {
+                InvalidInputException e;
+                throw e;
+            }
+            valid = true;  
+        }
+        catch (InvalidInputException e) {
+            e.printMessage();
+        }
+    }
+
+    return stoi(temp);
+}
+
 // Ability pada game
 void Game::doDouble() {
     long long initial = this->bonusPoint;
@@ -215,7 +242,7 @@ void Game::doAbilityless() {
                 cout << ">> ";
                 cin >> temp;
 
-                if (!isdigit(temp) || (atoi(temp) > 0 && atoi(temp) < countprint)) {
+                if (!isdigit(1) || (atoi(temp) > 0 && atoi(temp) < countprint)) {
                     InvalidInputException e;
                     throw e;
                 } else {
@@ -427,26 +454,7 @@ void Game::doSwitch() {
         cout << "  " << i << ". " << this->playerList[idx].getName() << endl;
     });
 
-    //bool valid = false;
-    string temp;
-    int choice;
-    while (!valid) {
-        try {
-            cout << "Choose your option!" << endl;
-            cout << ">> ";
-            cin >> temp;
-
-            if (!isdigit(temp) || (atoi(temp) > 0 && atoi(temp) <= targetPlayer.size())) {
-                InvalidInputException e;
-                throw e;
-            }
-
-            choice = atoi(temp);
-            valid = true;
-        } catch (InvalidInputException e) {
-            e.printMessage();
-        }
-    }
+    int choice = validateInputNum(targetPlayer.size());
 
     this->playerList[this->turnList[this->turn]].addCards(this->playerList[targetPlayer[choice]]);
     this->playerList[targetPlayer[choice]].addCards(this->playerList[this->turnList[this->turn]]);
@@ -456,7 +464,7 @@ void Game::doSwitch() {
     this->playerList[targetPlayer[choice]].removeCards(1);
 
     cout << "Two cards of " << this->playerList[this->turnList[this->turn]].getName() << " have been switched with " << this->playerList[targetPlayer[choice]].getName() << "'s hands" << endl;
-    cout << "Your cards now are: "
+    cout << "Your cards now are: ";
     this->playerList[this->turnList[this->turn]].showCards();
     this->turn++;
 }

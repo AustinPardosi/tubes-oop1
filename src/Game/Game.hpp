@@ -71,6 +71,8 @@ class Game {
         vector<Command*> commandList;
         long long bonusPoint;
         int winner;
+
+        int validateInputNum(int);
 };
 
 #endif
