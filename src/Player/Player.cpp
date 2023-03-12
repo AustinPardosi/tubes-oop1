@@ -3,7 +3,7 @@
 
 #include "Player.hpp"
 #include "../ExceptionHandling/NameInputException.hpp"
-#include "../ExceptionHandling/CommandInputException.hpp"
+#include "../ExceptionHandling/InvalidInputException.hpp"
 #include "../ExceptionHandling/EmptyAbilityCardException.hpp"
 #include "../ExceptionHandling/AbilityCommandException.hpp"
 
@@ -148,7 +148,7 @@ void Player::askForAction() {
     transform(command.begin(), command.end(), command.begin(), ::tolower);
 
     if (listCommands.find(command) == listCommands.end()) {
-        throw new CommandInputException;
+        throw new InvalidInputException;
     }
 
     if (listCommands[command] >= 4) {

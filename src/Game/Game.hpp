@@ -22,6 +22,8 @@ using namespace std;
 #include "../CardTable/CardTable.hpp"
 #include "../Player/Player.hpp"
 
+#include "../ExceptionHandling/InvalidInputException.hpp"
+
 class Game {
     public:
         // Konstruktor Game

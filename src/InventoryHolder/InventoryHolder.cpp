@@ -21,7 +21,7 @@ void InventoryHolder::showCards() const {
     int i = 1;
     for_each(this->listOfCard.begin(), this->listOfCard.end(), [&j = i] (const Card& element) 
     {
-        cout << j << ". ";
+        cout << "  " << j << ". ";
         element.printInfoCard();
         j++;
     });

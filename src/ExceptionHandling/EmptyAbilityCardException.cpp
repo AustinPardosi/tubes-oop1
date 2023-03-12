@@ -6,5 +6,6 @@ using namespace std;
 EmptyAbilityCardException::EmptyAbilityCardException() {}
 
 void EmptyAbilityCardException::printMessage() {
-    cout << "Sorry, you do not have the ability card. Please input another command" << endl;
+    cout << "Looks like you do not have the ability card..." << endl;
+    cout << "Please input another command" << endl;
 }

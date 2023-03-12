@@ -10,8 +10,10 @@ AbilityCommandException::AbilityCommandException(bool _isUsed, string _command) 
 
 void AbilityCommandException::printMessage() {
     if(this->isUsed) {
-        cout << "Sorry, you already used the " << this->command + " ability card. Please input another command" << endl;
+        cout << "Sorry, you already used the " << this->command << " ability card" << endl;
+        cout << "Please input another command!" << endl;
     } else {
-        cout << "Sorry, your " + this->command + " ability card has been rendered useless. Please input another command" << endl;
+        cout << "Oops... someone has turned off your ability card :(" << endl; 
+        cout << "Please input another command!" << endl;
     }
 }
