@@ -58,6 +58,9 @@ class Player : public InventoryHolder {
         // ask for name of player
         void askForName(int i);
 
+        // get player name
+        string getName() const;
+
         // set ability id
         void setAbilityID(int abilityId);
 

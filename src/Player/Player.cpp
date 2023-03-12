@@ -51,6 +51,10 @@ void Player::askForName(int i) {
     this->name = name;
 }
 
+string Player::getName() const {
+    return this->name;
+}
+
 void Player::setAbilityID(int abilityId) {
     this->abilityId = abilityId;
 }

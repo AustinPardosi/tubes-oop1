@@ -6,7 +6,18 @@
 #include <iostream>
 using namespace std;
 
-#include "../AbilityCard/AbilityCard.hpp"
+#include "../Command/Command.hpp"
+#include "../Command/Double.hpp"
+#include "../Command/Half.hpp"
+#include "../Command/Next.hpp"
+#include "../AbilityCard/AbilitylessCard.hpp"
+#include "../AbilityCard/QuadrupleCard.hpp"
+#include "../AbilityCard/QuarterCard.hpp"
+#include "../AbilityCard/RerollCard.hpp"
+#include "../AbilityCard/ReverseCard.hpp"
+#include "../AbilityCard/SwapCard.hpp"
+#include "../AbilityCard/SwitchCard.hpp"
+
 #include "../DeckCard/DeckCard.hpp"
 #include "../CardTable/CardTable.hpp"
 #include "../Player/Player.hpp"
@@ -19,10 +30,11 @@ class Game {
         // Member Function
         // Menjalankan Game dan round
         void start();
-
         void startGame();
 
-        void startRound();
+        void initializeGame();
+        void giveAbility();
+        void startRound(int);
 
         // Mereset poin hadiah, turn, dan melakukan round robin
         void resetGame();
@@ -31,32 +43,8 @@ class Game {
         void roundRobin(); // Mengubah isi turnList sesuai dengan aturan round robin
         // Jadi nanti pengaksesan current turn pemain tinggal iterasi array turnList yang isinya indeks pemain awal
 
-        // Menambahkan player ke game
-        void addPlayerToList();
-
         // Mengecek apakah ada player yang sudah menang dan mengeluarkan pemenangnya
         bool isPlayerWin(int&);
-
-        // Getter & Setter
-        vector<Player> getPlayerList();
-        DeckCard getDeckCard();
-        CardTable getCardTable();
-        int getRound();
-        float getBonusPoint();
-        int getIndexTurn();
-        int getCurrentPlayerTurn();
-        vector<int> getTurnList();
-        Player getPlayerByIdx(int);
-        int getTurnListByIdx(int);
-
-        void setPlayerList(Player&);
-        void setTurnList(int, int);
-        void setDeckCard(DeckCard&);
-        void setCardTable(CardTable&);
-        void setRound(int);
-        void setBonusPoint(float);
-        void setIndexTurn();
-        void setTurn(int);
 
         // Ability pada game
         void doReverse();
@@ -71,14 +59,15 @@ class Game {
         void doNext();
 
     private:
-        vector<Player> playerList;
         DeckCard deckCard;
         CardTable cardTable;
-        int round; 
-        long long bonusPoint; 
+
+        vector<Player> playerList;
         vector <int> turnList; // Berisi dengan indeks pemain ketika awal diinisiasi
         int turn;
+
         vector<Command*> commandList;
+        long long bonusPoint;
         int winner;
 };
 
