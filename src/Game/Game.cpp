@@ -1,5 +1,6 @@
 // Game.cpp
-#include "Game.hpp"
+#include "Game.hpp" 
+#include <math.h>
 
 // Konstruktor Game
 Game::Game() {
@@ -7,14 +8,25 @@ Game::Game() {
     this->bonusPoint = 0;
     this->turnList = {0,1,2,3,4,5,6};
     this->turn = 0;
+    this->winner = -1;
 }
 
 // Member Function
 // Menjalankan Game
 void Game::runGame() {
+    while (!(this->isPlayerWin(this->winner))) {
+
+    }
 }
 
-
+bool Game::isPlayerWin(int& winner) {
+    for (int i = 0; i < 7; i++) {
+        if (this->getPlayerByIdx(i).getCurrentPoin() >= pow(2,32)) {
+            winner = i;
+            return true;
+        } 
+    }
+}
 
 // Menjalankan round robin
 void Game::roundRobin() {
@@ -65,6 +77,11 @@ int Game::getCurrentPlayerTurn() {
 int Game::getTurnListByIdx(int idx) {
     // Mengakses turnList dengan indeks idx
     return this->turnList[idx];
+}
+
+Player Game::getPlayerByIdx(int idx) {
+    // Mengakses turnList dengan indeks idx
+    return this->playerList[idx];
 }
 
 vector<int> Game::getTurnList() {

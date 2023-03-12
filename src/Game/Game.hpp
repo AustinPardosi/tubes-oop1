@@ -24,6 +24,9 @@ class Game {
         // Menambahkan player ke game
         void addPlayerToList();
 
+        // Mengecek apakah ada player yang sudah menang dan mengeluarkan pemenangnya
+        bool isPlayerWin(int&);
+
         // Getter & Setter
         vector<Player> getPlayerList();
         DeckCard getDeckCard();
@@ -33,6 +36,7 @@ class Game {
         int getIndexTurn();
         int getCurrentPlayerTurn();
         vector<int> getTurnList();
+        Player getPlayerByIdx(int);
         int getTurnListByIdx(int);
 
         void setPlayerList(Player&);
@@ -65,6 +69,7 @@ class Game {
         vector <int> turnList; // Berisi dengan indeks pemain ketika awal diinisiasi
         int turn; // Diisi dengan indeks dari turnList
         vector<Command*> commandList;
+        int winner;
 };
 
 #endif
