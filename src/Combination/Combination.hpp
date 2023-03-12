@@ -36,7 +36,6 @@ class Combination : public Score {
         void checkFullHouse();
         void checkFourKind();
         void checkStraightFlush();
-        void calculateScore();
         void calculateScore(int);
 };
 
