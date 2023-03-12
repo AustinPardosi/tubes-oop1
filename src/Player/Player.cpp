@@ -184,6 +184,27 @@ void Player::calculateCombo(vector<Card> tableCard) {
 }
 
 /*--------------------------------------------------------------------*/
+/*----------------------SWAP AND SWITCH SEGMENT-----------------------*/
+void Player::swapCardWithOther(Player& other, int handPos, int otherPos) {
+    Card card1 = getCard(handPos);
+    Card card2 = other.getCard(otherPos);
+
+    removeCards(handPos);
+    other.removeCards(otherPos);
+
+    this->listOfCard.insert(this->listOfCard.begin()+handPos, card2);
+    other.listOfCard.insert(other.listOfCard.begin()+otherPos, card1);
+}
+
+void Player::switchCardWithOther(Player& other) {
+    addCards(other);
+    other.addCards(*this);
+    removeCards(0);
+    removeCards(0);
+    other.removeCards(0);
+    other.removeCards(0);
+}
+/*--------------------------------------------------------------------*/
 /*---------------------POINT MANAGEMENT SEGMENT-----------------------*/
 
 Player Player::operator+(int poinHadiah) {

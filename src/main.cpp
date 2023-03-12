@@ -2,7 +2,7 @@
 // Menginisiasi objek Game dan memulai permainan
 
 // Command compile
-// g++ AbilityCard/AbilityCard.cpp AbilityCard/ReverseCard.cpp Card/Card.cpp CardTable/CardTable.cpp Command/Command.cpp DeckCard/DeckCard.cpp Game/Game.cpp InventoryHolder/InventoryHolder.cpp Player/Player.cpp main.cpp -o main
+// g++ AbilityCard/*.cpp Card/*.cpp CardTable/*.cpp Combination/*.cpp Command/*.cpp DeckCard/*.cpp ExceptionHandling/*.cpp Game/*.cpp Helper/*.cpp InventoryHolder/*.cpp Player/*.cpp main.cpp -o main
 
 #include "Game/Game.hpp"
 

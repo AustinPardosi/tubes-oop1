@@ -61,6 +61,12 @@ class Player : public InventoryHolder {
         // get player name
         string getName() const;
 
+        // get listCard
+        vector<Card> getCardList() const;
+
+        // set listCard
+        void setCardList(vector<Card>);
+
         // set ability id
         void setAbilityID(int abilityId);
 
@@ -114,6 +120,12 @@ class Player : public InventoryHolder {
 
         // Ask for player action, throw exception if not valid
         void askForAction();
+
+        /*--------------------------------------------------------------------*/
+        /*----------------------SWAP AND SWITCH SEGMENT-----------------------*/
+        void swapCardWithOther(Player& other, int handPos, int otherPos);
+
+        void switchCardWithOther(Player& other);
 
         /*--------------------------------------------------------------------*/
         /*--------------------------COMBO SEGMENT-----------------------------*/

@@ -115,7 +115,7 @@ void Game::resetGame() {
     this->bonusPoint = 64;
     for_each(this->playerList.begin(), this->playerList.end(), [] (Player& player) {
         player.removeCards(0);
-        player.removeCards(1);
+        player.removeCards(0);
         player.setAlreadyPlayed(false);
         player.setAbilityless(false);
         player.setAbilityUsed(false);
@@ -132,7 +132,6 @@ void Game::roundRobin() {
     this->turnList.push_back(this->turnList[0]);
     this->turnList.erase(this->turnList.begin());
 }
-
 
 // Validasi angka input
 int Game::validateInputNum(int size) {
@@ -211,64 +210,40 @@ void Game::doReverse() {
 void Game::doAbilityless() {
     cout << this->playerList[this->turnList[this->turn]].getName() << " use ABILITY CARD!" << endl;
     // Instansiasi list pemain yang belum menggunakan kartunya
-    int *listAbility = new int [7];
-    int count = 0;
+    vector<int> listAbility;
     for (int i = 0; i < 7; i++) {
         if (i != this->turn && !this->playerList[i].getAbilityUsed()) {
-            listAbility[count] = i;
-            count++;
+            listAbility.push_back(i);
         }
     }
+
     // Pemrosesan berdasar kasus
-    if (count == 0) {
+    if (listAbility.size() == 0) {
         cout << "Hmm.. seems like every player have used their ability card" << endl;
         cout << "Poor you :( you are now abilityless, this card becoming useless" << endl;
     } else {
+        // Inisiasi list player
+        vector<int> targetPlayer1 = this->turnList;
+        targetPlayer1.erase(targetPlayer1.begin()+this->turn);
+        sort(targetPlayer1.begin(), targetPlayer1.end());
+
+        // Memilih player
         cout << "Please select the player whose ability card you want to turn off :" << endl;
-        int countprint = 1;
-        for (int i = 0; i < 7; i++) {
-            if (i != this->turn) {
-                cout << "  " << countprint << ". " << this->playerList[i].getName() << endl;
-                countprint++;
-            }
-        }
+        int count = 1;
+        for_each(targetPlayer1.begin(), targetPlayer1.end(), [this, &i = count] (int idx) {
+            cout << "  " << i << ". " << this->playerList[idx].getName() << endl;
+        });
+    
+        int check = validateInputNum(targetPlayer1.size()) - 1;
 
-        bool valid = false;
-        string temp;
-        int check;
-        while (!valid) {
-            try {
-                cout << "Choose your option!" << endl;
-                cout << ">> ";
-                cin >> temp;
-
-                if (!isdigit(1) || (atoi(temp) > 0 && atoi(temp) < countprint)) {
-                    InvalidInputException e;
-                    throw e;
-                } else {
-                    if (countprint < this->turn) {
-                        check = atoi(temp);
-                    } else {
-                        check = atoi(temp) + 1;
-                    }
-                    valid = true;
-                }
-            } 
-            catch (InvalidInputException e) {
-                e.printMessage();
-            }
-        }
-
-        size_t myArraySize = sizeof(listAbility) / sizeof(int);
-        int *end = listAbility + myArraySize;
-        int *result = find(listAbility, end, check-1);
-        // When the element is not found, std::find returns the end of the range
-        if (result == end) {
-            cout << "Sorry, " << this->playerList[check-1].getName() << " has already use his/her ability card" << endl;
+        // Mencari player untuk diubah
+        auto itr = find(listAbility.begin(), listAbility.end(), check);
+        if (itr == listAbility.end()) {
+            cout << "Sorry, " << this->playerList[targetPlayer1[check]].getName() << " has already use his/her ability card" << endl;
             cout << "This card becoming useless :(" << endl;
         } else {
-            this->playerList[check-1].setAbilityless(true);
-            cout << this->playerList[check-1].getName() << "'s ability card has been turned off!" << endl;
+            this->playerList[targetPlayer1[check]].setAbilityless(true);
+            cout << this->playerList[targetPlayer1[check]].getName() << "'s ability card has been turned off!" << endl;
         }
     }
 
@@ -312,132 +287,45 @@ void Game::doReroll() {
 }
 
 void Game::doSwap() {
-    cout << "Please select the player whose card you want to exchange: " << endl;
-    int countprint = 1;
-    for (int i = 0; i < 7; i++) {
-        if (i != this->turn) {
-            cout << "  " << countprint << ". " << this->playerList[i].getName() << endl;
-            countprint++;;
-        }
-    }
+    vector<int> targetPlayer1 = this->turnList;
+    targetPlayer1.erase(targetPlayer1.begin()+this->turn);
+    sort(targetPlayer1.begin(), targetPlayer1.end());
 
-    bool valid = false;
-    string temp;
-    int player1;
-    // while (!valid) {
-    //     try {
-    //         cout << "Choose your option!" << endl;
-    //         cout << ">> ";
-    //         cin >> temp;
-    //         if (!isdigit(temp) || (atoi(temp) > 0 && atoi(temp) < countprint)) {
-    //             InvalidInputException e;
-    //             throw e;
-    //         } else {
-    //             if (countprint < this->turn) {
-    //                 player1 = atoi(temp);
-    //             } else {
-    //                 player1 = atoi(temp) + 1;
-    //             }
-    //             valid = true;
-    //         }
-    //     } catch (InvalidInputException e) {
-    //         e.printMessage();
-    //     }
-    // }
+    cout << "Please select the player whose card you want to exchange: " << endl;
+    int count = 1;
+    for_each(targetPlayer1.begin(), targetPlayer1.end(), [this, &i = count] (int idx) {
+        cout << "  " << i << ". " << this->playerList[idx].getName() << endl;
+    });
+ 
+    int player1 = validateInputNum(targetPlayer1.size()) - 1;
+
+    vector<int> targetPlayer2 = targetPlayer1;
+    targetPlayer2.erase(targetPlayer2.begin() + player1);
 
     cout << "Now please select another player whose card you want to exchange: " << endl;
-    int countprint = 1;
-    for (int i = 0; i < 7; i++) {
-        if (i != this->turn && i != player1) {
-            cout << "  " << countprint << ". " << this->playerList[i].getName() << endl;
-            countprint++;
-        }
-    }
+    int count = 1;
+    for_each(targetPlayer2.begin(), targetPlayer2.end(), [this, &i = count] (int idx) {
+        cout << "  " << i << ". " << this->playerList[idx].getName() << endl;
+    });
 
-    bool valid = false;
-    string temp;
-    int player2;
-    while (!valid) {
-        try {
-            cout << "Choose your option!" << endl;
-            cout << ">> ";
-            cin >> temp;
+    int player2 = validateInputNum(targetPlayer2.size()) - 1;
 
-            if (!isdigit(temp) || (atoi(temp) > 0 && atoi(temp) < countprint)) {
-                InvalidInputException e;
-                throw e;
-            } else {
-                if (countprint < this->turn) {
-                    player2 = atoi(temp);
-                } else {
-                    player2 = atoi(temp) + 1;
-                }
-                valid = true;
-            }
-        } catch (InvalidInputException e) {
-            e.printMessage();
-        }
-    }
-    
-    cout << "Choose " << this->playerList[player1 - 1].getName() << "'s card" << endl;
+    cout << "Choose " << this->playerList[targetPlayer1[player1]].getName() << "'s card" << endl;
     cout << "  1. Left" << endl;
     cout << "  2. Right" << endl;
 
-    bool valid = false;
-    string temp;
-    int player1idx;
-    while (!valid) {
-        try {
-            cout << "Choose your option!" << endl;
-            cout << ">> ";
-            cin >> temp;
+    int player1idx = validateInputNum(2) - 1;
 
-            if (!isdigit(temp) || (atoi(temp) > 0 && atoi(temp) < countprint)) {
-                InvalidInputException e;
-                throw e;
-            } else {
-                player1idx = atoi(temp) - 1;
-                valid = true;
-            }
-        } catch (InvalidInputException e) {
-            e.printMessage();
-        }
-    }
-
-    cout << "Now choose " << this->playerList[player2 - 1].getName() << "'s card" << endl;
+    cout << "Now choose " << this->playerList[targetPlayer2[player2]].getName() << "'s card" << endl;
     cout << "  1. Left" << endl;
     cout << "  2. Right" << endl;
 
-    bool valid = false;
-    string temp;
-    int player2idx;
-    while (!valid) {
-        try {
-            cout << "Choose your option!" << endl;
-            cout << ">> ";
-            cin >> temp;
+    int player2idx = validateInputNum(2) - 1;
 
-            if (!isdigit(temp) || (atoi(temp) > 0 && atoi(temp) < countprint)) {
-                InvalidInputException e;
-                throw e;
-            } else {
-                player2idx = atoi(temp) - 1;
-                valid = true;
-            }
-        } catch (InvalidInputException e) {
-            e.printMessage();
-        }
-    }
-
-    this->playerList[player1 - 1] + this->playerList[player2 - 1].getCard(player2idx);
-    this->playerList[player2 - 1] + this->playerList[player1 - 1].getCard(player1idx);
-    this->playerList[player1 - 1].removeCards(player1idx);
-    this->playerList[player2 - 1].removeCards(player2idx);
-    cout << "The card has already swapped!" << endl;
+    this->playerList[targetPlayer1[player1]].swapCardWithOther(this->playerList[targetPlayer2[player2]], player1idx, player2idx);
 
     this->turn++;
 }
-
 
 void Game::doSwitch() {
     cout << this->playerList[this->turnList[this->turn]].getName() << " do SWITCH!" << endl;
@@ -454,14 +342,9 @@ void Game::doSwitch() {
         cout << "  " << i << ". " << this->playerList[idx].getName() << endl;
     });
 
-    int choice = validateInputNum(targetPlayer.size());
+    int choice = validateInputNum(targetPlayer.size()) - 1;
 
-    this->playerList[this->turnList[this->turn]].addCards(this->playerList[targetPlayer[choice]]);
-    this->playerList[targetPlayer[choice]].addCards(this->playerList[this->turnList[this->turn]]);
-    this->playerList[this->turnList[this->turn]].removeCards(0);
-    this->playerList[this->turnList[this->turn]].removeCards(1);
-    this->playerList[targetPlayer[choice]].removeCards(0);
-    this->playerList[targetPlayer[choice]].removeCards(1);
+    this->playerList[this->turnList[this->turn]].switchCardWithOther(this->playerList[targetPlayer[choice]]);
 
     cout << "Two cards of " << this->playerList[this->turnList[this->turn]].getName() << " have been switched with " << this->playerList[targetPlayer[choice]].getName() << "'s hands" << endl;
     cout << "Your cards now are: ";
