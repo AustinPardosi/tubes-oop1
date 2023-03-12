@@ -258,20 +258,6 @@ void Combination::checkStraightFlush() {
     }
 }
 
-void Combination::calculateScore() {
-    // calculateScore default, cek semua kombinasi
-    sortHandByValue();
-    checkHighCard();
-    checkPair();
-    checkTwoPair();
-    checkThreeKind();
-    checkStraight();
-    checkFlush();
-    checkFullHouse();
-    checkFourKind();
-    checkStraightFlush();
-}
-
 void Combination::calculateScore(int untilWhichParam) {
     // calculateScore untuk tiebreaker, dibatasi sampe kombinasi mana yang dicek
     /*
