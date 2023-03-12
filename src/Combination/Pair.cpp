@@ -1,5 +1,7 @@
 #include "Pair.hpp"
 
+Pair::Pair(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
 void Pair::check() {
     // Rumus : 1.39 + nomor kartu/10 + kode warna tertinggi (0 untuk hijau/0.03 untuk biru/0.06 untuk kuning/0.09 untuk merah)
     // Nilai maksimum : 2.78

@@ -1,5 +1,7 @@
 #include "StraightFlush.hpp"
 
+StraightFlush::StraightFlush(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
 void StraightFlush::check() {
     // Rumus : 11.6 + Nomor kartu tertinggi /10 + kode warna
     // Nilai maksimum : 12.99

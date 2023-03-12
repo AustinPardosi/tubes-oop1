@@ -1,5 +1,7 @@
 #include "Flush.hpp"
 
+Flush::Flush(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
 void Flush::check() {
     // Rumus : 7 + Nomor kartu terbesar/10 + Nomor kartu terbesar kedua/1000 + Nomor kartu ketiga terbesar / 100000 dst.
     // Nilai maksimum : 8.313131312

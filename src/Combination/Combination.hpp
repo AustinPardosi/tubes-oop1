@@ -15,9 +15,8 @@ class Combination : public Score {
         // int highestCombo; // 0 : high card, 1 : pair, 2 : two pair, ..., 8 : straight flush
 
     public :
-        Combination();
+        Combination(vector<Card>, vector<Card>);
         int value();
-        void setCard(vector<Card>, vector<Card>);
         // Operator overloading
         bool operator>(const Combination&);
         bool operator<(const Combination&);

@@ -1,5 +1,7 @@
 #include "FullHouse.hpp"
 
+FullHouse::FullHouse(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
 void FullHouse::check() {
     // Rumus : 9 + (Nomor kartu yang ada 3)/10
     // Nilai maksimum : 10.3

@@ -1,5 +1,7 @@
 #include "ThreeKind.hpp"
 
+ThreeKind::ThreeKind(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
 void ThreeKind::check() {
     // Rumus : 4.17 + Nomor kartu/10 + Warna tertinggi
     // Nilai maksimum : 5.56

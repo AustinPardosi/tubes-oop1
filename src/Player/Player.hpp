@@ -5,19 +5,33 @@
 #define PLAYER_HPP
 
 #include <map>
+#include <vector>
 
 #include "../InventoryHolder/InventoryHolder.hpp"
 #include "../AbilityCard/AbilityCard.hpp"
+#include "../Combination/Combination.hpp"
+#include "../Combination/HighCard.hpp"
+#include "../Combination/Pair.hpp"
+#include "../Combination/TwoPair.hpp"
+#include "../Combination/ThreeKind.hpp"
+#include "../Combination/FourKind.hpp"
+#include "../Combination/FullHouse.hpp"
+#include "../Combination/Flush.hpp"
+#include "../Combination/Straight.hpp"
+#include "../Combination/StraightFlush.hpp"
+#include "../Helper/VectorFunct.hpp"
 
 class Player : public InventoryHolder {
     private:
         string name;
         int commandId;
         int abilityId;
-        int currentPoin;
+        long long currentPoin;
         bool alreadyPlayed;
         bool abilityUsed;
         bool abilityless;
+        vector<Combination*> currCombo;
+        Combination* maxCombo;
 
     public:
         /*--------------------------------------------------------------------*/
@@ -97,6 +111,10 @@ class Player : public InventoryHolder {
 
         // Ask for player action, throw exception if not valid
         void askForAction();
+
+        /*--------------------------------------------------------------------*/
+        /*--------------------------COMBO SEGMENT-----------------------------*/
+        void calculateCombo(vector<Card>);
 
         /*--------------------------------------------------------------------*/
         /*---------------------POINT MANAGEMENT SEGMENT-----------------------*/

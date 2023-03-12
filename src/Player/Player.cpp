@@ -159,8 +159,38 @@ void Player::askForAction() {
 }
 
 /*--------------------------------------------------------------------*/
+/*--------------------------COMBO SEGMENT-----------------------------*/
+void Player::calculateCombo(vector<Card> tableCard) {
+    // Mencari kombinasi maksimum yang dimiliki, mengubah atribut maxCombo
+    // Parameter kedua isi vector dari table card
+    currCombo.push_back(new HighCard(this->listOfCard,tableCard));
+    currCombo.push_back(new Pair(this->listOfCard,tableCard));
+    currCombo.push_back(new TwoPair(this->listOfCard,tableCard));
+    currCombo.push_back(new ThreeKind(this->listOfCard,tableCard));
+    currCombo.push_back(new Straight(this->listOfCard,tableCard));
+    currCombo.push_back(new Flush(this->listOfCard,tableCard));
+    currCombo.push_back(new FullHouse(this->listOfCard,tableCard));
+    currCombo.push_back(new FourKind(this->listOfCard,tableCard));
+    currCombo.push_back(new StraightFlush(this->listOfCard,tableCard));
+
+    maxCombo = VectorFunct<Combination*>::findMax(currCombo);
+}
+
+/*--------------------------------------------------------------------*/
 /*---------------------POINT MANAGEMENT SEGMENT-----------------------*/
 
 Player Player::operator+(int poinHadiah) {
     return Player(this->listOfCard, this->name, this->commandId, this->abilityId, this->currentPoin + poinHadiah, this->alreadyPlayed, this->abilityUsed, this->abilityless);
+}
+
+/*--------------------------------------------------------------------*/
+/*---------------------ADDITIONAL METHOD SEGMENT----------------------*/
+bool Player::operator>(const Player& other) {
+    return *(this->maxCombo) > *(other.maxCombo);
+}
+bool Player::operator<(const Player& other) {
+    return *(this->maxCombo) < *(other.maxCombo);
+}
+bool Player::operator==(const Player& other) {
+    return *(this->maxCombo) == *(other.maxCombo);
 }

@@ -1,5 +1,7 @@
 #include "FourKind.hpp"
 
+FourKind::FourKind(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
 void FourKind::check() {
     // Rumus : 10.3 + Nomor kartu /10
     // Nilai maksimum : 11.6

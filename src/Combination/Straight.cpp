@@ -1,5 +1,7 @@
 #include "Straight.hpp"
 
+Straight::Straight(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
 void Straight::check() {
     // Rumus : 5.56 + Nomor kartu terbesar/10 + Kode warna kartu bernomor terbesar
     // Nilai maksimum : 6.95

@@ -2,11 +2,8 @@
 
 using namespace std;
 
-Combination::Combination() {
+Combination::Combination(vector<Card> playerCard, vector<Card> tableCard) {
     this->score = 0;
-}
-
-void Combination::setCard(vector<Card> playerCard, vector<Card> tableCard) {
     // Ambil kartu di tangan pemain
     for (int i=0; i<2; i++) {
         totalHand.push_back(playerCard[i]);
