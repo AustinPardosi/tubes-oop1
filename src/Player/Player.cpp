@@ -2,10 +2,6 @@
 // Berisi implementasi dari kelas Player
 
 #include "Player.hpp"
-#include "../ExceptionHandling/NameInputException.hpp"
-#include "../ExceptionHandling/InvalidInputException.hpp"
-#include "../ExceptionHandling/EmptyAbilityCardException.hpp"
-#include "../ExceptionHandling/AbilityCommandException.hpp"
 
 /*--------------------------------------------------------------------*/
 /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
@@ -37,7 +33,7 @@ Player& Player::operator=(const Player& other) {
     this->alreadyPlayed = other.alreadyPlayed;
     this->abilityUsed = other.abilityUsed;
     this->abilityless = other.abilityless;
-
+    this->listOfCard = other.listOfCard;
     return *this;
 }
 
@@ -46,12 +42,9 @@ Player& Player::operator=(const Player& other) {
 
 void Player::askForName(int i) {
     string name;
-    cout << "Please enter player " << i << " name" << endl;
+    cout << "Please enter player " << i << " name:" << endl;
     cout << ">> ";
     cin >> name;
-    if (name == "") {
-        throw new NameInputException;
-    }
     this->name = name;
 }
 
@@ -67,7 +60,7 @@ bool Player::getAlreadyPlayed() const {
     return this->alreadyPlayed;
 }
 
-void Player::setAlreadyPlayed(bool alreadyPlayer) {
+void Player::setAlreadyPlayed(bool alreadyPlayed) {
     this->alreadyPlayed = alreadyPlayed;
 }
 

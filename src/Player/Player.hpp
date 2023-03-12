@@ -20,6 +20,9 @@
 #include "../Combination/Straight.hpp"
 #include "../Combination/StraightFlush.hpp"
 #include "../Helper/VectorFunct.hpp"
+#include "../ExceptionHandling/InvalidInputException.hpp"
+#include "../ExceptionHandling/EmptyAbilityCardException.hpp"
+#include "../ExceptionHandling/AbilityCommandException.hpp"
 
 class Player : public InventoryHolder {
     private:

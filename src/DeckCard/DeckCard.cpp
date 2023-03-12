@@ -57,3 +57,7 @@ DeckCard DeckCard::operator-(int cardsRemoved) {
     temp.erase(temp.begin(), temp.begin()+cardsRemoved);
     return DeckCard(temp);
 }
+
+void DeckCard::clearCards() {
+    this->listOfCard.clear();
+}

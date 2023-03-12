@@ -44,6 +44,9 @@ class DeckCard : public InventoryHolder {
 
         // Return deck card with <cardsRemoved> less card
         DeckCard operator-(int cardsRemoved);
+
+        // Clear all cards from the deck
+        void clearCards();
 };
 
 #endif
