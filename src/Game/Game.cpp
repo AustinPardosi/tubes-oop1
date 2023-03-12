@@ -3,11 +3,8 @@
 
 // Konstruktor Game
 Game::Game() {
-    Player playerList[7];
-    DeckCard deckCard;
-    CardTable cardTable;
     int round = 1; 
-    float bonusPoint = 0;
+    int bonusPoint = 0;
     vector <int> turnList = {0,1,2,3,4,5,6};
     int turn = 0;
 }
@@ -15,8 +12,9 @@ Game::Game() {
 // Member Function
 // Menjalankan Game
 void Game::runGame() {
-
 }
+
+
 
 // Menjalankan round robin
 void Game::roundRobin() {

@@ -61,7 +61,7 @@ class Game {
         DeckCard deckCard;
         CardTable cardTable;
         int round = 1; 
-        float bonusPoint; 
+        long long bonusPoint; 
         vector <int> turnList; // Berisi dengan indeks pemain ketika awal diinisiasi
         int turn; // Diisi dengan indeks dari turnList
         vector<Command*> commandList;
