@@ -6,19 +6,19 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 
 class Combination : public Score {
-    private :
+    protected :
         float score;
         vector<Card> totalHand;
         const int NOT_FOUND_IDX = -1;
         // int highestCombo; // 0 : high card, 1 : pair, 2 : two pair, ..., 8 : straight flush
 
     public :
-        Combination(vector<Card> playerCard, vector<Card> tableCard);
-        float getScore();
-        void setScore(float);
+        Combination();
         int value();
+        void setCard(vector<Card>, vector<Card>);
         // Operator overloading
         bool operator>(const Combination&);
         bool operator<(const Combination&);
@@ -27,6 +27,8 @@ class Combination : public Score {
         void sortHandByValue();
         void sortHandByColor();
         // Cek kombinasi dan ubah score
+        // virtual void check()=0;
+
         void checkHighCard();
         void checkPair();
         void checkTwoPair();
