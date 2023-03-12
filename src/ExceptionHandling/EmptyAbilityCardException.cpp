@@ -1,7 +1,4 @@
 #include "EmptyAbilityCardException.hpp"
-#include <iostream>
-
-using namespace std;
 
 EmptyAbilityCardException::EmptyAbilityCardException() {}
 

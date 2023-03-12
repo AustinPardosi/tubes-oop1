@@ -1,7 +1,4 @@
 #include "AbilityCommandException.hpp"
-#include <iostream>
-
-using namespace std;
 
 AbilityCommandException::AbilityCommandException(bool _isUsed, string _command) {
     this->isUsed = _isUsed;

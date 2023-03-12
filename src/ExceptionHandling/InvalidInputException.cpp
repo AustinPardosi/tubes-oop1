@@ -1,7 +1,4 @@
 #include "InvalidInputException.hpp"
-#include <iostream>
-
-using namespace std;
 
 InvalidInputException::InvalidInputException() {}
 
