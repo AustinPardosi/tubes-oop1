@@ -29,6 +29,7 @@ Game::Game() {
 // Member Function
 // Menjalankan Game
 void Game::start() {
+    initializeGame();
     while (!(this->isPlayerWin(this->winner))) {
         // loop sampai ada yang menang
         this->startGame();
@@ -36,37 +37,29 @@ void Game::start() {
     }
 }
 
+void Game::initializeGame() {
+    int idx = 1;
+    for_each(this->playerList.begin(), this->playerList.end(), [this, &i = idx] (Player& player) {
+        player.askForName(i);
+        cout << endl;
+        i++;
+    }); 
+}
+
 void Game::startGame() {
     DeckCard temp;
     this->deckCard.addCards(temp);
-    
-    initializeGame();
-    startRound(1);
+    for_each(this->playerList.begin(), this->playerList.end(), [this] (Player& player) {
+        player.addCards(this->deckCard);
+        this->deckCard.removeCards(2);
+    }); 
 
+    startRound(1);
     giveAbility();
     for (int i = 2; i <= 6; i++) {
         startRound(i);
     }
 
-}
-
-void Game::initializeGame() {
-    int idx = 1;
-    for_each(this->playerList.begin(), this->playerList.end(), [this, &i = idx] (Player& player) {
-        bool valid = false;
-        while (!valid) {
-            try {
-                player.askForName(i);
-                valid = true;
-            }
-            catch (const char* err) {
-                cout << err;
-            }
-        }
-        player.addCards(this->deckCard);
-        this->deckCard.removeCards(2);
-        i++;
-    }); 
 }
 
 void Game::giveAbility() {
@@ -101,8 +94,8 @@ void Game::startRound(int round) {
                     this->playerList[idx].setAlreadyPlayed(true);   
                 }
             }
-            catch (const char* err) {
-                cout << err;
+            catch (BaseException* e) {
+                e->printMessage();
             }
         }
     });
@@ -113,16 +106,17 @@ void Game::startRound(int round) {
 void Game::resetGame() {
     roundRobin();
     this->bonusPoint = 64;
+    this->cardTable.removeCards(5);
+    this->deckCard.clearCards();
     for_each(this->playerList.begin(), this->playerList.end(), [] (Player& player) {
         player.removeCards(0);
         player.removeCards(0);
-        player.setAlreadyPlayed(false);
         player.setAbilityless(false);
         player.setAbilityUsed(false);
     });
 }
 
-bool Game::isPlayerWin(int& winner) {
+bool Game::isPlayerWin(int winner) {
     return this->playerList[winner].getCurrentPoin() >= pow(2, 32);
 }
 
@@ -131,6 +125,9 @@ void Game::roundRobin() {
     this->turn = 0; // Reset ulang indeks turn jadi 0
     this->turnList.push_back(this->turnList[0]);
     this->turnList.erase(this->turnList.begin());
+    for_each(this->playerList.begin(), this->playerList.end(), [] (Player& player) {
+        player.setAlreadyPlayed(false);
+    });
 }
 
 // Validasi angka input
@@ -146,13 +143,12 @@ int Game::validateInputNum(int size) {
 
             if ( (!(!temp.empty() && all_of(temp.begin(), temp.end(), ::isdigit))) 
                  || (stoi(temp) > 0 && stoi(temp) <= size)) {
-                InvalidInputException e;
-                throw e;
+                throw new InvalidInputException;
             }
             valid = true;  
         }
-        catch (InvalidInputException e) {
-            e.printMessage();
+        catch (BaseException* e) {
+            e->printMessage();
         }
     }
 
@@ -295,6 +291,7 @@ void Game::doSwap() {
     int count = 1;
     for_each(targetPlayer1.begin(), targetPlayer1.end(), [this, &i = count] (int idx) {
         cout << "  " << i << ". " << this->playerList[idx].getName() << endl;
+        i++;
     });
  
     int player1 = validateInputNum(targetPlayer1.size()) - 1;
@@ -303,9 +300,10 @@ void Game::doSwap() {
     targetPlayer2.erase(targetPlayer2.begin() + player1);
 
     cout << "Now please select another player whose card you want to exchange: " << endl;
-    int count = 1;
+    count = 1;
     for_each(targetPlayer2.begin(), targetPlayer2.end(), [this, &i = count] (int idx) {
         cout << "  " << i << ". " << this->playerList[idx].getName() << endl;
+        i++;
     });
 
     int player2 = validateInputNum(targetPlayer2.size()) - 1;

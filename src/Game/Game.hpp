@@ -22,6 +22,7 @@ using namespace std;
 #include "../CardTable/CardTable.hpp"
 #include "../Player/Player.hpp"
 
+#include "../ExceptionHandling/BaseException.hpp"
 #include "../ExceptionHandling/InvalidInputException.hpp"
 
 class Game {
@@ -46,7 +47,7 @@ class Game {
         // Jadi nanti pengaksesan current turn pemain tinggal iterasi array turnList yang isinya indeks pemain awal
 
         // Mengecek apakah ada player yang sudah menang dan mengeluarkan pemenangnya
-        bool isPlayerWin(int&);
+        bool isPlayerWin(int);
 
         // Ability pada game
         void doReverse();
