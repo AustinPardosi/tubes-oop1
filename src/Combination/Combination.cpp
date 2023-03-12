@@ -15,6 +15,7 @@ void Combination::setCard(vector<Card> playerCard, vector<Card> tableCard) {
     for (int i=0; i<5; i++) {
         totalHand.push_back(tableCard[i]);
     }
+    sortHandByValue();
 }
 
 int Combination::value() {
