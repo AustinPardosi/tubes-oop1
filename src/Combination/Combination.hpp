@@ -18,7 +18,7 @@ class Combination : public Score {
         Combination(vector<Card> playerCard, vector<Card> tableCard);
         float getScore();
         void setScore(float);
-        void value();
+        int value();
         // Operator overloading
         bool operator>(const Combination&);
         bool operator<(const Combination&);
@@ -36,7 +36,6 @@ class Combination : public Score {
         void checkFullHouse();
         void checkFourKind();
         void checkStraightFlush();
-        void calculateScore();
         void calculateScore(int);
 };
 

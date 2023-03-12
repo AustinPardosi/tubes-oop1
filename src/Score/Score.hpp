@@ -11,7 +11,7 @@ class Score {
         
         // Member Function
         // Menggunakan kartu yang dimiliki
-        virtual void value() = 0;
+        virtual int value() = 0;
 };
 
 #endif

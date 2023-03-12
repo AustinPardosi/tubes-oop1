@@ -8,7 +8,7 @@ using namespace std;
 
 // Konstruktor kartu switch
 SwitchCard::SwitchCard() {
-    this->commandID = 8;
+    this->commandID = 10;
 }
 
 // Member Function

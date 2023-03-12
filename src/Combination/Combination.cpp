@@ -22,7 +22,9 @@ float Combination::getScore() {
 void Combination::setScore(float s) {
     this->score = s;
 }
-void Combination::value() {}
+int Combination::value() {
+    return this->score;
+}
 
 // Operator overloading
 bool Combination::operator>(const Combination& other) {
@@ -256,20 +258,6 @@ void Combination::checkStraightFlush() {
     if (foundStraightFlush) {
         score = 11.6 + totalHand[i].getCardNumber()/10 + totalHand[i].getCardColor() * 0.03;
     }
-}
-
-void Combination::calculateScore() {
-    // calculateScore default, cek semua kombinasi
-    sortHandByValue();
-    checkHighCard();
-    checkPair();
-    checkTwoPair();
-    checkThreeKind();
-    checkStraight();
-    checkFlush();
-    checkFullHouse();
-    checkFourKind();
-    checkStraightFlush();
 }
 
 void Combination::calculateScore(int untilWhichParam) {
