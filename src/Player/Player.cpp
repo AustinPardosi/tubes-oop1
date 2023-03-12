@@ -162,7 +162,6 @@ void Player::askForAction() {
 /*--------------------------COMBO SEGMENT-----------------------------*/
 void Player::calculateCombo(vector<Card> tableCard) {
     // Mencari kombinasi maksimum yang dimiliki, mengubah atribut maxCombo
-    // Parameter kedua isi vector dari table card
     currCombo.push_back(new HighCard(this->listOfCard,tableCard));
     currCombo.push_back(new Pair(this->listOfCard,tableCard));
     currCombo.push_back(new TwoPair(this->listOfCard,tableCard));
