@@ -2,6 +2,10 @@
 // Berisi implementasi dari kelas Player
 
 #include "Player.hpp"
+#include "../ExceptionHandling/NameInputException.hpp"
+#include "../ExceptionHandling/CommandInputException.hpp"
+#include "../ExceptionHandling/EmptyAbilityCardException.hpp"
+#include "../ExceptionHandling/AbilityCommandException.hpp"
 
 /*--------------------------------------------------------------------*/
 /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
@@ -46,7 +50,7 @@ void Player::askForName(int i) {
     cout << ">> ";
     cin >> name;
     if (name == "") {
-        throw "Please input a valid name\n";
+        throw new NameInputException;
     }
     this->name = name;
 }
@@ -144,18 +148,18 @@ void Player::askForAction() {
     transform(command.begin(), command.end(), command.begin(), ::tolower);
 
     if (listCommands.find(command) == listCommands.end()) {
-        throw "Please input a valid command\n";
+        throw new CommandInputException;
     }
 
     if (listCommands[command] >= 4) {
         if (listCommands[command] != this->abilityId) {
-            throw "Sorry, you do not have the ability card. Please input another command\n";
+            throw new EmptyAbilityCardException;
         }
         if (this->abilityUsed) {
-            throw "Sorry, you already used the " + command + " ability card. Please input another command\n";
+            throw new AbilityCommandException(true, command);
         }
         if (this->abilityless) {
-            throw "Sorry, your " + command + " ability card has been rendered useless. Please input another command\n";
+            throw new AbilityCommandException(false, command);
         }
     }
 
