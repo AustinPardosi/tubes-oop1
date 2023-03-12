@@ -3,13 +3,10 @@
 
 // Konstruktor Game
 Game::Game() {
-    Player playerList[7];
-    DeckCard deckCard;
-    CardTable cardTable;
-    int round = 1; 
-    float bonusPoint = 0;
-    vector <int> turnList = {0,1,2,3,4,5,6};
-    int turn = 0;
+    this->round = 1; 
+    this->bonusPoint = 0;
+    this->turnList = {0,1,2,3,4,5,6};
+    this->turn = 0;
 }
 
 // Member Function
