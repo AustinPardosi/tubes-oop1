@@ -64,6 +64,9 @@ class Player : public InventoryHolder {
 
         // set abilityless attribute;
         void setAbilityless(bool abilityless);
+
+        // get currentPoin attribute;
+        int getCurrentPoin() const;
         
         /*--------------------------------------------------------------------*/
         /*------------------------ADDING CARDS SEGMENT------------------------*/
@@ -97,7 +100,6 @@ class Player : public InventoryHolder {
         
         // Add the prize point to player own point
         Player operator+(int poinHadiah);
-
 
         /*--------------------------------------------------------------------*/
         /*---------------------ADDITIONAL METHOD SEGMENT----------------------*/

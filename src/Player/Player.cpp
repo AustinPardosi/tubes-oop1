@@ -79,6 +79,9 @@ void Player::setAbilityless(bool abilityless) {
     this->abilityless = abilityless;
 }
 
+int Player::getCurrentPoin() const {
+    return this->currentPoin;
+}
 /*--------------------------------------------------------------------*/
 /*------------------------ADDING CARDS SEGMENT------------------------*/
         
