@@ -14,8 +14,13 @@ class Game {
         Game();
         
         // Member Function
-        // Menjalankan Game
-        void runGame();
+        // Menjalankan Game dan round
+        void start();
+
+        void startGame();
+
+        // Mereset poin hadiah, turn, dan melakukan round robin
+        void resetGame();
 
         // Menjalankan round robin
         void roundRobin(); // Mengubah isi turnList sesuai dengan aturan round robin

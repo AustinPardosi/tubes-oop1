@@ -1,11 +1,12 @@
 #include "Combination.hpp"
-#include "../Helper/ArrayFunct.hpp"
-#include <cmath>
 
 using namespace std;
 
-Combination::Combination(vector<Card> playerCard, vector<Card> tableCard) {
+Combination::Combination() {
     this->score = 0;
+}
+
+void Combination::setCard(vector<Card> playerCard, vector<Card> tableCard) {
     // Ambil kartu di tangan pemain
     for (int i=0; i<2; i++) {
         totalHand.push_back(playerCard[i]);
@@ -16,12 +17,6 @@ Combination::Combination(vector<Card> playerCard, vector<Card> tableCard) {
     }
 }
 
-float Combination::getScore() {
-    return this->score;
-}
-void Combination::setScore(float s) {
-    this->score = s;
-}
 int Combination::value() {
     return this->score;
 }

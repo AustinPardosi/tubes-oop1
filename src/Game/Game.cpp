@@ -13,10 +13,33 @@ Game::Game() {
 
 // Member Function
 // Menjalankan Game
-void Game::runGame() {
+void Game::start() {
     while (!(this->isPlayerWin(this->winner))) {
+        // loop sampai ada yang menang
+
+        this->startGame();
+        
+        this->resetGame(); // reset game
 
     }
+}
+
+void Game::startGame() {
+
+}
+
+void Game::startRound() {
+    
+}
+
+void Game::resetGame() {
+    roundRobin();
+    this->bonusPoint = 64;
+    for_each(this->playerList.begin(), this->playerList.end(), [] (Player& player) {
+        player.setAlreadyPlayed(false);
+        player.setAbilityless(false);
+        player.setAbilityUsed(false);
+    });
 }
 
 bool Game::isPlayerWin(int& winner) {
@@ -122,38 +145,47 @@ void Game::doReverse() {
     vector <int> turnList = this->getTurnList();
     reverse(turnList.begin(), turnList.begin() + this->getCurrentPlayerTurn() + 1);
     reverse(turnList.begin() + this->getCurrentPlayerTurn() + 1, turnList.end());
+    turn++;
 }
 
 void Game::doAbilityless() {
     
+    turn++;
 }
 
 void Game::doQuadruple() {
     this->setBonusPoint(this->getBonusPoint() * 4) ;    
+    turn++;
 }
 
 void Game::doQuarter() {
     this->setBonusPoint(this->getBonusPoint() / 4) ;    
+    turn++;
 }
 
 void Game::doReroll() {
     
+    turn++;
 }
 
 void Game::doSwap() {
     
+    turn++;
 }
 
 void Game::doSwitch() {
     
+    turn++;
 }
 
 void Game::doDouble() {
     this->setBonusPoint(this->getBonusPoint() * 2) ;    
+    turn++;
 }
 
 void Game::doHalf() {
     this->setBonusPoint(this->getBonusPoint() / 2) ;    
+    turn++;
 }
 
 void Game::doNext() {
@@ -161,6 +193,7 @@ void Game::doNext() {
         this->setTurn(this->getIndexTurn()+1);
     } 
     
+    turn++;    
     // Jika sudah mencapai pemain terakhir maka tidak lakukan apa2
     // Round robin akan dijalankan di Game
 }
