@@ -15,7 +15,7 @@ int main() {
     Game *g = new Game();
     // ReverseCard *rc = new ReverseCard();
     // vector<int> turnList = g->getTurnList();
-    cout << "Giliran pemain" << g->getPlayerTurn() << endl;
+    cout << "Giliran pemain" << g->getCurrentPlayerTurn() << endl;
     // g->roundRobin();
     // cout << "Giliran pemain" << g->getPlayerTurn() << endl;
     return 0;

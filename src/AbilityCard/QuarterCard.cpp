@@ -14,5 +14,5 @@ QuarterCard::QuarterCard() {
 // Member Function
 // Menggunakan kartu yang dimiliki
 void QuarterCard::doCommand(Game& game) {
-    game.setBonusPoint(game.getBonusPoint() / 4) ;
+    game.doQuarter();
 }

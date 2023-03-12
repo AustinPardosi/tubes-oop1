@@ -14,5 +14,5 @@ Double::Double() {
 // Member Function
 // Menjalankan command
 void Double::doCommand(Game& game) {
-    game.setBonusPoint(game.getBonusPoint() * 2) ;
+    game.doDouble();
 }

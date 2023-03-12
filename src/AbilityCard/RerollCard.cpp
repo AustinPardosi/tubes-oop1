@@ -14,5 +14,5 @@ RerollCard::RerollCard() {
 // Member Function
 // Menggunakan kartu yang dimiliki
 void RerollCard::doCommand(Game& game) {
-    
+    game.doReroll();
 }

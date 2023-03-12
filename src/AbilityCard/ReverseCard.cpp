@@ -14,6 +14,5 @@ ReverseCard::ReverseCard() {
 // Member Function
 // Menggunakan kartu yang dimiliki
 void ReverseCard::doCommand(Game& game) {
-    vector <int> turnList = game.getTurnList();
-    reverse(turnList.begin() + game.getPlayerTurn() + 1, turnList.end());
+    game.doReverse();
 }

@@ -14,5 +14,5 @@ SwapCard::SwapCard() {
 // Member Function
 // Menggunakan kartu yang dimiliki
 void SwapCard::doCommand(Game& game) {
-    
+    game.doSwap();
 }

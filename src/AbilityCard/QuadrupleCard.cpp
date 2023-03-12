@@ -14,5 +14,5 @@ QuadrupleCard::QuadrupleCard() {
 // Member Function
 // Menggunakan kartu yang dimiliki
 void QuadrupleCard::doCommand(Game& game) {
-    game.setBonusPoint(game.getBonusPoint() * 4) ;
+    game.doQuadruple();
 }

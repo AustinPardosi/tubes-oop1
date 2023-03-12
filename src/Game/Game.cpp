@@ -18,10 +18,6 @@ void Game::runGame() {
 
 }
 
-void Game::action() {
-
-}
-
 // Menjalankan round robin
 void Game::roundRobin() {
     this->turn = 0; // Reset ulang indeks turn jadi 0
@@ -33,12 +29,12 @@ void Game::roundRobin() {
 void Game::addPlayerToList() {
     for (int i = 0; i < 6; i++) {
         Player* player = new Player();
-        this->playerList[i] = *player;
+        this->playerList.push_back(*player);
     }
 }
 
 // Getter & Setter
-Player* Game::getPlayerList() {
+vector<Player> Game::getPlayerList() {
     return this->playerList;
 }
 
@@ -63,7 +59,7 @@ int Game::getIndexTurn() {
     return this->turn;
 };
 
-int Game::getPlayerTurn() {
+int Game::getCurrentPlayerTurn() {
     // Mendapatkan indeks pemain yang bermain pada turn saat ini
     return this->turnList[this->turn];
 }
@@ -79,7 +75,7 @@ vector<int> Game::getTurnList() {
 }
 
 void Game::setPlayerList(Player& playerList) {
-    *this->playerList = playerList;
+    this->playerList[getCurrentPlayerTurn()] = playerList;
 }
 
 void Game::setTurnList(int idx, int val) {
@@ -104,4 +100,52 @@ void Game::setBonusPoint(float bonusPoint) {
 
 void Game::setTurn(int turn) {
     this->turn = turn;
+}
+
+// Ability pada game
+void Game::doReverse() {
+    vector <int> turnList = this->getTurnList();
+    reverse(turnList.begin(), turnList.begin() + this->getCurrentPlayerTurn() + 1);
+    reverse(turnList.begin() + this->getCurrentPlayerTurn() + 1, turnList.end());
+}
+
+void Game::doAbilityless() {
+    
+}
+
+void Game::doQuadruple() {
+    this->setBonusPoint(this->getBonusPoint() * 4) ;    
+}
+
+void Game::doQuarter() {
+    this->setBonusPoint(this->getBonusPoint() / 4) ;    
+}
+
+void Game::doReroll() {
+    
+}
+
+void Game::doSwap() {
+    
+}
+
+void Game::doSwitch() {
+    
+}
+
+void Game::doDouble() {
+    this->setBonusPoint(this->getBonusPoint() * 2) ;    
+}
+
+void Game::doHalf() {
+    this->setBonusPoint(this->getBonusPoint() / 2) ;    
+}
+
+void Game::doNext() {
+    if (this->getIndexTurn() != 6) { // Jika turn belum mencapai pemain terakhir
+        this->setTurn(this->getIndexTurn()+1);
+    } 
+    
+    // Jika sudah mencapai pemain terakhir maka tidak lakukan apa2
+    // Round robin akan dijalankan di Game
 }

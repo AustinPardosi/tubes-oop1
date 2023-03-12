@@ -14,5 +14,5 @@ AbilitylessCard::AbilitylessCard() {
 // Member Function
 // Menggunakan kartu yang dimiliki
 void AbilitylessCard::doCommand(Game& game) {
-    
+    game.doAbilityless();
 }

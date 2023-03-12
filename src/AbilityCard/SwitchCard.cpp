@@ -14,5 +14,5 @@ SwitchCard::SwitchCard() {
 // Member Function
 // Menggunakan kartu yang dimiliki
 void SwitchCard::doCommand(Game& game) {
-    
+    game.doSwitch();
 }

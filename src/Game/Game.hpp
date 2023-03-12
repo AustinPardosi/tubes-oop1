@@ -16,7 +16,6 @@ class Game {
         // Member Function
         // Menjalankan Game
         void runGame();
-        void action();
 
         // Menjalankan round robin
         void roundRobin(); // Mengubah isi turnList sesuai dengan aturan round robin
@@ -26,13 +25,13 @@ class Game {
         void addPlayerToList();
 
         // Getter & Setter
-        Player* getPlayerList();
+        vector<Player> getPlayerList();
         DeckCard getDeckCard();
         CardTable getCardTable();
         int getRound();
         float getBonusPoint();
         int getIndexTurn();
-        int getPlayerTurn();
+        int getCurrentPlayerTurn();
         vector<int> getTurnList();
         int getTurnListByIdx(int);
 
@@ -45,14 +44,27 @@ class Game {
         void setIndexTurn();
         void setTurn(int);
 
+        // Ability pada game
+        void doReverse();
+        void doAbilityless();
+        void doQuadruple();
+        void doQuarter();
+        void doReroll();
+        void doSwap();
+        void doSwitch();
+        void doDouble();
+        void doHalf();
+        void doNext();
+
     private:
-        Player playerList[7];
+        vector<Player> playerList;
         DeckCard deckCard;
         CardTable cardTable;
         int round = 1; 
-        float bonusPoint;
+        float bonusPoint; 
         vector <int> turnList; // Berisi dengan indeks pemain ketika awal diinisiasi
         int turn; // Diisi dengan indeks dari turnList
+        vector<Command*> commandList;
 };
 
 #endif

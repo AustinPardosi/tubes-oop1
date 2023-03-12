@@ -14,5 +14,5 @@ Half::Half() {
 // Member Function
 // Menjalankan command
 void Half::doCommand(Game& game) {
-    game.setBonusPoint(game.getBonusPoint() / 2) ;
+    game.doHalf();
 }
