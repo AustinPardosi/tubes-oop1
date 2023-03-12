@@ -22,7 +22,9 @@ float Combination::getScore() {
 void Combination::setScore(float s) {
     this->score = s;
 }
-void Combination::value() {}
+int Combination::value() {
+    return this->score;
+}
 
 // Operator overloading
 bool Combination::operator>(const Combination& other) {
