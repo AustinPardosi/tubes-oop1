@@ -36,7 +36,7 @@ class Player : public InventoryHolder {
         ~Player();
 
         // operator=
-        Player operator=(const Player& other);
+        Player& operator=(const Player& other);
 
         /*--------------------------------------------------------------------*/
         /*---------------------GETTER AND SETTER SEGMENT----------------------*/
@@ -67,6 +67,9 @@ class Player : public InventoryHolder {
 
         // get currentPoin attribute;
         int getCurrentPoin() const;
+
+        // get commandID attribute;
+        int getCommandID() const;
         
         /*--------------------------------------------------------------------*/
         /*------------------------ADDING CARDS SEGMENT------------------------*/

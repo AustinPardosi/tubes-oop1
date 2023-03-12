@@ -25,7 +25,7 @@ Player::Player(const Player& other) : name(other.name), commandId(other.commandI
 
 Player::~Player() {}
 
-Player Player::operator=(const Player& other) {
+Player& Player::operator=(const Player& other) {
     this->name = other.name;
     this->commandId = other.commandId;
     this->abilityId = other.abilityId;
@@ -82,6 +82,11 @@ void Player::setAbilityless(bool abilityless) {
 int Player::getCurrentPoin() const {
     return this->currentPoin;
 }
+
+int Player::getCommandID() const {
+    return this->commandId;
+}
+
 /*--------------------------------------------------------------------*/
 /*------------------------ADDING CARDS SEGMENT------------------------*/
         

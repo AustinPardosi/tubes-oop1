@@ -26,18 +26,7 @@ class Combination : public Score {
         void sortHandByValue();
         void sortHandByColor();
         // Cek kombinasi dan ubah score
-        // virtual void check()=0;
-
-        void checkHighCard();
-        void checkPair();
-        void checkTwoPair();
-        void checkThreeKind();
-        void checkStraight();
-        void checkFlush();
-        void checkFullHouse();
-        void checkFourKind();
-        void checkStraightFlush();
-        void calculateScore(int);
+        virtual void check()=0;
 };
 
 #endif

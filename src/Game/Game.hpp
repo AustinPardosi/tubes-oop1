@@ -3,6 +3,9 @@
 #define GAME_HPP
 
 #include <vector>
+#include <iostream>
+using namespace std;
+
 #include "../AbilityCard/AbilityCard.hpp"
 #include "../DeckCard/DeckCard.hpp"
 #include "../CardTable/CardTable.hpp"
@@ -18,6 +21,8 @@ class Game {
         void start();
 
         void startGame();
+
+        void startRound();
 
         // Mereset poin hadiah, turn, dan melakukan round robin
         void resetGame();
@@ -69,10 +74,10 @@ class Game {
         vector<Player> playerList;
         DeckCard deckCard;
         CardTable cardTable;
-        int round = 1; 
+        int round; 
         long long bonusPoint; 
         vector <int> turnList; // Berisi dengan indeks pemain ketika awal diinisiasi
-        int turn; // Diisi dengan indeks dari turnList
+        int turn;
         vector<Command*> commandList;
         int winner;
 };
