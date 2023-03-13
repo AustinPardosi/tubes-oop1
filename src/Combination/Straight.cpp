@@ -10,7 +10,7 @@ void Straight::check() {
     while (!foundStraight && i >= 4) {
         int j = i-1;
         int previous = totalHand[i].getCardNumber();
-        while (j >= i-4 && previous-totalHand[j].getCardNumber() == 1) {
+        while (j >= i-4 && previous-totalHand[j].getCardNumber() <= 1) {
             previous = totalHand[j].getCardNumber();
             j--;
         }
