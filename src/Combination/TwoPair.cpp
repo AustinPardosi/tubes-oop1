@@ -21,7 +21,7 @@ void TwoPair::check() {
         }
     }
     if (pairCount == 2) {
-        score = 2.78 + totalHand[firstPairIdx].getCardNumber()/10;
+        score = 2.78 + totalHand[firstPairIdx].getCardNumber()/10.0;
         if (totalHand[firstPairIdx] > totalHand[firstPairIdx-1]) {
             score += totalHand[firstPairIdx].getCardColor() * 0.03;
         } else {

@@ -18,12 +18,13 @@ void Flush::check() {
         // Ada warna yang jumlah kemunculannya 5
         int j = 6;
         int counter = 0;
-        score = 7;
+        score = 7.0;
         while (counter < 5) {
             if (totalHand[j].getCardColor() == i) {
-                score += totalHand[j].getCardNumber()/(10 * pow(100,counter));
+                score += totalHand[j].getCardNumber()/(10.0 * pow(100,counter));
             }
             j--;
+            counter++;
         }
     }
 }

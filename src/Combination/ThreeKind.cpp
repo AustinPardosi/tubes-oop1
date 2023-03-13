@@ -17,7 +17,7 @@ void ThreeKind::check() {
         }
     }
     if (foundThreeKind) {
-        score = 4.17 + totalHand[i].getCardNumber()/10;
+        score = 4.17 + totalHand[i].getCardNumber()/10.0;
         if (totalHand[i] > totalHand[i-1]) {
             if (totalHand[i] > totalHand[i-2]) {
                 score += totalHand[i].getCardColor() * 0.03;

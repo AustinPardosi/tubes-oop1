@@ -23,6 +23,6 @@ void StraightFlush::check() {
     }
 
     if (foundStraightFlush) {
-        score = 11.6 + totalHand[i].getCardNumber()/10 + totalHand[i].getCardColor() * 0.03;
+        score = 11.6 + totalHand[i].getCardNumber()/10.0 + totalHand[i].getCardColor() * 0.03;
     }
 }

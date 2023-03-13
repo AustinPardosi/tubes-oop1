@@ -17,6 +17,6 @@ void FourKind::check() {
         }
     }
     if (foundFour) {
-        score = 10.3 + totalHand[i].getCardNumber()/10;
+        score = 10.3 + totalHand[i].getCardNumber()/10.0;
     }
 }

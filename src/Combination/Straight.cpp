@@ -22,6 +22,6 @@ void Straight::check() {
     }
 
     if (foundStraight) {
-        score = 5.56 + totalHand[i].getCardNumber()/10 + totalHand[i].getCardColor() * 0.03;
+        score = 5.56 + totalHand[i].getCardNumber()/10.0 + totalHand[i].getCardColor() * 0.03;
     }
 }

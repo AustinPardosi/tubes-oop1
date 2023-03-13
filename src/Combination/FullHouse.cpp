@@ -10,7 +10,7 @@ void FullHouse::check() {
     bool foundTwo = false;
     while (!foundThree && i>=2) {
         if (totalHand[i].getCardNumber() == totalHand[i-1].getCardNumber() && totalHand[i-1].getCardNumber() == totalHand[i-2].getCardNumber()) {
-            foundThree == true;
+            foundThree = true;
         } else {
             i--;
         }
@@ -30,6 +30,6 @@ void FullHouse::check() {
         }
     }
     if (foundThree && foundTwo) {
-        score = 9 + totalHand[i].getCardNumber()/10;
+        score = 9 + totalHand[i].getCardNumber()/10.0;
     }
 }
