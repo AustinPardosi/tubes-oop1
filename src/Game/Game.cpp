@@ -1,5 +1,17 @@
 // Game.cpp
 #include "Game.hpp" 
+#include "../Command/Double.hpp"
+#include "../Command/Half.hpp"
+#include "../Command/Next.hpp"
+#include "../AbilityCard/AbilitylessCard.hpp"
+#include "../AbilityCard/QuadrupleCard.hpp"
+#include "../AbilityCard/QuarterCard.hpp"
+#include "../AbilityCard/RerollCard.hpp"
+#include "../AbilityCard/ReverseCard.hpp"
+#include "../AbilityCard/SwapCard.hpp"
+#include "../AbilityCard/SwitchCard.hpp"
+#include "../ExceptionHandling/BaseException.hpp"
+#include "../ExceptionHandling/InvalidInputException.hpp"
 #include <math.h>
 
 /*--------------------------------------------------------------------*/

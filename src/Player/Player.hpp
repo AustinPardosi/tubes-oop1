@@ -8,21 +8,7 @@
 #include <vector>
 
 #include "../InventoryHolder/InventoryHolder.hpp"
-#include "../AbilityCard/AbilityCard.hpp"
 #include "../Combination/Combination.hpp"
-#include "../Combination/HighCard.hpp"
-#include "../Combination/Pair.hpp"
-#include "../Combination/TwoPair.hpp"
-#include "../Combination/ThreeKind.hpp"
-#include "../Combination/FourKind.hpp"
-#include "../Combination/FullHouse.hpp"
-#include "../Combination/Flush.hpp"
-#include "../Combination/Straight.hpp"
-#include "../Combination/StraightFlush.hpp"
-#include "../Helper/VectorFunct.hpp"
-#include "../ExceptionHandling/InvalidInputException.hpp"
-#include "../ExceptionHandling/EmptyAbilityCardException.hpp"
-#include "../ExceptionHandling/AbilityCommandException.hpp"
 
 class Player : public InventoryHolder {
     private:

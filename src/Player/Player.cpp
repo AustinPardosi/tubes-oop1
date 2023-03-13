@@ -2,6 +2,19 @@
 // Berisi implementasi dari kelas Player
 
 #include "Player.hpp"
+#include "../Combination/HighCard.hpp"
+#include "../Combination/Pair.hpp"
+#include "../Combination/TwoPair.hpp"
+#include "../Combination/ThreeKind.hpp"
+#include "../Combination/FourKind.hpp"
+#include "../Combination/FullHouse.hpp"
+#include "../Combination/Flush.hpp"
+#include "../Combination/Straight.hpp"
+#include "../Combination/StraightFlush.hpp"
+#include "../Helper/VectorFunct.hpp"
+#include "../ExceptionHandling/InvalidInputException.hpp"
+#include "../ExceptionHandling/EmptyAbilityCardException.hpp"
+#include "../ExceptionHandling/AbilityCommandException.hpp"
 
 /*--------------------------------------------------------------------*/
 /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/

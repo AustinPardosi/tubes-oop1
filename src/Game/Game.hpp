@@ -6,24 +6,11 @@
 #include <iostream>
 using namespace std;
 
-#include "../Command/Command.hpp"
-#include "../Command/Double.hpp"
-#include "../Command/Half.hpp"
-#include "../Command/Next.hpp"
-#include "../AbilityCard/AbilitylessCard.hpp"
-#include "../AbilityCard/QuadrupleCard.hpp"
-#include "../AbilityCard/QuarterCard.hpp"
-#include "../AbilityCard/RerollCard.hpp"
-#include "../AbilityCard/ReverseCard.hpp"
-#include "../AbilityCard/SwapCard.hpp"
-#include "../AbilityCard/SwitchCard.hpp"
-
 #include "../DeckCard/DeckCard.hpp"
 #include "../CardTable/CardTable.hpp"
 #include "../Player/Player.hpp"
-
-#include "../ExceptionHandling/BaseException.hpp"
-#include "../ExceptionHandling/InvalidInputException.hpp"
+#include "../Command/Command.hpp"
+#include "../Helper/VectorFunct.hpp"
 
 class Game {
     private:
