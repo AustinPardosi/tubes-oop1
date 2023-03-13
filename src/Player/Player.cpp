@@ -186,8 +186,9 @@ void Player::askForAction() {
 /*--------------------------------------------------------------------*/
 /*--------------------------COMBO SEGMENT-----------------------------*/
 
-void Player::calculateCombo(vector<Card> tableCard) {
+void Player::calculateCombo(vector<Card> tableCard, int mIdx=9) {
     // Mencari kombinasi maksimum yang dimiliki, mengubah atribut maxCombo
+    currCombo.clear();
     currCombo.push_back(new HighCard(this->listOfCard,tableCard));
     currCombo.push_back(new Pair(this->listOfCard,tableCard));
     currCombo.push_back(new TwoPair(this->listOfCard,tableCard));
@@ -198,9 +199,9 @@ void Player::calculateCombo(vector<Card> tableCard) {
     currCombo.push_back(new FourKind(this->listOfCard,tableCard));
     currCombo.push_back(new StraightFlush(this->listOfCard,tableCard));
 
-    for_each(currCombo.begin(),currCombo.end(), [] (Combination* c) {
-        c->check();
-    });
+    for (int i=0; i<mIdx; i++) {
+        currCombo[i]->check();
+    }
 
     this->maxCombo = currCombo[getMax<Combination*>(currCombo)];
 }

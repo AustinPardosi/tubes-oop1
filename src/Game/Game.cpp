@@ -171,11 +171,24 @@ void Game::showLeaderboard() {
 
 // get the player with the highest combo, and give the prize point
 void Game::determineWinner() {
-    for_each(this->playerList.begin(),this->playerList.end(), [this] (Player& p) {
-        p.calculateCombo(this->cardTable.getListOfCard());
-    });
+    bool winnerDetermined = false;
+    int counter=9;
+    while (!winnerDetermined) {
+        winnerDetermined = true;
+        for_each(this->playerList.begin(),this->playerList.end(), [this,counter] (Player& p) {
+            p.calculateCombo(this->cardTable.getListOfCard(),counter);
+        });
 
-    this->winner = getMax<Player>(this->playerList);
+        this->winner = getMax<Player>(this->playerList);
+        // Periksa apakah ada yang seri
+        for (int i=0; i<playerList.size(); i++) {
+            if (i != winner && playerList[i] == playerList[winner]) {
+                winnerDetermined = false;
+                counter--;
+                break;
+            }
+        }
+    }
     this->playerList[this->winner] = this->playerList[this->winner] + this->bonusPoint;
 }
 

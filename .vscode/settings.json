@@ -10,6 +10,8 @@
         "iostream": "cpp",
         "new": "cpp",
         "ostream": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "optional": "cpp",
+        "system_error": "cpp"
     }
 }

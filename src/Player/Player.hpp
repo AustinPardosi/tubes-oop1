@@ -118,7 +118,7 @@ class Player : public InventoryHolder {
 
         /*--------------------------------------------------------------------*/
         /*--------------------------COMBO SEGMENT-----------------------------*/
-        void calculateCombo(vector<Card>);
+        void calculateCombo(vector<Card>,int);
 
         /*--------------------------------------------------------------------*/
         /*---------------------POINT MANAGEMENT SEGMENT-----------------------*/
