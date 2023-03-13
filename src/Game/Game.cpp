@@ -12,7 +12,6 @@
 #include "../AbilityCard/SwitchCard.hpp"
 #include "../ExceptionHandling/BaseException.hpp"
 #include "../ExceptionHandling/InvalidInputException.hpp"
-#include <math.h>
 
 /*--------------------------------------------------------------------*/
 /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
