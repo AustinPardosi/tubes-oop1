@@ -16,6 +16,17 @@
 #include "../ExceptionHandling/EmptyAbilityCardException.hpp"
 #include "../ExceptionHandling/AbilityCommandException.hpp"
 
+template<>
+int getMax<Combination*>(vector<Combination*> vec) {
+    int maxIdx = 0;
+    for (int i=1; i<vec.size(); i++) {
+        if (*vec[i] > *vec[maxIdx]) {
+            maxIdx = i;
+        }
+    }
+    return maxIdx;
+}
+
 /*--------------------------------------------------------------------*/
 /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
 

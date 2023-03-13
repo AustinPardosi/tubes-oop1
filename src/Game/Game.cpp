@@ -171,8 +171,11 @@ void Game::showLeaderboard() {
 
 // get the player with the highest combo, and give the prize point
 void Game::determineWinner() {
+    this->cardTable.showCards();
     for_each(this->playerList.begin(),this->playerList.end(), [this] (Player& p) {
         p.calculateCombo(this->cardTable.getListOfCard());
+        cout << p.getName() << endl;
+        this->cardTable.showCards();
     });
     
     this->winner = getMax<Player>(this->playerList);
@@ -220,7 +223,7 @@ void Game::doAbilityless() {
     // Instansiasi list pemain yang belum menggunakan kartunya
     vector<int> listAbility;
     for (int i = 0; i < 7; i++) {
-        if (i != this->turn && !this->playerList[i].getAbilityUsed()) {
+        if (i != this->turnList[this->turn] && !this->playerList[i].getAbilityUsed()) {
             listAbility.push_back(i);
         }
     }
@@ -229,6 +232,7 @@ void Game::doAbilityless() {
     if (listAbility.size() == 0) {
         cout << "Hmm.. seems like every player have used their ability card" << endl;
         cout << "Poor you :( you are now abilityless, this card becoming useless" << endl;
+        this->playerList[this->turnList[this->turn]].setAbilityless(true);
     } else {
         // Inisiasi list player
         vector<int> targetPlayer1 = this->turnList;
@@ -246,8 +250,7 @@ void Game::doAbilityless() {
         int check = validateInputNum(targetPlayer1.size()) - 1;
 
         // Mencari player untuk diubah
-        auto itr = find(listAbility.begin(), listAbility.end(), check);
-        if (itr == listAbility.end()) {
+        if (this->playerList[targetPlayer1[check]].getAbilityUsed()) {
             cout << "Sorry, " << this->playerList[targetPlayer1[check]].getName() << " has already use his/her ability card" << endl;
             cout << "This card becoming useless :(" << endl;
         } else {
