@@ -67,8 +67,9 @@ Player& Player::operator=(const Player& other) {
 void Player::askForName(int i) {
     string name;
     cout << "Please enter player " << i << " name:" << endl;
-    cout << ">> ";
+    cout << ">> " << "\033[34m";
     cin >> name;
+    cout << "\033[0m";
     this->name = name;
 }
 
@@ -160,8 +161,9 @@ void Player::askForAction() {
     fillMapsOfCommand(listCommands);
     
     string command;
-    cout << ">> ";
+    cout << ">> " << "\033[34m";
     cin >> command;
+    cout << "\033[0m";
     transform(command.begin(), command.end(), command.begin(), ::tolower);
 
     if (listCommands.find(command) == listCommands.end()) {
@@ -251,9 +253,11 @@ bool Player::operator==(const Player& other) {
 }
 
 void Player::printInfo(int round) {
-    cout << endl << "This is " << this->name << "'s turn!" << endl;
+    cout << endl << "This is " <<  "\033[92m" << this->name << "\033[0m" << "'s turn!" << endl;
     cout << "Your cards: " << endl;
+    // cout << "\033[92m";
     showCards();
+    // cout << "\033[0m";
 
     if (round == 1) {
         cout << "You currently do not have any ability card" << endl;
@@ -264,7 +268,7 @@ void Player::printInfo(int round) {
         auto itr = find_if(listOfCommands.begin(), listOfCommands.end(), [this] (pair<string, int> elemen) {
                    return elemen.second == this->abilityId;
                    }); 
-        cout << "Your ability card is " << itr->first << endl;
+        cout << "Your ability card is " << "\033[35m" << itr->first << "\033[0m" << endl;
     }
     cout << "Insert your command" << endl;
 }
