@@ -82,9 +82,10 @@ void Game::startRound(int round) {
         this->deckCard.removeCards(1);
     }
 
-    for_each(this->turnList.begin(), this->turnList.end(), [this] (int idx) {
+    for_each(this->turnList.begin(), this->turnList.end(), [this, round] (int idx) {
         while (!this->playerList[idx].getAlreadyPlayed()) {
             try {
+                this->playerList[idx].printInfo(round);
                 this->playerList[idx].askForAction();
                 this->commandList[this->playerList[idx].getCommandID()-1]->doCommand(*this);
                 if (this->playerList[idx].getCommandID() > 3) {
@@ -141,8 +142,8 @@ int Game::validateInputNum(int size) {
             cout << ">> ";
             cin >> temp;
 
-            if ( (!(!temp.empty() && all_of(temp.begin(), temp.end(), ::isdigit))) 
-                 || (stoi(temp) > 0 && stoi(temp) <= size)) {
+            if (!(!temp.empty() && all_of(temp.begin(), temp.end(), ::isdigit)) 
+                 || (stoi(temp) <= 0 || stoi(temp) > size)) {
                 throw new InvalidInputException;
             }
             valid = true;  
@@ -188,8 +189,8 @@ void Game::doReverse() {
     cout << this->playerList[this->turnList[this->turn]].getName() << " do REVERSE!" << endl;
     
     cout << "Remaining player's turn order: ";
-    for_each(this->playerList.rbegin(), this->playerList.rbegin() + (7 - (this->turn+1)), [] (Player& player) {
-        cout << player.getName() << " ";
+    for_each(this->turnList.rbegin(), this->turnList.rbegin() + (7 - (this->turn + 1)), [this] (int idx) {
+        cout << this->playerList[idx].getName() << " ";
     });
     cout << endl;
 
@@ -197,14 +198,15 @@ void Game::doReverse() {
     reverse(this->turnList.begin() + this->turn + 1, turnList.end());
 
     cout << "Next round player's turn order: ";
-    for_each(this->playerList.begin(), this->playerList.end(), [] (Player& player) {
-        cout << player.getName() << " ";
+    for_each(this->turnList.begin()+1, this->turnList.end(), [this] (int idx) {
+        cout << this->playerList[idx].getName() << " ";
     });
+    cout << this->playerList[this->turnList[0]].getName();
     cout << endl;
 }
 
 void Game::doAbilityless() {
-    cout << this->playerList[this->turnList[this->turn]].getName() << " use ABILITY CARD!" << endl;
+    cout << this->playerList[this->turnList[this->turn]].getName() << " use ABILITYLESS!" << endl;
     // Instansiasi list pemain yang belum menggunakan kartunya
     vector<int> listAbility;
     for (int i = 0; i < 7; i++) {
@@ -228,6 +230,7 @@ void Game::doAbilityless() {
         int count = 1;
         for_each(targetPlayer1.begin(), targetPlayer1.end(), [this, &i = count] (int idx) {
             cout << "  " << i << ". " << this->playerList[idx].getName() << endl;
+            i++;
         });
     
         int check = validateInputNum(targetPlayer1.size()) - 1;
@@ -269,7 +272,7 @@ void Game::doQuarter() {
 }
 
 void Game::doReroll() {
-    cout << this->playerList[this->turnList[this->turn]].getName() << " do RE-ROLL";
+    cout << this->playerList[this->turnList[this->turn]].getName() << " do RE-ROLL!" << endl;
     cout << "Throwing your cards out..." << endl;
     
     this->playerList[this->turnList[this->turn]].removeCards(0);
@@ -338,6 +341,7 @@ void Game::doSwitch() {
     cout << "Please choose a player you want to switch with: " << endl;
     for_each(targetPlayer.begin(), targetPlayer.end(), [this, &i = count] (int idx) {
         cout << "  " << i << ". " << this->playerList[idx].getName() << endl;
+        i++;
     });
 
     int choice = validateInputNum(targetPlayer.size()) - 1;

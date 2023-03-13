@@ -145,6 +145,8 @@ class Player : public InventoryHolder {
         bool operator>(const Player& other);
         bool operator<(const Player& other);
         bool operator==(const Player& other);
+
+        void printInfo(int);
 };
 
 #endif

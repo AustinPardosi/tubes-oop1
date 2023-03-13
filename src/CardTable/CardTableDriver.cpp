@@ -4,9 +4,9 @@
    g++ -o testCardTable CardTableDriver.cpp CardTable.cpp "../InventoryHolder/InventoryHolder.cpp" "../Card/Card.cpp"
    ./testCardTable                                                                                                   */ 
 
-#include "CardTable.hpp"
+// #include "CardTable.hpp"
 
-int main() {
+/* int main() {
     vector<Card> list1;
     list1.push_back(Card(2, 8));
     list1.push_back(Card(3, 13));
@@ -27,4 +27,4 @@ int main() {
     t1.showCards();
 
     return 0;
-}
+} */

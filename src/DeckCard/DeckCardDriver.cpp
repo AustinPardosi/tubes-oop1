@@ -4,9 +4,9 @@
    g++ -o testDeckCard DeckCardDriver.cpp DeckCard.cpp "../InventoryHolder/InventoryHolder.cpp" "../Card/Card.cpp"
    ./testDeckCard                                                                                                 */
 
-#include "DeckCard.hpp"
+// #include "DeckCard.hpp"
 
-int main() {
+/* int main() {
     DeckCard d1, temp;
     d1.addCards(temp);
 
@@ -18,4 +18,4 @@ int main() {
     d1.showCards();
 
     return 0;
-}
+} */

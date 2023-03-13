@@ -1,6 +1,6 @@
-#include "Card.cpp"
+// #include "Card.cpp"
 
-int main() {
+/* int main() {
     Card c1(3, 10);
     Card c2(2, 7);
     Card c3(c2);
@@ -39,4 +39,4 @@ int main() {
         cout << "c1 > c2" << endl;
     }
     return 0;
-}
+} */

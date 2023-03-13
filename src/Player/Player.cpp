@@ -215,3 +215,22 @@ bool Player::operator<(const Player& other) {
 bool Player::operator==(const Player& other) {
     return *(this->maxCombo) == *(other.maxCombo);
 }
+
+void Player::printInfo(int round) {
+    cout << endl << "This is " << this->name << "'s turn!" << endl;
+    cout << "Your cards: " << endl;
+    showCards();
+
+    if (round == 1) {
+        cout << "You currently do not have any ability card" << endl;
+    }
+    else {
+        map<string, int> listOfCommands;
+        fillMapsOfCommand(listOfCommands);
+        auto itr = find_if(listOfCommands.begin(), listOfCommands.end(), [this] (pair<string, int> elemen) {
+                   return elemen.second == this->abilityId;
+                   }); 
+        cout << "Your ability card is " << itr->first << endl;
+    }
+    cout << "Insert your command" << endl;
+}
