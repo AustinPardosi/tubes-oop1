@@ -66,7 +66,7 @@ class Game {
         void determineWinner();
 
         // check if the player that get the prize point win the game or not
-        bool isPlayerWin(int);
+        bool isPlayerWin();
 
         /*--------------------------------------------------------------------*/
         /*----------------------COMMAND EXECUTION SEGMENT---------------------*/

@@ -17,7 +17,7 @@
 #include "../ExceptionHandling/AbilityCommandException.hpp"
 
 template<>
-int getMax<Combination*>(vector<Combination*> vec) {
+int getMax<Combination*>(vector<Combination*>& vec) {
     int maxIdx = 0;
     for (int i=1; i<vec.size(); i++) {
         if (*vec[i] > *vec[maxIdx]) {
@@ -32,7 +32,7 @@ int getMax<Combination*>(vector<Combination*> vec) {
 
 Player::Player() : name(""), commandId(0), abilityId(0), currentPoin(0), alreadyPlayed(false), abilityUsed(false), abilityless(false) {}
 
-Player::Player(vector<Card> listCards, string name, int commandId, int abilityId, int currentPoin, bool alreadyPlayed, bool abilityUsed, bool abilityless) {
+Player::Player(vector<Card> listCards, string name, int commandId, int abilityId, long long currentPoin, bool alreadyPlayed, bool abilityUsed, bool abilityless) {
     this->listOfCard = listCards;
     this->name = name;
     this->commandId = commandId;
@@ -104,7 +104,7 @@ void Player::setAbilityless(bool abilityless) {
     this->abilityless = abilityless;
 }
 
-int Player::getCurrentPoin() const {
+long long Player::getCurrentPoin() const {
     return this->currentPoin;
 }
 
@@ -230,7 +230,7 @@ void Player::switchCardWithOther(Player& other) {
 /*--------------------------------------------------------------------*/
 /*---------------------POINT MANAGEMENT SEGMENT-----------------------*/
 
-Player Player::operator+(int poinHadiah) {
+Player Player::operator+(long long poinHadiah) {
     return Player(this->listOfCard, this->name, this->commandId, this->abilityId, this->currentPoin + poinHadiah, this->alreadyPlayed, this->abilityUsed, this->abilityless);
 }
 

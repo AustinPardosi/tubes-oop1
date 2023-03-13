@@ -30,7 +30,7 @@ class Player : public InventoryHolder {
         Player();
 
         // user-defined ctor
-        Player(vector<Card> listCards, string name, int commandId, int abilityId, int currentPoin, bool alreadyPlayed, bool abilityUsed, bool abilityless);
+        Player(vector<Card> listCards, string name, int commandId, int abilityId, long long currentPoin, bool alreadyPlayed, bool abilityUsed, bool abilityless);
 
         // cctor
         Player(const Player& other);
@@ -78,7 +78,7 @@ class Player : public InventoryHolder {
         void setAbilityless(bool abilityless);
 
         // get currentPoin attribute;
-        int getCurrentPoin() const;
+        long long getCurrentPoin() const;
 
         // get commandID attribute;
         int getCommandID() const;
@@ -124,7 +124,7 @@ class Player : public InventoryHolder {
         /*---------------------POINT MANAGEMENT SEGMENT-----------------------*/
         
         // Add the prize point to player own point
-        Player operator+(int poinHadiah);
+        Player operator+(long long poinHadiah);
 
         /*--------------------------------------------------------------------*/
         /*---------------------ADDITIONAL METHOD SEGMENT----------------------*/

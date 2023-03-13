@@ -47,7 +47,7 @@ void Game::start() {
     showSplashScreen();
     initializeGame();
     int count = 1;
-    while (!(this->isPlayerWin(this->winner))) {
+    while (!(isPlayerWin())) {
         cout << "==================== GAME " << count << " =====================" << endl;
         this->startGame();
         count++;
@@ -171,20 +171,23 @@ void Game::showLeaderboard() {
 
 // get the player with the highest combo, and give the prize point
 void Game::determineWinner() {
-    this->cardTable.showCards();
     for_each(this->playerList.begin(),this->playerList.end(), [this] (Player& p) {
         p.calculateCombo(this->cardTable.getListOfCard());
-        cout << p.getName() << endl;
-        this->cardTable.showCards();
     });
-    
+
     this->winner = getMax<Player>(this->playerList);
     this->playerList[this->winner] = this->playerList[this->winner] + this->bonusPoint;
 }
 
 
-bool Game::isPlayerWin(int winner) {
-    return this->playerList[winner].getCurrentPoin() >= pow(2, 32);
+bool Game::isPlayerWin() {
+    if (this->winner == -1) {
+        return false;
+    }
+    else {
+        long long win = 4294967296;
+        return this->playerList[this->winner].getCurrentPoin() >= win;
+    }
 }
 
 /*--------------------------------------------------------------------*/
