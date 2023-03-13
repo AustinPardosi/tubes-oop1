@@ -35,13 +35,6 @@ int Card::getCardColor() const {
 // Member Function
 // Urutan Prioritas diconvert sebagai sebuah integer
 // Urutan Prioritas = Merah(3) > Kuning(2) > Biru(1) > Hijau(0)
-bool Card::checkGreaterColor (int _cardColor) {
-    return (this->cardColor > _cardColor);
-}
-
-bool Card::checkGreaterNumber (int _cardNumber) {
-    return (this->cardNumber > _cardNumber);
-}
 
 string Card::convertColor (int _cardColor) const {
     string color;
@@ -62,35 +55,20 @@ void Card::printInfoCard () const {
     cout << this->cardNumber << " (" << color << ")" << endl;
 }
 
+float Card::value() const {
+    float val = (this->cardNumber/10) + (this->cardColor*0.03);
+    return val;
+}
+
 // Operator
 bool Card::operator< (const Card& c) {
-    bool check = true;
-    if(this->cardColor != c.cardColor) {
-        if (Card::checkGreaterColor(c.cardColor)) {
-            check = false;
-        }
-    } else if (this->cardColor == c.cardColor) {
-        if (Card::checkGreaterNumber(c.cardNumber)) {
-            check = false;
-        }
-    }
-    return check;
+    return value() < c.value();
 }
 
 bool Card::operator> (const Card& c) {
-    bool check = true;
-    if(this->cardColor != c.cardColor) {
-        if (!Card::checkGreaterColor(c.cardColor)) {
-            check = false;
-        }
-    } else if (this->cardColor == c.cardColor) {
-        if (!Card::checkGreaterNumber(c.cardNumber)) {
-            check = false;
-        }
-    }
-    return check;
+    return value() > c.value();
 }
 
 bool Card::operator== (const Card& c) {
-    return (this->cardColor == c.cardColor) && (this->cardNumber == c.cardNumber);
+    return value() == c.value();
 }

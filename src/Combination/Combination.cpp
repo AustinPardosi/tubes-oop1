@@ -15,32 +15,26 @@ Combination::Combination(vector<Card> playerCard, vector<Card> tableCard) {
     sortHandByValue();
 }
 
-int Combination::value() {
+float Combination::value() const {
     return this->score;
 }
 
 // Operator overloading
 bool Combination::operator>(const Combination& other) {
-    return this->score > other.score;
+    return this->value() > other.value();
 }
 
 bool Combination::operator<(const Combination& other) {
-    return this->score < other.score;
+    return this->value() < other.value();
 }
 
 bool Combination::operator==(const Combination& other) {
-    return this->score == other.score;
+    return this->value() == other.value();
 }
 
 // Sorting
 void Combination::sortHandByValue() {
     sort(totalHand.begin(),totalHand.end(), [](Card c1, Card c2) {
         return c1.getCardNumber() < c2.getCardNumber();
-    });
-}
-
-void Combination::sortHandByColor() {
-    sort(totalHand.begin(),totalHand.end(), [](Card c1, Card c2) {
-        return c1.getCardColor() < c2.getCardColor();
     });
 }

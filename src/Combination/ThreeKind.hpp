@@ -1,3 +1,6 @@
+#ifndef THREEKIND_HPP
+#define THREEKIND_HPP
+
 #include "Combination.hpp"
 
 class ThreeKind : public Combination {
@@ -5,3 +8,5 @@ class ThreeKind : public Combination {
         ThreeKind(vector<Card>, vector<Card>);
         void check();
 };
+
+#endif

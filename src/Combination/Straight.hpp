@@ -1,3 +1,6 @@
+#ifndef STRAIGHT_HPP
+#define STRAIGHT_HPP
+
 #include "Combination.hpp"
 
 class Straight : public Combination {
@@ -5,3 +8,5 @@ class Straight : public Combination {
         Straight(vector<Card>, vector<Card>);
         void check();
 };
+
+#endif

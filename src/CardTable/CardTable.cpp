@@ -38,3 +38,10 @@ CardTable CardTable::operator+(const Card& card) {
 void CardTable::removeCards(int cardsRemoved) {
     this->listOfCard.clear();
 }
+
+/*--------------------------------------------------------------------*/
+/*-----------------------GETTER SETTER SEGMENT------------------------*/
+
+vector<Card> CardTable::getListOfCard() {
+    return this->listOfCard;
+}

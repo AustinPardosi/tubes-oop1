@@ -38,6 +38,12 @@ class CardTable : public InventoryHolder {
         // Remove all cards from the table to start new game
         void removeCards(int cardsRemoved);
 
+        /*--------------------------------------------------------------------*/
+        /*-----------------------GETTER SETTER SEGMENT------------------------*/
+
+        // Return the cards on the table
+        vector<Card> getListOfCard();
+
 };
 
 #endif

@@ -1,3 +1,6 @@
+#ifndef STRAIGHTFLUSH_HPP
+#define STRAIGHTFLUSH_HPP
+
 #include "Combination.hpp"
 
 class StraightFlush : public Combination {
@@ -5,3 +8,5 @@ class StraightFlush : public Combination {
         StraightFlush(vector<Card>, vector<Card>);
         void check();
 };
+
+#endif

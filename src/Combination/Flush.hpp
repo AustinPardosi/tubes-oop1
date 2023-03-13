@@ -1,3 +1,6 @@
+#ifndef FLUSH_HPP
+#define FLUSH_HPP
+
 #include "Combination.hpp"
 
 class Flush : public Combination {
@@ -5,3 +8,5 @@ class Flush : public Combination {
         Flush(vector<Card>,vector<Card>);
         void check();
 };
+
+#endif

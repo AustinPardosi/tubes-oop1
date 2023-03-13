@@ -2,7 +2,9 @@
 #include "Game.hpp" 
 #include <math.h>
 
-// Konstruktor Game
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 Game::Game() {
     for (int i = 0; i < 7; i++) {
         this->playerList.push_back(Player());
@@ -26,24 +28,20 @@ Game::Game() {
     this->commandList.push_back(new SwitchCard());
 }
 
-// Member Function
-// Menjalankan Game
-void Game::start() {
-    initializeGame();
-    while (!(this->isPlayerWin(this->winner))) {
-        // loop sampai ada yang menang
-        this->startGame();
-        this->resetGame(); // reset game
-    }
-}
+/*--------------------------------------------------------------------*/
+/*---------------------------RUNNER SEGMENT---------------------------*/
 
-void Game::initializeGame() {
-    int idx = 1;
-    for_each(this->playerList.begin(), this->playerList.end(), [this, &i = idx] (Player& player) {
-        player.askForName(i);
-        cout << endl;
-        i++;
-    }); 
+void Game::start() {
+    showSplashScreen();
+    initializeGame();
+    int count = 1;
+    while (!(this->isPlayerWin(this->winner))) {
+        cout << "=================== GAME " << count << " ====================" << endl;
+        this->startGame();
+        count++;
+        this->resetGame();
+    }
+    showLeaderboard();
 }
 
 void Game::startGame() {
@@ -54,26 +52,14 @@ void Game::startGame() {
         this->deckCard.removeCards(2);
     }); 
 
+    cout << "==================== ROUND 1 ====================" << endl;
     startRound(1);
     giveAbility();
     for (int i = 2; i <= 6; i++) {
+        cout << "==================== ROUND " << i << " ====================" << endl;
         startRound(i);
     }
 
-}
-
-void Game::giveAbility() {
-    vector<int> abilityId = {4, 5, 6, 7, 8, 9, 10};
-    mt19937::result_type seed = random_device()() ^ chrono::duration_cast<chrono::seconds>(
-                                                    chrono::system_clock::now().time_since_epoch()).count();
-    mt19937 gen(seed);
-    shuffle(abilityId.begin(), abilityId.end(), gen);
-
-    int idx = 0;
-    for_each(abilityId.begin(), abilityId.end(), [this, &i = idx] (int id) {
-        this->playerList[i].setAbilityID(id);
-        i++;
-    });
 }
 
 void Game::startRound(int round) {
@@ -81,7 +67,10 @@ void Game::startRound(int round) {
         this->cardTable.addCards(this->deckCard);
         this->deckCard.removeCards(1);
     }
-
+    
+    cout << "The cards on the table are: " << endl;
+    this->cardTable.showCards();
+    
     for_each(this->turnList.begin(), this->turnList.end(), [this, round] (int idx) {
         while (!this->playerList[idx].getAlreadyPlayed()) {
             try {
@@ -104,6 +93,29 @@ void Game::startRound(int round) {
     roundRobin();
 }
 
+void Game::initializeGame() {
+    int idx = 1;
+    for_each(this->playerList.begin(), this->playerList.end(), [this, &i = idx] (Player& player) {
+        player.askForName(i);
+        cout << endl;
+        i++;
+    }); 
+}
+
+void Game::giveAbility() {
+    vector<int> abilityId = {4, 5, 6, 7, 8, 9, 10};
+    mt19937::result_type seed = random_device()() ^ chrono::duration_cast<chrono::seconds>(
+                                                    chrono::system_clock::now().time_since_epoch()).count();
+    mt19937 gen(seed);
+    shuffle(abilityId.begin(), abilityId.end(), gen);
+
+    int idx = 0;
+    for_each(abilityId.begin(), abilityId.end(), [this, &i = idx] (int id) {
+        this->playerList[i].setAbilityID(id);
+        i++;
+    });
+}
+
 void Game::resetGame() {
     roundRobin();
     this->bonusPoint = 64;
@@ -117,11 +129,6 @@ void Game::resetGame() {
     });
 }
 
-bool Game::isPlayerWin(int winner) {
-    return this->playerList[winner].getCurrentPoin() >= pow(2, 32);
-}
-
-// Menjalankan round robin
 void Game::roundRobin() {
     this->turn = 0; // Reset ulang indeks turn jadi 0
     this->turnList.push_back(this->turnList[0]);
@@ -131,32 +138,42 @@ void Game::roundRobin() {
     });
 }
 
-// Validasi angka input
-int Game::validateInputNum(int size) {
-    bool valid = false;
-    string temp;
+void Game::showLeaderboard() {
+    sort(this->playerList.begin(), this->playerList.end(), [] (const Player& p1, const Player& p2) {
+        return p1.getCurrentPoin() > p2.getCurrentPoin();
+    });
 
-    while (!valid) {
-        try {
-            cout << "Choose your option!" << endl;
-            cout << ">> ";
-            cin >> temp;
-
-            if (!(!temp.empty() && all_of(temp.begin(), temp.end(), ::isdigit)) 
-                 || (stoi(temp) <= 0 || stoi(temp) > size)) {
-                throw new InvalidInputException;
-            }
-            valid = true;  
-        }
-        catch (BaseException* e) {
-            e->printMessage();
-        }
-    }
-
-    return stoi(temp);
+    cout << "The game ends!" << endl;
+    cout << "Leaderboard: " << endl;
+    int idx = 1;
+    for_each(this->playerList.begin(), this->playerList.end(), [&i = idx] (const Player& player) {
+        cout << "  " << i << ". " << player.getName() << ": " << player.getCurrentPoin() << endl;
+        i++;
+    });
+    cout << this->playerList[0].getName() << " won the game!!" << endl;
 }
 
-// Ability pada game
+/*--------------------------------------------------------------------*/
+/*--------------------WINNER DETERMINATION SEGMENT--------------------*/
+
+// get the player with the highest combo, and give the prize point
+void Game::determineWinner() {
+    for_each(this->playerList.begin(),this->playerList.end(), [this] (Player& p) {
+        p.calculateCombo(this->cardTable.getListOfCard());
+    });
+    
+    this->winner = VectorFunct<Player>::findMax(this->playerList);
+    this->playerList[this->winner] = this->playerList[this->winner] + this->bonusPoint;
+}
+
+
+bool Game::isPlayerWin(int winner) {
+    return this->playerList[winner].getCurrentPoin() >= pow(2, 32);
+}
+
+/*--------------------------------------------------------------------*/
+/*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
 void Game::doDouble() {
     long long initial = this->bonusPoint;
     this->bonusPoint *= 2;   
@@ -183,26 +200,6 @@ void Game::doNext() {
     cout << this->playerList[this->turnList[this->turn]].getName() << " do NEXT!" << endl;
     cout << "The turn goes to the next player." << endl;
     this->turn++;
-}
-
-void Game::doReverse() {
-    cout << this->playerList[this->turnList[this->turn]].getName() << " do REVERSE!" << endl;
-    
-    cout << "Remaining player's turn order: ";
-    for_each(this->turnList.rbegin(), this->turnList.rbegin() + (7 - (this->turn + 1)), [this] (int idx) {
-        cout << this->playerList[idx].getName() << " ";
-    });
-    cout << endl;
-
-    reverse(this->turnList.begin(), this->turnList.begin() + this->turn + 1);
-    reverse(this->turnList.begin() + this->turn + 1, turnList.end());
-
-    cout << "Next round player's turn order: ";
-    for_each(this->turnList.begin()+1, this->turnList.end(), [this] (int idx) {
-        cout << this->playerList[idx].getName() << " ";
-    });
-    cout << this->playerList[this->turnList[0]].getName();
-    cout << endl;
 }
 
 void Game::doAbilityless() {
@@ -261,7 +258,7 @@ void Game::doQuarter() {
     cout << this->playerList[this->turnList[this->turn]].getName() << " do QUARTER!" << endl;
     if (this->bonusPoint == 1) {
         cout << "Uh-oh... no way! the prize points is already 1" << endl;
-        cout << "The prize points does not change.. game continue!" << endl;
+        cout << "Prize points does not change.. the game continue!" << endl;
     } else {
         long long initial = this->bonusPoint;
         this->bonusPoint /= 4;
@@ -283,6 +280,26 @@ void Game::doReroll() {
     cout << "You got 2 new cards :" << endl;
     this->playerList[this->turnList[this->turn]].showCards();
     this->turn++;
+}
+
+void Game::doReverse() {
+    cout << this->playerList[this->turnList[this->turn]].getName() << " do REVERSE!" << endl;
+    
+    cout << "Remaining player's turn order: ";
+    for_each(this->turnList.rbegin(), this->turnList.rbegin() + (7 - (this->turn + 1)), [this] (int idx) {
+        cout << this->playerList[idx].getName() << " ";
+    });
+    cout << endl;
+
+    reverse(this->turnList.begin(), this->turnList.begin() + this->turn + 1);
+    reverse(this->turnList.begin() + this->turn + 1, turnList.end());
+
+    cout << "Next round player's turn order: ";
+    for_each(this->turnList.begin()+1, this->turnList.end(), [this] (int idx) {
+        cout << this->playerList[idx].getName() << " ";
+    });
+    cout << this->playerList[this->turnList[0]].getName();
+    cout << endl;
 }
 
 void Game::doSwap() {
@@ -352,4 +369,70 @@ void Game::doSwitch() {
     cout << "Your cards now are: ";
     this->playerList[this->turnList[this->turn]].showCards();
     this->turn++;
+}
+
+/*--------------------------------------------------------------------*/
+/*---------------------------HELPING SEGMENT--------------------------*/
+
+// show splash screen when game started
+void Game::showSplashScreen() {
+    cout << "                                    .              " << endl;     
+    cout << "                                  ../(#            " << endl;     
+    cout << "                                   *.,             " << endl;     
+    cout << "                                   ,..             " << endl;     
+    cout << "                          ####*    *..             " << endl;     
+    cout << "                   @.**************@./             " << endl;     
+    cout << "                %*****************@.,&*&           " << endl;     
+    cout << "              .*****,,*/(#&@@@&,,,,,,,,@,/         " << endl;     
+    cout << "             #.,*#&@&&%##(((/////****(/(%%.        " << endl;     
+    cout << "            %*****************************@        " << endl;     
+    cout << "           ********************/((((/*****&        " << endl;     
+    cout << "           %***************@.........../**%        " << endl;     
+    cout << "          %*/**************,....    . .@/*%        " << endl;     
+    cout << "          #***************/ ..........@***%        " << endl;     
+    cout << "         #****************@........((/****%        " << endl;     
+    cout << "         &***************/#....&**********%        " << endl;     
+    cout << "         ******/*/********..,@************%        " << endl;     
+    cout << "        @**/(%#/*********,#%#&###%********%        " << endl;     
+    cout << "        ***####(**********(###&##(%*******%        " << endl;     
+    cout << "       &**/####&*********/(###(%##&*******(        " << endl;     
+    cout << "       (*###%##@*********/(#######%*******/        " << endl;     
+    cout << "      ,** .*#(%%**********(###### .#*******.       " << endl;     
+    cout << "      @ ..(***,,*********,#(####*&..@/******       " << endl;     
+    cout << "    , ..&*****@**********,####&***%..%*****/       " << endl;
+    cout << endl;
+    cout << "     e88~-_                           888          " << endl;    
+    cout << "    d888   \\   /~~~8e  888-~88e  e88~\\888 Y88b  /  " << endl;
+    cout << "    8888           88b 888  888 d888  888  Y888/   " << endl;
+    cout << "    8888      e88~-888 888  888 8888  888   Y8/    " << endl;
+    cout << "    Y888   / C888  888 888  888 Y888  888    Y     " << endl;
+    cout << "     e88_-~   /88_-888 888  888  e88_/888   /      " << endl;
+    cout << "                                          _/       " << endl;
+    cout << endl;
+}
+
+
+// Validasi angka input
+int Game::validateInputNum(int size) {
+    bool valid = false;
+    string temp;
+
+    while (!valid) {
+        try {
+            cout << "Choose your option!" << endl;
+            cout << ">> ";
+            cin >> temp;
+
+            if (!(!temp.empty() && all_of(temp.begin(), temp.end(), ::isdigit)) 
+                 || (stoi(temp) <= 0 || stoi(temp) > size)) {
+                throw new InvalidInputException;
+            }
+            valid = true;  
+        }
+        catch (BaseException* e) {
+            e->printMessage();
+        }
+    }
+
+    return stoi(temp);
 }

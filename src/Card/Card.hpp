@@ -2,10 +2,11 @@
 #define CARD_H
 
 #include <string>
+#include "../Score/Score.hpp"
 
 using namespace std;
 
-class Card {
+class Card : public Score {
 public:
 	// Konstruktor untuk menginisialisasi kartu
     Card();
@@ -21,10 +22,9 @@ public:
 	int getCardColor() const;
 
     //  Member Function
-    bool checkGreaterColor (int);
-    bool checkGreaterNumber (int);
     string convertColor (int) const;
     void printInfoCard () const;
+    float value() const;
 
     // Operator 
     bool operator< (const Card&);

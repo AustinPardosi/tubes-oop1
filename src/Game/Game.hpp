@@ -24,55 +24,104 @@ using namespace std;
 
 #include "../ExceptionHandling/BaseException.hpp"
 #include "../ExceptionHandling/InvalidInputException.hpp"
+#include "../Helper/VectorFunct.hpp"
 
 class Game {
-    public:
-        // Konstruktor Game
-        Game();
-        
-        // Member Function
-        // Menjalankan Game dan round
-        void start();
-        void startGame();
-
-        void initializeGame();
-        void giveAbility();
-        void startRound(int);
-
-        // Mereset poin hadiah, turn, dan melakukan round robin
-        void resetGame();
-
-        // Menjalankan round robin
-        void roundRobin(); // Mengubah isi turnList sesuai dengan aturan round robin
-        // Jadi nanti pengaksesan current turn pemain tinggal iterasi array turnList yang isinya indeks pemain awal
-
-        // Mengecek apakah ada player yang sudah menang dan mengeluarkan pemenangnya
-        bool isPlayerWin(int);
-
-        // Ability pada game
-        void doReverse();
-        void doAbilityless();
-        void doQuadruple();
-        void doQuarter();
-        void doReroll();
-        void doSwap();
-        void doSwitch();
-        void doDouble();
-        void doHalf();
-        void doNext();
-
     private:
         DeckCard deckCard;
         CardTable cardTable;
 
         vector<Player> playerList;
-        vector <int> turnList; // Berisi dengan indeks pemain ketika awal diinisiasi
+        vector<int> turnList;
         int turn;
 
         vector<Command*> commandList;
         long long bonusPoint;
         int winner;
 
+    public:
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+        
+        // constructor of game object
+        Game();
+        
+        /*--------------------------------------------------------------------*/
+        /*---------------------------RUNNER SEGMENT---------------------------*/
+        
+        // start the entire game and organize other object
+        void start();
+
+        // start 1 game (initialize, give ability, and start 6 round)
+        void startGame();
+
+        // start one round, asking for command from player and execute it
+        void startRound(int);
+
+        // ask the name of players
+        void initializeGame();
+
+        // assign ability to every player randomly
+        void giveAbility();
+
+        // reset the prize point and state of player, do round robin
+        void resetGame();
+
+        // change the turn of play by round robin rule
+        void roundRobin(); 
+
+        // show the leaderboard of final result
+        void showLeaderboard();
+
+        /*--------------------------------------------------------------------*/
+        /*--------------------WINNER DETERMINATION SEGMENT--------------------*/
+
+        // get the player with the highest combo, and give the prize point
+        void determineWinner();
+
+        // check if the player that get the prize point win the game or not
+        bool isPlayerWin(int);
+
+        /*--------------------------------------------------------------------*/
+        /*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
+        // do the double command
+        void doDouble();
+
+        // do the half command
+        void doHalf();
+
+        // do the next command
+        void doNext();
+
+        // do the abilityless ability
+        void doAbilityless();
+
+        // do the quadruple ability
+        void doQuadruple();
+
+        // do the quarter ability
+        void doQuarter();
+
+        // do the reroll ability
+        void doReroll();
+
+        // do the reverse ability
+        void doReverse();
+
+        // do the swap ability
+        void doSwap();
+        
+        // do the switch ability
+        void doSwitch();
+
+        /*--------------------------------------------------------------------*/
+        /*---------------------------HELPING SEGMENT--------------------------*/
+        
+        // show splash screen when game started
+        void showSplashScreen();
+        
+        // ask for user input and validate them to between 1 and the parameter
         int validateInputNum(int);
 };
 

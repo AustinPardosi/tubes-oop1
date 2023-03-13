@@ -16,14 +16,13 @@ class Combination : public Score {
 
     public :
         Combination(vector<Card>, vector<Card>);
-        int value();
+        float value() const;
         // Operator overloading
         bool operator>(const Combination&);
         bool operator<(const Combination&);
         bool operator==(const Combination&);
         // Sorting
         void sortHandByValue();
-        void sortHandByColor();
         // Cek kombinasi dan ubah score
         virtual void check()=0;
 };

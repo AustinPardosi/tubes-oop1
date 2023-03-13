@@ -10,7 +10,8 @@ void StraightFlush::check() {
     while (!foundStraightFlush && i >= 4) {
         int j = i-1;
         Card previous = totalHand[i];
-        while (j >= i-4 && previous.getCardNumber()-totalHand[j].getCardNumber() == 1 && previous.getCardColor() == totalHand[j].getCardColor()) {
+        while (j >= i-4 && previous.getCardNumber()-totalHand[j].getCardNumber() == 1 && 
+                previous.getCardColor() == totalHand[j].getCardColor()) {
             previous = totalHand[j];
             j--;
         }

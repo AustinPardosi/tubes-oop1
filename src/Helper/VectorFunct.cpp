@@ -2,24 +2,24 @@
 
 using namespace std;
 
-// Fungsi cari maksimum, diasumsikan vector tidak kosong
+// Fungsi cari indeks maksimum, diasumsikan vector tidak kosong
 template <class T>
-T VectorFunct<T>::findMax(vector<T> vec) {
-    T maximum = vec[0];
+int VectorFunct<T>::findMax(vector<T> vec) {
+    int maxIdx = 0;
     for (int i=1; i<vec.size(); i++) {
-        if (vec[i] > maximum) {
-            maximum = vec[i];
+        if (vec[i] > vec[maxIdx]) {
+            maxIdx = i;
         }
     }
-    return maximum;
+    return maxIdx;
 }
 
-Combination* VectorFunct<Combination*>::findMax(vector<Combination*> vec) {
-    Combination* maximum = vec[0];
+int VectorFunct<Combination*>::findMax(vector<Combination*> vec) {
+    int maxIdx = 0;
     for (int i=1; i<vec.size(); i++) {
-        if (*vec[i] > *maximum) {
-            maximum = vec[i];
+        if (*vec[i] > *vec[maxIdx]) {
+            maxIdx = i;
         }
     }
-    return maximum;
+    return maxIdx;
 }
