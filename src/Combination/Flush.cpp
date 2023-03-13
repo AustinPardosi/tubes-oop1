@@ -4,7 +4,7 @@ Flush::Flush(vector<Card> playerCard, vector<Card> tableCard) : Combination(play
 
 void Flush::check() {
     // Rumus : 7 + Nomor kartu terbesar/10 + Nomor kartu terbesar kedua/1000 + Nomor kartu ketiga terbesar / 100000 dst.
-    // Nilai maksimum : 8.313131312
+    // Nilai maksimum : 8.3121110906
     // Hitung jumlah kemunculan setiap warna
     int colorCount[] = {0,0,0,0};
     for (int i=0; i<7; i++) {
@@ -26,5 +26,6 @@ void Flush::check() {
             j--;
             counter++;
         }
+        score += i*3/(10.0 * pow(100,counter+1));
     }
 }
