@@ -24,7 +24,6 @@ using namespace std;
 
 #include "../ExceptionHandling/BaseException.hpp"
 #include "../ExceptionHandling/InvalidInputException.hpp"
-#include "../Helper/VectorFunct.hpp"
 
 class Game {
     private:

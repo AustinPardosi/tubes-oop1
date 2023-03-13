@@ -6,12 +6,26 @@
 
 using namespace std;
 
+// Fungsi cari maksimum, diasumsikan vector tidak kosong
 template <class T>
-class VectorFunct {
-    public :
-        // Fungsi cari maksimum, diasumsikan vector tidak kosong
-        static int findMax(vector<T>);
-        static int findMax(vector<Combination*>);
-};
+int getMax(vector<T> vec) {
+    int maxIdx = 0;
+    for (int i=1; i<vec.size(); i++) {
+        if (vec[i] > vec[maxIdx]) {
+            maxIdx = i;
+        }
+    }
+    return maxIdx;
+}
+template<>
+int getMax<Combination*>(vector<Combination*> vec) {
+    int maxIdx = 0;
+    for (int i=1; i<vec.size(); i++) {
+        if (*vec[i] > *vec[maxIdx]) {
+            maxIdx = i;
+        }
+    }
+    return maxIdx;
+}
 
 #endif

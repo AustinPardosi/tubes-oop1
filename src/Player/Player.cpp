@@ -178,7 +178,7 @@ void Player::calculateCombo(vector<Card> tableCard) {
         c->check();
     });
 
-    this->maxCombo = currCombo[VectorFunct<Combination*>::findMax(currCombo)];
+    this->maxCombo = currCombo[getMax<Combination*>(currCombo)];
 }
 
 /*--------------------------------------------------------------------*/

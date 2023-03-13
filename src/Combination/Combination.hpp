@@ -2,7 +2,6 @@
 #define COMBINATION_HPP
 
 #include "../Card/Card.hpp"
-#include "../Score/Score.hpp"
 #include <vector>
 #include <iostream>
 #include <algorithm>

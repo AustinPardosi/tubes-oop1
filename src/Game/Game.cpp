@@ -162,7 +162,7 @@ void Game::determineWinner() {
         p.calculateCombo(this->cardTable.getListOfCard());
     });
     
-    this->winner = VectorFunct<Player>::findMax(this->playerList);
+    this->winner = getMax<Player>(this->playerList);
     this->playerList[this->winner] = this->playerList[this->winner] + this->bonusPoint;
 }
 
