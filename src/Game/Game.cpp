@@ -48,9 +48,10 @@ void Game::start() {
     initializeGame();
     int count = 1;
     while (!(this->isPlayerWin(this->winner))) {
-        cout << "=================== GAME " << count << " ====================" << endl;
+        cout << "==================== GAME " << count << " =====================" << endl;
         this->startGame();
         count++;
+        determineWinner();
         this->resetGame();
     }
     showLeaderboard();
@@ -68,7 +69,7 @@ void Game::startGame() {
     startRound(1);
     giveAbility();
     for (int i = 2; i <= 6; i++) {
-        cout << "==================== ROUND " << i << " ====================" << endl;
+        cout << "\n==================== ROUND " << i << " ====================" << endl;
         startRound(i);
     }
 
@@ -354,6 +355,7 @@ void Game::doSwap() {
 
     this->playerList[targetPlayer1[player1]].swapCardWithOther(this->playerList[targetPlayer2[player2]], player1idx, player2idx);
 
+    cout << "The card has been swapped" << endl;
     this->turn++;
 }
 
@@ -378,7 +380,7 @@ void Game::doSwitch() {
     this->playerList[this->turnList[this->turn]].switchCardWithOther(this->playerList[targetPlayer[choice]]);
 
     cout << "Two cards of " << this->playerList[this->turnList[this->turn]].getName() << " have been switched with " << this->playerList[targetPlayer[choice]].getName() << "'s hands" << endl;
-    cout << "Your cards now are: ";
+    cout << "Your cards now are: " << endl;
     this->playerList[this->turnList[this->turn]].showCards();
     this->turn++;
 }
@@ -420,6 +422,7 @@ void Game::showSplashScreen() {
     cout << "    Y888   / C888  888 888  888 Y888  888    Y     " << endl;
     cout << "     e88_-~   /88_-888 888  888  e88_/888   /      " << endl;
     cout << "                                          _/       " << endl;
+    cout << "     -   C  A  R  D      G  A  M  E   -            " << endl;
     cout << endl;
 }
 
