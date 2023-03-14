@@ -246,7 +246,7 @@ long long Player::askForBet() {
     cout << endl << "This is " <<  "\033[92m" << this->name << "\033[0m" << "'s turn!" << endl;
     cout << "Your cards: " << endl;
     showCards();
-    cout << "Your current point: " << this->currentPoin << endl;
+    cout << "Your current point: " << "\033[35m" << this->currentPoin << "\033[0m" << endl;
     while (!valid) {
         try {
             cout << "Please choose how many points you want to bet!" << endl;
@@ -292,10 +292,8 @@ bool Player::operator==(const Player& other) {
 void Player::printInfo(int round) {
     cout << endl << "This is " <<  "\033[92m" << this->name << "\033[0m" << "'s turn!" << endl;
     cout << "Your cards: " << endl;
-    // cout << "\033[92m";
     showCards();
-    // cout << "\033[0m";
-    cout << "Your current point: " << this->currentPoin << endl;
+    cout << "Your current point: " << "\033[35m" << this->currentPoin << "\033[0m" << endl;
 
     if (round == 1) {
         cout << "You currently do not have any ability card" << endl;

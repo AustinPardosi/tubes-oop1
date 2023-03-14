@@ -14,6 +14,7 @@ using namespace std;
 class InventoryHolder {
     protected:
         vector<Card> listOfCard;
+        string cardLine[4];
 
     public:  
         /*--------------------------------------------------------------------*/
@@ -42,8 +43,11 @@ class InventoryHolder {
         // Get the card at the index position in the listOfCard
         Card getCard(int index) const;
 
+        // Setup the element of card to print
+        void cardSetup(int nums);
+
         // Show current cards in inventory
-        void showCards() const;
+        void showCards();
 };
 
 #endif

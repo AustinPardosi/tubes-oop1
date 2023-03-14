@@ -23,7 +23,7 @@ public:
 
     //  Member Function
     string convertColor (int) const;
-    void printInfoCard () const;
+    void colorPalette();
     float value() const;
 
     // Operator 

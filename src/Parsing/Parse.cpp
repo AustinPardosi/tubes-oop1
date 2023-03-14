@@ -18,7 +18,7 @@ Parse::Parse(){
         this->totalLine++;
 
         // Validate every line must have 2 values
-        istringstream iss(line):
+        istringstream iss(line)
         if(!(iss >> this->cardNumber >> this->cardColor) || (iss >> this->cardColor)) {
             throw new CardFileException(0);
             this->safe = false;

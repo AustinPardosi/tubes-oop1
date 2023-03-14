@@ -76,7 +76,7 @@ void Game::startGame() {
     DeckCard temp;
     this->deckCard.addCards(temp);
 
-    cout << "\033[1;33m";
+    cout << "\033[33m";
     cout << "===========        BETTING TIME          ===========" << endl;
     cout << "\033[0m";
     long long bet;
@@ -88,7 +88,7 @@ void Game::startGame() {
     }); 
 
     cout << "\033[33m";
-    cout << "================      ROUND 1      =================" << endl;
+    cout << "\n================      ROUND 1      =================" << endl;
     cout << "\033[0m";
     startRound(1);
     giveAbility();

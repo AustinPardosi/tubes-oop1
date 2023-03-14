@@ -50,7 +50,7 @@ string Card::convertColor (int _cardColor) const {
     return color;
 }
 
-void Card::printInfoCard () const {
+void Card::colorPalette() {
     string color = Card::convertColor (this->cardColor);
     // determining colors
     if (color == "Red") {
@@ -61,31 +61,6 @@ void Card::printInfoCard () const {
         cout << "\033[1;34m";
     } else if (color == "Green") {
         cout << "\033[1;32m";
-    }
-
-    // based on value
-    if (this->cardNumber < 10) {
-        cout << "===============" << endl;
-        cout << "| " << this->cardNumber << "           |" << endl;
-        cout << "|             |" << endl;
-        cout << "|             |" << endl;
-        cout << "|             |" << endl;
-        cout << "|             |" << endl;
-        cout << "|             |" << endl;
-        cout << "|           " << this->cardNumber << " |" << endl;
-        cout << "===============" << endl;
-        cout << "\033[0m";
-    } else {
-        cout << "===============" << endl; 
-        cout << "| " << this->cardNumber << "          |" << endl;
-        cout << "|             |" << endl;
-        cout << "|             |" << endl;
-        cout << "|             |" << endl;
-        cout << "|             |" << endl;
-        cout << "|             |" << endl;
-        cout << "|          " << this->cardNumber << " |" << endl;
-        cout << "===============" << endl;
-        cout << "\033[0m";
     }
 }
 
