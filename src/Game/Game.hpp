@@ -23,6 +23,7 @@ class Game {
 
         vector<Command*> commandList;
         long long bonusPoint;
+        long long bet;
         int winner;
 
     public:
@@ -59,7 +60,7 @@ class Game {
         // change the turn of play by round robin rule
         void roundRobin(); 
 
-        // show the leaderboard of final result
+        // show the leaderboard of current game result
         void showLeaderboard();
 
         /*--------------------------------------------------------------------*/

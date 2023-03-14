@@ -123,6 +123,9 @@ class Player : public InventoryHolder {
         /*--------------------------------------------------------------------*/
         /*---------------------POINT MANAGEMENT SEGMENT-----------------------*/
         
+        // asking how many points player want to bet
+        long long askForBet();
+
         // Add the prize point to player own point
         Player operator+(long long poinHadiah);
 

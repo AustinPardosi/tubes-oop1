@@ -30,7 +30,7 @@ int getMax<Combination*>(vector<Combination*>& vec) {
 /*--------------------------------------------------------------------*/
 /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
 
-Player::Player() : name(""), commandId(0), abilityId(0), currentPoin(0), alreadyPlayed(false), abilityUsed(false), abilityless(false) {}
+Player::Player() : name(""), commandId(0), abilityId(0), currentPoin(1000), alreadyPlayed(false), abilityUsed(false), abilityless(false) {}
 
 Player::Player(vector<Card> listCards, string name, int commandId, int abilityId, long long currentPoin, bool alreadyPlayed, bool abilityUsed, bool abilityless) {
     this->listOfCard = listCards;
@@ -235,8 +235,40 @@ void Player::switchCardWithOther(Player& other) {
     other.removeCards(0);
     other.removeCards(0);
 }
+
 /*--------------------------------------------------------------------*/
 /*---------------------POINT MANAGEMENT SEGMENT-----------------------*/
+
+long long Player::askForBet() {
+    bool valid;
+    string temp;
+    
+    cout << endl << "This is " <<  "\033[92m" << this->name << "\033[0m" << "'s turn!" << endl;
+    cout << "Your cards: " << endl;
+    showCards();
+    cout << "Your current point: " << this->currentPoin << endl;
+    while (!valid) {
+        try {
+            cout << "Please choose how many points you want to bet!" << endl;
+            cout << ">> " << "\033[34m";
+            cin >> temp;
+            cout << "\033[0m";
+
+            if (!(!temp.empty() && all_of(temp.begin(), temp.end(), ::isdigit)) 
+                 || (stoll(temp) < 0 || stoll(temp) > this->currentPoin)) {
+                InvalidInputException e;
+                throw e;
+            }
+            valid = true;
+        }
+        catch (InvalidInputException e) {
+            e.printMessage();
+        }
+    }
+
+    this->currentPoin -= stoll(temp);
+    return stoll(temp);
+}
 
 Player Player::operator+(long long poinHadiah) {
     return Player(this->listOfCard, this->name, this->commandId, this->abilityId, this->currentPoin + poinHadiah, this->alreadyPlayed, this->abilityUsed, this->abilityless);
@@ -263,6 +295,7 @@ void Player::printInfo(int round) {
     // cout << "\033[92m";
     showCards();
     // cout << "\033[0m";
+    cout << "Your current point: " << this->currentPoin << endl;
 
     if (round == 1) {
         cout << "You currently do not have any ability card" << endl;

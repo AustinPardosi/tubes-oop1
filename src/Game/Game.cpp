@@ -26,6 +26,7 @@ Game::Game() {
     this->turn = 0;
 
     this->bonusPoint = 64;
+    this->bet = 0;
     this->winner = -1;
 
     this->commandList.push_back(new Double());
@@ -53,6 +54,7 @@ void Game::start() {
     showSplashScreen();
     initializeGame();
     int count = 1;
+
     while (!(isPlayerWin())) {
         if (count > 1) {
             cout << endl;
@@ -60,10 +62,12 @@ void Game::start() {
         cout << "\033[1;33m";
         cout << "===========           GAME " << count << "             ===========" << endl;
         cout << "\033[0m";
-        this->startGame();
+        startGame();
         count++;
         determineWinner();
-        this->resetGame();
+        if (!isPlayerWin()) {
+            resetGame();
+        }
     }
     showLeaderboard();
 }
@@ -71,9 +75,16 @@ void Game::start() {
 void Game::startGame() {
     DeckCard temp;
     this->deckCard.addCards(temp);
-    for_each(this->playerList.begin(), this->playerList.end(), [this] (Player& player) {
+
+    cout << "\033[1;33m";
+    cout << "===========        BETTING TIME          ===========" << endl;
+    cout << "\033[0m";
+    long long bet;
+    for_each(this->playerList.begin(), this->playerList.end(), [&b = bet, this] (Player& player) {
         player.addCards(this->deckCard);
         this->deckCard.removeCards(2);
+        b = player.askForBet();
+        this->bet += b;
     }); 
 
     cout << "\033[33m";
@@ -149,6 +160,7 @@ void Game::giveAbility() {
 void Game::resetGame() {
     roundRobin();
     this->bonusPoint = 64;
+    this->bet = 0;
     this->cardTable.removeCards(5);
     this->deckCard.clearCards();
     for_each(this->playerList.begin(), this->playerList.end(), [] (Player& player) {
@@ -211,7 +223,9 @@ void Game::determineWinner() {
             }
         }
     }
-    this->playerList[this->winner] = this->playerList[this->winner] + this->bonusPoint;
+    this->playerList[this->winner] = this->playerList[this->winner] + (this->bonusPoint + this->bet);
+    cout << "The winner of the current game is " << this->playerList[this->winner].getName();
+    cout << " with total point of " << this->playerList[this->winner].getCurrentPoin() << endl;
 }
 
 
