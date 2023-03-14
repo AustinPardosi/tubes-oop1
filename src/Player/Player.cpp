@@ -49,7 +49,6 @@ Player::Player(const Player& other) : name(other.name), commandId(other.commandI
 
 Player::~Player() {
     for (int i = 0; i < this->currCombo.size(); i++) {
-        cout << i;
         delete this->currCombo[i];
     }
 }
@@ -306,5 +305,5 @@ void Player::printInfo(int round) {
                    }); 
         cout << "Your ability card is " << "\033[35m" << itr->first << "\033[0m" << endl;
     }
-    cout << "Insert your command" << endl;
+    cout << "Insert your command!" << endl;
 }

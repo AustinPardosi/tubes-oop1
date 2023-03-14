@@ -3,6 +3,7 @@
 #include "../Command/Double.hpp"
 #include "../Command/Half.hpp"
 #include "../Command/Next.hpp"
+#include "../Parsing/Parse.hpp"
 #include "../AbilityCard/AbilitylessCard.hpp"
 #include "../AbilityCard/QuadrupleCard.hpp"
 #include "../AbilityCard/QuarterCard.hpp"
@@ -73,11 +74,12 @@ void Game::start() {
 }
 
 void Game::startGame() {
-    DeckCard temp;
-    this->deckCard.addCards(temp);
-
     cout << "\033[33m";
-    cout << "===========        BETTING TIME          ===========" << endl;
+    cout << "======        DETERMINE INPUT METHOD          ======" << endl;
+    cout << "\033[0m";
+    determineInputMethod();
+    cout << "\033[33m";
+    cout << "===========        BETTING TIME          ===========";
     cout << "\033[0m";
     long long bet;
     for_each(this->playerList.begin(), this->playerList.end(), [&b = bet, this] (Player& player) {
@@ -200,6 +202,73 @@ void Game::showLeaderboard() {
     cout << endl << "\033[1;32m" << this->playerList[0].getName() << " won the game! Congratulations!\n" << "\033[0m" << endl;
 }
 
+void Game::determineInputMethod() {
+    bool valid = false;
+    string temp;
+    
+    while (!valid) {
+        try {
+            cout << "Please choose how to make the card arrangement!" << endl;
+            cout << "  1. By file input" << endl;
+            cout << "  2. Generate random cards" << endl;
+            cout << "Choose your option!" << endl;
+            cout << ">> " << "\033[34m";
+            cin >> temp;
+            cout << "\033[0m";
+
+            if (!(!temp.empty() && all_of(temp.begin(), temp.end(), ::isdigit)) 
+                 || (stoll(temp) < 0 || stoll(temp) > 2)) {
+                InvalidInputException e;
+                throw e;
+            }
+            valid = true;
+        }
+        catch (InvalidInputException e) {
+            e.printMessage();
+        }
+    }
+
+    // if by file input
+    if (stoi(temp) == 1) {
+        // Deklarasi variabek
+        Parse p1;
+        string inputfile;
+        bool checkdone = false;
+
+        // Proses validating
+        while(!checkdone) {
+            cout << "\033[36m" << "Input the file name" << endl;
+            cout << "Input file format (52 cards) : <CardNumber> <ColorCode>" << "\033[0m" << endl;
+            cout << ">> " << "\033[34m";
+            cin >> inputfile;
+            cout << "\033[0m";
+            ifstream inputFile(inputfile);
+            try {
+                if(!inputFile.is_open()) {
+                    throw new InvalidFileException;
+                }
+                checkdone = true;
+            } catch (BaseException *e) {
+                e->printMessage();
+            }
+        }
+
+        p1.parsing(inputfile);
+        vector<pair<int,int>> result = p1.getCards();
+        vector<Card> cards;
+        for (auto i : result) {
+            Card card(i.second, i.first);
+            cards.push_back(card);
+        }
+
+        this->deckCard = cards;
+    } else {
+        DeckCard temp;
+        this->deckCard.addCards(temp);
+    }
+    cout << endl;
+}
+
 /*--------------------------------------------------------------------*/
 /*--------------------WINNER DETERMINATION SEGMENT--------------------*/
 
@@ -224,8 +293,11 @@ void Game::determineWinner() {
         }
     }
     this->playerList[this->winner] = this->playerList[this->winner] + (this->bonusPoint + this->bet);
-    cout << "The winner of the current game is " << this->playerList[this->winner].getName();
-    cout << " with total point of " << this->playerList[this->winner].getCurrentPoin() << endl;
+    cout << "\033[1;33m";
+    cout << "\n===========         GAME RESULT          ===========" << endl;
+    cout << "\033[0m";
+    cout << "\033[1;32m" << "The winner of the current game is " << this->playerList[this->winner].getName();
+    cout << " with total point of " << this->playerList[this->winner].getCurrentPoin() << "\033[0m" << endl;
 }
 
 

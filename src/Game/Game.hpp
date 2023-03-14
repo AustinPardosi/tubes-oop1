@@ -11,7 +11,7 @@ using namespace std;
 #include "../Player/Player.hpp"
 #include "../Command/Command.hpp"
 #include "../Helper/VectorFunct.hpp"
-
+#include "../Parsing/Parse.hpp"
 class Game {
     private:
         DeckCard deckCard;
@@ -62,6 +62,9 @@ class Game {
 
         // show the leaderboard of current game result
         void showLeaderboard();
+
+        // determine the input methods
+        void determineInputMethod();
 
         /*--------------------------------------------------------------------*/
         /*--------------------WINNER DETERMINATION SEGMENT--------------------*/
