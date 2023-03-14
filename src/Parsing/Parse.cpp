@@ -5,7 +5,7 @@ Parse::Parse() {
     this->safe = true;
 }
 
-vector<int,int> Parse::getCards() const {
+vector<pair<int,int>> Parse::getCards() const {
     return this->cards;
 }
 

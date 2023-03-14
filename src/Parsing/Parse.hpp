@@ -16,7 +16,7 @@ using namespace std;
 
 class Parse {
     private:
-        vector<int,int> cards;
+        vector<pair<int,int>> cards;
         int totalLine;
         bool safe;
 
@@ -25,7 +25,7 @@ class Parse {
         Parse();
 
         // Getter and setter section
-        vector<int,int> getCards() const;
+        vector<pair<int,int>> getCards() const;
         int getTotalLine() const;
         bool getSafe() const;
 

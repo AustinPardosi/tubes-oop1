@@ -1,5 +1,10 @@
 #include "Parse.hpp" 
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <utility>
+#include <string>
+#include <sstream>
 using namespace std;
 
 int main() {
@@ -24,8 +29,8 @@ int main() {
     }
 
     p1.parsing(inputfile);
-    vector<int,int> result = p1.getCards();
-    for(const auto &i : result) {
+    vector<pair<int,int>> result = p1.getCards();
+    for (const auto& i : result) {
         cout << i.first << " " << i.second << endl;
     }
 }
