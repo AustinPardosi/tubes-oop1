@@ -8,23 +8,29 @@
 #include <string>
 #include <sstream>
 
+#include "../ExceptionHandling/BaseException.hpp"
 #include "../ExceptionHandling/InvalidFileException.hpp"
 #include "../ExceptionHandling/CardFileException.hpp"
 
 using namespace std;
 
 class Parse {
-private:
-    vector<int,int> validateCards;
-    vector<int,int> cards;
-    int totalLine;
-    int cardNumber;
-    int cardColor;
-    bool safe;
+    private:
+        vector<int,int> cards;
+        int totalLine;
+        bool safe;
 
-public:
-    Parse();
-    vector<int,int> getAllCards();
+    public:
+        // Constructor
+        Parse();
+
+        // Getter and setter section
+        vector<int,int> getCards() const;
+        int getTotalLine() const;
+        bool getSafe() const;
+
+        // Main method
+        void parsing(string);
 };
 
 #endif
