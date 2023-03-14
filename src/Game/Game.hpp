@@ -32,6 +32,9 @@ class Game {
         // constructor of game object
         Game();
         
+        // destructor of game object
+        ~Game();
+        
         /*--------------------------------------------------------------------*/
         /*---------------------------RUNNER SEGMENT---------------------------*/
         

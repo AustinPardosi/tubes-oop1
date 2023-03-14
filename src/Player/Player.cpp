@@ -47,7 +47,12 @@ Player::Player(const Player& other) : name(other.name), commandId(other.commandI
     this->listOfCard = other.listOfCard;
 }
 
-Player::~Player() {}
+Player::~Player() {
+    for (int i = 0; i < this->currCombo.size(); i++) {
+        cout << i;
+        delete this->currCombo[i];
+    }
+}
 
 Player& Player::operator=(const Player& other) {
     this->name = other.name;

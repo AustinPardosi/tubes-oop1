@@ -40,11 +40,16 @@ Game::Game() {
     this->commandList.push_back(new SwitchCard());
 }
 
+Game::~Game() {
+    for (int i = 0; i < this->commandList.size(); i++) {
+        delete this->commandList[i];
+    }
+}
+
 /*--------------------------------------------------------------------*/
 /*---------------------------RUNNER SEGMENT---------------------------*/
 
 void Game::start() {
-    system("CLS"); // clear screen
     showSplashScreen();
     initializeGame();
     int count = 1;
