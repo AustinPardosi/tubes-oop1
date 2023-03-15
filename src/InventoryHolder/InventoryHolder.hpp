@@ -14,7 +14,7 @@ using namespace std;
 class InventoryHolder {
     protected:
         vector<Card> listOfCard;
-        string cardLine[4];
+        string cardLine[5];
 
     public:  
         /*--------------------------------------------------------------------*/

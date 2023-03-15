@@ -27,6 +27,7 @@ void InventoryHolder::cardSetup(int nums) {
         this->cardLine[2] = "| " + to_string(nums) + "          | ";
         this->cardLine[3] = "|          " + to_string(nums) + " | ";
     }
+    this->cardLine[4] = "|   - LLH -   | ";
 }
 
 void InventoryHolder::showCards() {
@@ -45,7 +46,21 @@ void InventoryHolder::showCards() {
         cout << "\033[0m";
     }
     cout << endl;
-    for (int j = 0; j < 6; j++) {
+    for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < size; i++) {
+        this->listOfCard[i].colorPalette();
+        cout << this->cardLine[1];
+        cout << "\033[0m";
+        }
+        cout << endl;
+    }
+    for (int i = 0; i < size; i++) {
+        this->listOfCard[i].colorPalette();
+        cout << this->cardLine[4];
+        cout << "\033[0m";
+    }
+    cout << endl;
+    for (int j = 0; j < 2; j++) {
         for (int i = 0; i < size; i++) {
         this->listOfCard[i].colorPalette();
         cout << this->cardLine[1];
