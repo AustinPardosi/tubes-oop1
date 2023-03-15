@@ -6,15 +6,18 @@
 
 #include "AbilityCard.hpp"
 
-class Game;
-
 class QuadrupleCard : public AbilityCard {
     public:
-        // Konstruktor kartu quadruple
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
+        // ctor
         QuadrupleCard();
         
-        // Member Function
-        // Menggunakan kartu yang dimiliki
+        /*--------------------------------------------------------------------*/
+        /*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
+        // tell the game object to do quadruple ability
         void doCommand(Game& game);
 };
 

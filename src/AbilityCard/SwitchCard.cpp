@@ -1,18 +1,19 @@
 // File: SwitchCard.cpp
 // Berisi implementasi dari kelas SwitchCard
 
-#include <iostream>
 #include "SwitchCard.hpp"
 #include "../Game/Game.hpp"
-using namespace std;
 
-// Konstruktor kartu switch
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 SwitchCard::SwitchCard() {
     this->commandID = 10;
 }
 
-// Member Function
-// Menggunakan kartu yang dimiliki
+/*--------------------------------------------------------------------*/
+/*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
 void SwitchCard::doCommand(Game& game) {
     game.doSwitch();
 }

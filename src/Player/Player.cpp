@@ -16,6 +16,7 @@
 #include "../ExceptionHandling/EmptyAbilityCardException.hpp"
 #include "../ExceptionHandling/AbilityCommandException.hpp"
 
+// template specialization of getMax for vector of Combination*
 template<>
 int getMax<Combination*>(vector<Combination*>& vec) {
     int maxIdx = 0;

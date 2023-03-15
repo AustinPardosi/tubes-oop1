@@ -5,7 +5,6 @@
 #define PLAYER_HPP
 
 #include <map>
-#include <vector>
 
 #include "../InventoryHolder/InventoryHolder.hpp"
 #include "../Combination/Combination.hpp"
@@ -86,38 +85,43 @@ class Player : public InventoryHolder {
         /*--------------------------------------------------------------------*/
         /*------------------------ADDING CARDS SEGMENT------------------------*/
         
-        // Add 2 card from the top of DeckCard to the Player hand
+        // add 2 card from the top of DeckCard to the Player hand
         void addCards(const InventoryHolder& other);
 
-        // Return table card with 1 more card (other)
+        // return table card with 1 more card (other)
         Player operator+(const Card& other);
 
         /*--------------------------------------------------------------------*/
         /*-----------------------REMOVING CARDS SEGMENT-----------------------*/
         
-        // Remove the card at index cardsRemoved from the hand
+        // remove the card at index cardsRemoved from the hand
         void removeCards(int cardsRemoved);
 
-        // Return the player with card at index cardsRemoved removed
+        // return the player with card at index cardsRemoved removed
         Player operator-(int cardsRemoved);
 
         /*--------------------------------------------------------------------*/
         /*-----------------------ASKING ACTION SEGMENT------------------------*/
         
-        // Fill list of commands with pair<string, int>
+        // fill list of commands with pair<string, int>
         void fillMapsOfCommand(map<string, int>& listCommands);
 
-        // Ask for player action, throw exception if not valid
+        // ask for player action, throw exception if not valid
         void askForAction();
 
         /*--------------------------------------------------------------------*/
         /*----------------------SWAP AND SWITCH SEGMENT-----------------------*/
+        
+        // the player switch one of their card with other player
         void swapCardWithOther(Player& other, int handPos, int otherPos);
 
+        // switch the player entire hand with other player
         void switchCardWithOther(Player& other);
 
         /*--------------------------------------------------------------------*/
         /*--------------------------COMBO SEGMENT-----------------------------*/
+        
+        // calculate the player highest combo with the cards on the table
         void calculateCombo(vector<Card>,int);
 
         /*--------------------------------------------------------------------*/
@@ -126,15 +130,22 @@ class Player : public InventoryHolder {
         // asking how many points player want to bet
         long long askForBet();
 
-        // Add the prize point to player own point
+        // add the prize point to player own point
         Player operator+(long long poinHadiah);
 
         /*--------------------------------------------------------------------*/
         /*---------------------ADDITIONAL METHOD SEGMENT----------------------*/
+        
+        // check if player combo is higher than other player
         bool operator>(const Player& other);
+
+        // check if player combo is lower than other player
         bool operator<(const Player& other);
+
+        // check if player combo is the same as other player
         bool operator==(const Player& other);
 
+        // show player cards, ability, point, and name
         void printInfo(int);
 };
 

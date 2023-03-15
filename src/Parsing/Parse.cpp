@@ -1,9 +1,18 @@
+// File: Parse.cpp
+// Berisi implementasi dari kelas Parse
+
 #include "Parse.hpp"
+
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
 
 Parse::Parse() {
     this->totalLine = 0;
     this->safe = true;
 }
+
+/*--------------------------------------------------------------------*/
+/*---------------------GETTER AND SETTER SEGMENT----------------------*/
 
 vector<pair<int,int>> Parse::getCards() const {
     return this->cards;
@@ -16,6 +25,10 @@ int Parse::getTotalLine() const {
 bool Parse::getSafe() const {
     return this->safe;
 }
+
+/*--------------------------------------------------------------------*/
+/*--------------------------PARSING SEGMENT---------------------------*/
+
 void Parse::parsing(string inputfile) {
     // Declare temporary variables
     string line;

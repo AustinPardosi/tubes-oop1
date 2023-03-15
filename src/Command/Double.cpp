@@ -1,16 +1,19 @@
-// File: Command.cpp
+// File: Double.cpp
 // Berisi implementasi dari kelas Double
 
 #include "Double.hpp"
 #include "../Game/Game.hpp"
 
-// Konstruktor double
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 Double::Double() {
     this->commandID = 1;
 }
 
-// Member Function
-// Menjalankan command
+/*--------------------------------------------------------------------*/
+/*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
 void Double::doCommand(Game& game) {
     game.doDouble();
 }

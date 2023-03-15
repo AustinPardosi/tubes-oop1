@@ -1,17 +1,17 @@
-// Game.hpp
+// File: Game.hpp
+// Berisi deklarasi dari dari kelas Game
+
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include <vector>
-#include <iostream>
 #include <fstream>
-using namespace std;
 
 #include "../DeckCard/DeckCard.hpp"
 #include "../CardTable/CardTable.hpp"
 #include "../Player/Player.hpp"
 #include "../Command/Command.hpp"
 #include "../Helper/VectorFunct.hpp"
+
 class Game {
     private:
         DeckCard deckCard;

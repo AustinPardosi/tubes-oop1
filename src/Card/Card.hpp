@@ -1,39 +1,64 @@
+// File: Card.hpp
+// Berisi deklarasi dari kelas Card
+
 #ifndef CARD_H
 #define CARD_H
 
-#include <string>
 #include "../Score/Score.hpp"
 
-using namespace std;
-
 class Card : public Score {
-public:
-	// Konstruktor untuk menginisialisasi kartu
-    Card();
-	Card(int, int);
+    private:
+        int cardColor;
+        int cardNumber;
 
-    // Cctor 
-    Card(const Card&);
+    public:
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+        
+        // default ctor
+        Card();
 
-	// Getter, Setter
-	void setCardNumber(int);
-	int getCardNumber() const;
-	void setCardColor(int);
-	int getCardColor() const;
+        // user defined ctor
+        Card(int, int);
 
-    //  Member Function
-    string convertColor (int) const;
-    void colorPalette();
-    float value() const;
+        /*--------------------------------------------------------------------*/
+        /*---------------------GETTER AND SETTER SEGMENT----------------------*/
+        
+        // set the card number
+        void setCardNumber(int);
 
-    // Operator 
-    bool operator< (const Card&);
-    bool operator> (const Card&);
-    bool operator== (const Card&);
+        // get the card number
+        int getCardNumber() const;
 
-private:
-    int cardColor;
-    int cardNumber;
+        // set the card color
+        void setCardColor(int);
+
+        // get the card color
+        int getCardColor() const;
+
+        /*--------------------------------------------------------------------*/
+        /*-------------------------CARD COLOR SEGMENT-------------------------*/
+        
+        // change color code of card into its corresponding word
+        string convertColor (int) const;
+
+        // print the card with its palette color
+        void colorPalette();
+
+        /*--------------------------------------------------------------------*/
+        /*-------------------------CARD VALUE SEGMENT-------------------------*/
+        
+        // implement the value function
+        float value() const;
+
+        // check if this card is lesser than other
+        bool operator< (const Card&);
+
+        // check if this card is greater than other
+        bool operator> (const Card&);
+
+        // check if this card is the same as other
+        bool operator== (const Card&);
 };
 
 #endif

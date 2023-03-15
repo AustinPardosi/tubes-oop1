@@ -1,6 +1,15 @@
+// File: FullHouse.cpp
+// Berisi implementasi dari kelas FullHouse
+
 #include "FullHouse.hpp"
 
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 FullHouse::FullHouse(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
+/*--------------------------------------------------------------------*/
+/*------------------------COMBO VALUE SEGMENT-------------------------*/
 
 void FullHouse::check() {
     // Rumus : 9 + (Nomor kartu yang ada 3)/10

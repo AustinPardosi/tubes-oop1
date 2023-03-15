@@ -1,6 +1,15 @@
+// File: StraightFlush.cpp
+// Berisi implementasi dari kelas StraightFlush
+
 #include "StraightFlush.hpp"
 
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 StraightFlush::StraightFlush(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
+/*--------------------------------------------------------------------*/
+/*------------------------COMBO VALUE SEGMENT-------------------------*/
 
 void StraightFlush::check() {
     // Rumus : 11.6 + Nomor kartu tertinggi /10 + kode warna

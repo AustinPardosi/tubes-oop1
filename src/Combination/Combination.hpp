@@ -1,29 +1,52 @@
+// File: Combination.hpp
+// Berisi deklarasi dari kelas Combination
+
 #ifndef COMBINATION_HPP
 #define COMBINATION_HPP
 
-#include "../Card/Card.hpp"
 #include <vector>
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+using namespace std;
+
+#include "../Card/Card.hpp"
 
 class Combination : public Score {
     protected :
         double score;
         vector<Card> totalHand;
-        // int highestCombo; // 0 : high card, 1 : pair, 2 : two pair, ..., 8 : straight flush
 
     public :
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+        
+        // user defined ctor
         Combination(vector<Card>, vector<Card>);
+
+        /*--------------------------------------------------------------------*/
+        /*------------------------COMBO VALUE SEGMENT-------------------------*/
+        
+        // check the combination available, too abstract for this class
+        virtual void check() = 0;
+        
+        // get the score of this combination
         float value() const;
-        // Operator overloading
+
+        // check if this combo is greater than other combo
         bool operator>(const Combination&);
+
+        // check if this combo is lesser than other combo
         bool operator<(const Combination&);
+
+        // check if this combo is the same as other combo
         bool operator==(const Combination&);
-        // Sorting
+
+        /*--------------------------------------------------------------------*/
+        /*---------------------ADDITIONAL METHOD SEGMENT----------------------*/
+        
+        // sort card vector according to value;
         void sortHandByValue();
-        // Cek kombinasi dan ubah score
-        virtual void check()=0;
 };
 
 #endif

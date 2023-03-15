@@ -1,6 +1,15 @@
+// File: Straight.cpp
+// Berisi implementasi dari kelas Straight
+
 #include "Straight.hpp"
 
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 Straight::Straight(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
+/*--------------------------------------------------------------------*/
+/*------------------------COMBO VALUE SEGMENT-------------------------*/
 
 void Straight::check() {
     // Rumus : 5.56 + Nomor kartu terbesar/10 + Kode warna kartu bernomor terbesar

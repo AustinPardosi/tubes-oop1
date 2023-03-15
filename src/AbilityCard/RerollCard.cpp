@@ -1,18 +1,19 @@
 // File: RerollCard.cpp
 // Berisi implementasi dari kelas RerollCard
 
-#include <iostream>
 #include "RerollCard.hpp"
 #include "../Game/Game.hpp"
-using namespace std;
 
-// Konstruktor kartu re-roll
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 RerollCard::RerollCard() {
     this->commandID = 7;
 }
 
-// Member Function
-// Menggunakan kartu yang dimiliki
+/*--------------------------------------------------------------------*/
+/*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
 void RerollCard::doCommand(Game& game) {
     game.doReroll();
 }

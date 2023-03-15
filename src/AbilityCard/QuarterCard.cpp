@@ -1,18 +1,19 @@
 // File: QuarterCard.cpp
 // Berisi implementasi dari kelas QuarterCard
 
-#include <iostream>
 #include "QuarterCard.hpp"
 #include "../Game/Game.hpp"
-using namespace std;
 
-// Konstruktor kartu quarter
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 QuarterCard::QuarterCard() {
     this->commandID = 6;
 }
 
-// Member Function
-// Menggunakan kartu yang dimiliki
+/*--------------------------------------------------------------------*/
+/*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
 void QuarterCard::doCommand(Game& game) {
     game.doQuarter();
 }

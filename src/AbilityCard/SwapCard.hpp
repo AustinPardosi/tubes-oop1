@@ -6,15 +6,18 @@
 
 #include "AbilityCard.hpp"
 
-class Game;
-
 class SwapCard : public AbilityCard {
     public:
-        // Konstruktor kartu swap
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
+        // ctor
         SwapCard();
         
-        // Member Function
-        // Menggunakan kartu yang dimiliki
+        /*--------------------------------------------------------------------*/
+        /*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+        
+        // tell the game object to do swap ability
         void doCommand(Game& game);
 };
 

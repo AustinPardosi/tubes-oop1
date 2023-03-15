@@ -1,12 +1,9 @@
 #ifndef VECTORFUNCT_HPP
 #define VECTORFUNCT_HPP
 
-#include <vector>
 #include "../Combination/Combination.hpp"
 
-using namespace std;
-
-// Fungsi cari maksimum, diasumsikan vector tidak kosong
+// get the max value of a vector of T class
 template <class T>
 int getMax(vector<T>& vec) {
     int maxIdx = 0;

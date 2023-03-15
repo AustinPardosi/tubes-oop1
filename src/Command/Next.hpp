@@ -6,15 +6,18 @@
 
 #include "Command.hpp"
 
-class Game;
-
 class Next : public Command {
     public:
-        // Konstruktor command
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
+        // ctor 
         Next();
         
-        // Member Function
-        // Menjalankan command
+        /*--------------------------------------------------------------------*/
+        /*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
+        // tell the game object to do next command
         void doCommand(Game& game);
 };
 

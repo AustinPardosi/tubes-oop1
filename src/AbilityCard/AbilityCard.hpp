@@ -6,15 +6,18 @@
 
 #include "../Command/Command.hpp"
 
-class Game;
-
 class AbilityCard : public Command {
     public:
-        // Konstruktor kartu ability
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+        
+        // ctor
         AbilityCard();
         
-        // Member Function
-        // Menggunakan kartu yang dimiliki
+        /*--------------------------------------------------------------------*/
+        /*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
+        // abstract method to execute ability, still too abstract on this class
         virtual void doCommand(Game& game) = 0;
 };
 

@@ -26,24 +26,23 @@ class CardTable : public InventoryHolder {
         /*--------------------------------------------------------------------*/
         /*------------------------ADDING CARDS SEGMENT------------------------*/
 
-        // Add 1 card from the top of DeckCard to the CardTable
+        // add 1 card from the top of DeckCard to the CardTable
         void addCards(const InventoryHolder& other);
 
-        // Return table card with 1 more card (other)
+        // return table card with 1 more card (other)
         CardTable operator+(const Card& other);
 
         /*--------------------------------------------------------------------*/
         /*-----------------------REMOVING CARDS SEGMENT-----------------------*/
 
-        // Remove all cards from the table to start new game
+        // remove all cards from the table to start new game
         void removeCards(int cardsRemoved);
 
         /*--------------------------------------------------------------------*/
         /*-----------------------GETTER SETTER SEGMENT------------------------*/
 
-        // Return the cards on the table
+        // return the cards on the table
         vector<Card> getListOfCard();
-
 };
 
 #endif

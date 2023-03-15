@@ -6,15 +6,18 @@
 
 #include "AbilityCard.hpp"
 
-class Game;
-
 class ReverseCard : public AbilityCard {
     public:
-        // Konstruktor kartu reverse
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+        
+        // ctor
         ReverseCard();
         
-        // Member Function
-        // Menggunakan kartu yang dimiliki
+        /*--------------------------------------------------------------------*/
+        /*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
+        // tell the game object to do reverse ability
         void doCommand(Game& game);
 };
 

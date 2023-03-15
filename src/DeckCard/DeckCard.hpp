@@ -4,10 +4,6 @@
 #ifndef DECKCARD_HPP
 #define DECKCARD_HPP
 
-#include <chrono>
-#include <random>
-#include <map>
-
 #include "../InventoryHolder/InventoryHolder.hpp"
 
 class DeckCard : public InventoryHolder {
@@ -30,25 +26,25 @@ class DeckCard : public InventoryHolder {
         /*--------------------------------------------------------------------*/
         /*------------------------ADDING CARDS SEGMENT------------------------*/
         
-        // Generate all 52 cards randomly
+        // generate all 52 cards randomly
         void addCards(const InventoryHolder& other);
 
-        // Function overloading to add cards by file
+        // function overloading to add cards by file
         void addCards(string);
 
-        // Return deck card with 1 more card (other)
+        // return deck card with 1 more card (other)
         DeckCard operator+(const Card& other);
 
         /*--------------------------------------------------------------------*/
         /*-----------------------REMOVING CARDS SEGMENT-----------------------*/
 
-        // Remove the first <cardsRemoved> cards from the deck
+        // remove the first <cardsRemoved> cards from the deck
         void removeCards(int cardsRemoved);
 
-        // Return deck card with <cardsRemoved> less card
+        // return deck card with <cardsRemoved> less card
         DeckCard operator-(int cardsRemoved);
 
-        // Clear all cards from the deck
+        // clear all cards from the deck
         void clearCards();
 };
 

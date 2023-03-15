@@ -1,7 +1,14 @@
+// File: Card.cpp
+// Berisi implementasi dari kelas Card
+
 #include <iostream>
+using namespace std;
+
 #include "Card.hpp"
 
-// Konstruktor untuk menginisialisasi kartu
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 Card::Card() : Card(-1,-1)  {}
 
 Card::Card(int _cardColor, int _cardNumber) {
@@ -9,13 +16,9 @@ Card::Card(int _cardColor, int _cardNumber) {
     this->cardNumber = _cardNumber;
 }
 
-// Cctor
-Card::Card(const Card& c) {
-    this->cardColor = c.cardColor;
-    this->cardNumber = c.cardNumber;
-}
+/*--------------------------------------------------------------------*/
+/*---------------------GETTER AND SETTER SEGMENT----------------------*/
 
-// Getter, Setter
 void Card::setCardNumber(int _cardNumber) {
     this->cardNumber = _cardNumber;
 }
@@ -32,9 +35,8 @@ int Card::getCardColor() const {
     return this->cardColor;
 }
 
-// Member Function
-// Urutan Prioritas diconvert sebagai sebuah integer
-// Urutan Prioritas = Merah(3) > Kuning(2) > Biru(1) > Hijau(0)
+/*--------------------------------------------------------------------*/
+/*-------------------------CARD COLOR SEGMENT-------------------------*/
 
 string Card::convertColor (int _cardColor) const {
     string color;
@@ -64,12 +66,14 @@ void Card::colorPalette() {
     }
 }
 
+/*--------------------------------------------------------------------*/
+/*-------------------------CARD VALUE SEGMENT-------------------------*/
+
 float Card::value() const {
     float val = (this->cardNumber/10) + (this->cardColor*0.03);
     return val;
 }
 
-// Operator
 bool Card::operator< (const Card& c) {
     return value() < c.value();
 }

@@ -6,15 +6,18 @@
 
 #include "Command.hpp"
 
-class Game;
-
 class Double : public Command {
     public:
-        // Konstruktor command
+        /*--------------------------------------------------------------------*/
+        /*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
+        // ctor
         Double();
         
-        // Member Function
-        // Menjalankan command
+        /*--------------------------------------------------------------------*/
+        /*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
+        // tell the game object to do double command
         void doCommand(Game& game);
 };
 

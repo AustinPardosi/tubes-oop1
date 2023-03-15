@@ -1,18 +1,19 @@
 // File: QuadrupleCard.cpp
 // Berisi implementasi dari kelas QuadrupleCard
 
-#include <iostream>
 #include "QuadrupleCard.hpp"
 #include "../Game/Game.hpp"
-using namespace std;
 
-// Konstruktor kartu quadruple
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 QuadrupleCard::QuadrupleCard() {
     this->commandID = 5;
 }
 
-// Member Function
-// Menggunakan kartu yang dimiliki
+/*--------------------------------------------------------------------*/
+/*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
 void QuadrupleCard::doCommand(Game& game) {
     game.doQuadruple();
 }

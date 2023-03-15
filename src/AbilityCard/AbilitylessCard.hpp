@@ -6,15 +6,18 @@
 
 #include "AbilityCard.hpp"
 
-class Game;
-
 class AbilitylessCard : public AbilityCard {
     public:
-        // Konstruktor kartu abilityless
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+        
+        // ctor 
         AbilitylessCard();
         
-        // Member Function
-        // Menggunakan kartu yang dimiliki
+        /*--------------------------------------------------------------------*/
+        /*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
+        // tell the game object to do the abilityless ability
         void doCommand(Game& game);
 };
 

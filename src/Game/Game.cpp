@@ -1,4 +1,9 @@
-// Game.cpp
+// File: Game.cpp
+// Berisi implementasi dari kelas Game
+
+#include <random>
+#include <chrono>
+
 #include "Game.hpp" 
 #include "../Command/Double.hpp"
 #include "../Command/Half.hpp"

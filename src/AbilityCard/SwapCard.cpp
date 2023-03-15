@@ -1,18 +1,19 @@
 // File: SwapCard.cpp
 // Berisi implementasi dari kelas SwapCard
 
-#include <iostream>
 #include "SwapCard.hpp"
 #include "../Game/Game.hpp"
-using namespace std;
 
-// Konstruktor kartu swap
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 SwapCard::SwapCard() {
     this->commandID = 9;
 }
 
-// Member Function
-// Menggunakan kartu yang dimiliki
+/*--------------------------------------------------------------------*/
+/*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
 void SwapCard::doCommand(Game& game) {
     game.doSwap();
 }

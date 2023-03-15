@@ -1,18 +1,17 @@
+// File: Parse.hpp
+// Berisi deklarasi dari kelas Parse
+
 #ifndef __PARSE_H
 #define __PARSE_H
 
-#include <iostream>
 #include <fstream>
 #include <vector>
 #include <utility>
-#include <string>
 #include <sstream>
 
 #include "../ExceptionHandling/BaseException.hpp"
 #include "../ExceptionHandling/InvalidFileException.hpp"
 #include "../ExceptionHandling/CardFileException.hpp"
-
-using namespace std;
 
 class Parse {
     private:
@@ -21,15 +20,28 @@ class Parse {
         bool safe;
 
     public:
-        // Constructor
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
+        // ctor
         Parse();
 
-        // Getter and setter section
+        /*--------------------------------------------------------------------*/
+        /*---------------------GETTER AND SETTER SEGMENT----------------------*/
+
+        // get the vector of cards code
         vector<pair<int,int>> getCards() const;
+
+        // get the total line parsed
         int getTotalLine() const;
+
+        // get the validity of parsing
         bool getSafe() const;
 
-        // Main method
+        /*--------------------------------------------------------------------*/
+        /*--------------------------PARSING SEGMENT---------------------------*/
+        
+        // do the parsing of file
         void parsing(string);
 };
 

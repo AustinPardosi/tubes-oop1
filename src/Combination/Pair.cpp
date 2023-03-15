@@ -1,6 +1,15 @@
+// File: Pair.cpp
+// Berisi implementasi dari kelas Pair
+
 #include "Pair.hpp"
 
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 Pair::Pair(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
+/*--------------------------------------------------------------------*/
+/*------------------------COMBO VALUE SEGMENT-------------------------*/
 
 void Pair::check() {
     // Rumus : 1.39 + nomor kartu*0.1 + kode warna tertinggi (0 untuk hijau/0.03 untuk biru/0.06 untuk kuning/0.09 untuk merah)

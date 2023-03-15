@@ -1,13 +1,21 @@
+// File: Score.hpp
+// Berisi deklarasi dari dari kelas abstrak Score
+
 #ifndef SCORE_HPP
 #define SCORE_HPP
 
 class Score {
     public:
-        // Konstruktor score
+        /*--------------------------------------------------------------------*/
+        /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+        
+        // ctor
         Score() {}; 
         
-        // Member Function
-        // Menggunakan kartu yang dimiliki
+        /*--------------------------------------------------------------------*/
+        /*---------------------------VALUE SEGMENT----------------------------*/
+        
+        // abstract method to get a value, too abstract to implement
         virtual float value() const = 0;
 };
 

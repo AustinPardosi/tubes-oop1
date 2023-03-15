@@ -1,18 +1,19 @@
 // File: Next.cpp
 // Berisi implementasi dari kelas Next
 
-#include <iostream>
 #include "Next.hpp"
 #include "../Game/Game.hpp"
-using namespace std;
 
-// Konstruktor next
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 Next::Next() {
     this->commandID = 3;
 }
 
-// Member Function
-// Menjalankan command
+/*--------------------------------------------------------------------*/
+/*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
 void Next::doCommand(Game& game) {
     game.doNext();
 }

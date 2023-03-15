@@ -29,24 +29,24 @@ class InventoryHolder {
         /*--------------------------------------------------------------------*/
         /*-----------------------CARDS OPERATION SEGMENT----------------------*/
         
-        // Add cards from another inventory to listOfCard
-        // Implementation different for Player, DeckCard, and TableCard
+        // add cards from another inventory to listOfCard
+        // implementation different for Player, DeckCard, and TableCard
         virtual void addCards (const InventoryHolder& other) = 0;
 
-        // Remove cards from this inventory
-        // Implementation different for Player, DeckCard, and TableCard
+        // remove cards from this inventory
+        // implementation different for Player, DeckCard, and TableCard
         virtual void removeCards(int cardsRemoved) = 0;
         
         /*--------------------------------------------------------------------*/
         /*---------------------ADDITIONAL METHOD SEGMENT----------------------*/
 
-        // Get the card at the index position in the listOfCard
+        // get the card at the index position in the listOfCard
         Card getCard(int index) const;
 
-        // Setup the element of card to print
+        // setup the element of card to print
         void cardSetup(int nums);
 
-        // Show current cards in inventory
+        // show current cards in inventory
         void showCards();
 };
 

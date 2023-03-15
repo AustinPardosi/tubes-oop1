@@ -1,9 +1,18 @@
+// File: AbilityCommandException.cpp
+// Berisi implementasi dari kelas AbilityCommandException
+
 #include "AbilityCommandException.hpp"
+
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
 
 AbilityCommandException::AbilityCommandException(bool _isUsed, string _command) {
     this->isUsed = _isUsed;
     this->command = _command;
 }
+
+/*--------------------------------------------------------------------*/
+/*-------------------------SHOW ERROR SEGMENT-------------------------*/
 
 void AbilityCommandException::printMessage() {
     if(this->isUsed) {

@@ -1,6 +1,15 @@
+// File: FourKind.cpp
+// Berisi implementasi dari kelas FourKind
+
 #include "FourKind.hpp"
 
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 FourKind::FourKind(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
+/*--------------------------------------------------------------------*/
+/*------------------------COMBO VALUE SEGMENT-------------------------*/
 
 void FourKind::check() {
     // Rumus : 10.3 + Nomor kartu /10

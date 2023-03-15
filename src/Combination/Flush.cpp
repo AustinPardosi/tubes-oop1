@@ -1,6 +1,15 @@
+// File: Flush.cpp
+// Berisi implementasi dari kelas Flush
+
 #include "Flush.hpp"
 
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 Flush::Flush(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
+/*--------------------------------------------------------------------*/
+/*------------------------COMBO VALUE SEGMENT-------------------------*/
 
 void Flush::check() {
     // Rumus : 7 + Nomor kartu terbesar/10 + Nomor kartu terbesar kedua/1000 + Nomor kartu ketiga terbesar / 100000 dst.

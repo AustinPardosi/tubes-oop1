@@ -2,8 +2,6 @@
 // Berisi implementasi dari kelas InventoryHolder
 
 #include "InventoryHolder.hpp"
-#include <iostream>
-using namespace std;
 
 /*--------------------------------------------------------------------*/
 /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/

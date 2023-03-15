@@ -1,6 +1,15 @@
+// File: ThreeKind.cpp
+// Berisi implementasi dari kelas ThreeKind
+
 #include "ThreeKind.hpp"
 
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 ThreeKind::ThreeKind(vector<Card> playerCard, vector<Card> tableCard) : Combination(playerCard,tableCard) {}
+
+/*--------------------------------------------------------------------*/
+/*------------------------COMBO VALUE SEGMENT-------------------------*/
 
 void ThreeKind::check() {
     // Rumus : 4.17 + Nomor kartu/10 + Warna tertinggi

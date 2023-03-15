@@ -1,18 +1,19 @@
 // File: Half.cpp
 // Berisi implementasi dari kelas Half
 
-#include <iostream>
 #include "Half.hpp"
 #include "../Game/Game.hpp"
-using namespace std;
 
-// Konstruktor half
+/*--------------------------------------------------------------------*/
+/*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
+
 Half::Half() {
     this->commandID = 2;
 }
 
-// Member Function
-// Menjalankan command
+/*--------------------------------------------------------------------*/
+/*----------------------COMMAND EXECUTION SEGMENT---------------------*/
+
 void Half::doCommand(Game& game) {
     game.doHalf();
 }

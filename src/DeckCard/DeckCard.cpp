@@ -1,6 +1,10 @@
 // File: DeckCard.cpp
 // Berisi implementasi dari kelas DeckCard
 
+#include <chrono>
+#include <random>
+#include <map>
+
 #include "DeckCard.hpp"
 #include "../Parsing/Parse.hpp"
 
