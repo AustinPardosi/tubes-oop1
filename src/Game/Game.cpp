@@ -3,7 +3,6 @@
 #include "../Command/Double.hpp"
 #include "../Command/Half.hpp"
 #include "../Command/Next.hpp"
-#include "../Parsing/Parse.hpp"
 #include "../AbilityCard/AbilitylessCard.hpp"
 #include "../AbilityCard/QuadrupleCard.hpp"
 #include "../AbilityCard/QuarterCard.hpp"
@@ -13,6 +12,7 @@
 #include "../AbilityCard/SwitchCard.hpp"
 #include "../ExceptionHandling/BaseException.hpp"
 #include "../ExceptionHandling/InvalidInputException.hpp"
+#include "../ExceptionHandling/InvalidFileException.hpp"
 using namespace std;
 
 /*--------------------------------------------------------------------*/
@@ -231,7 +231,6 @@ void Game::determineInputMethod() {
     // if by file input
     if (stoi(temp) == 1) {
         // Deklarasi variabek
-        Parse p1;
         string inputfile;
         bool checkdone = false;
 
@@ -253,15 +252,7 @@ void Game::determineInputMethod() {
             }
         }
 
-        p1.parsing(inputfile);
-        vector<pair<int,int>> result = p1.getCards();
-        vector<Card> cards;
-        for (auto i : result) {
-            Card card(i.second, i.first);
-            cards.push_back(card);
-        }
-
-        this->deckCard = cards;
+        this->deckCard.addCards(inputfile);
     } else {
         DeckCard temp;
         this->deckCard.addCards(temp);

@@ -2,6 +2,7 @@
 // Berisi implementasi dari kelas DeckCard
 
 #include "DeckCard.hpp"
+#include "../Parsing/Parse.hpp"
 
 /*--------------------------------------------------------------------*/
 /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
@@ -37,6 +38,23 @@ void DeckCard::addCards(const InventoryHolder& other) {
     for_each(listNum.begin(), listNum.end(), [this, Cards] (int i){
         *this = *this + Cards.find(i)->second;
     });
+}
+
+void DeckCard::addCards(string inputfile) {
+    Parse p1;
+    ifstream inputFile(inputfile);
+    p1.parsing(inputfile);
+    vector<pair<int,int>> result = p1.getCards();
+
+    // Masukin nilai
+    vector<Card> cards;
+    for (auto i : result) {
+        Card card(i.second, i.first);
+        cards.push_back(card);
+    }
+    for (auto i : cards) {
+        *this = *this + i;
+    }
 }
 
 DeckCard DeckCard::operator+(const Card& other) {

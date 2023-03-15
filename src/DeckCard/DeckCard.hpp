@@ -33,6 +33,9 @@ class DeckCard : public InventoryHolder {
         // Generate all 52 cards randomly
         void addCards(const InventoryHolder& other);
 
+        // Function overloading to add cards by file
+        void addCards(string);
+
         // Return deck card with 1 more card (other)
         DeckCard operator+(const Card& other);
 
