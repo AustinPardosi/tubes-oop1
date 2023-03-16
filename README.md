@@ -40,6 +40,9 @@ Adapun konsep-konsep tersebut diimplementasikan dalam berbagai macam modul dasar
 ## Sistematika File
 ```bash
 .
+├─── bin
+├─── doc
+├─── images  
 ├─── src
 │   ├─── AbilityCard
 │   ├─── Card
@@ -54,7 +57,9 @@ Adapun konsep-konsep tersebut diimplementasikan dalam berbagai macam modul dasar
 │   ├─── Parsing
 │   ├─── Player
 │   └─── Score
-└─── test
+├─── test 
+└─── README.md
+
 ```
 
 ## Requirements
@@ -64,7 +69,7 @@ Adapun konsep-konsep tersebut diimplementasikan dalam berbagai macam modul dasar
 ## Cara Menjalankan Program
 1. Pastikan GCC versi terbaru sudah terpasang pada mesin eksekusi (Anda dapat mengecek versi GCC dengan menjalankan *command* `gcc --version` pada *command prompt*).
 2. Jalankan *command* `make all` pada *command prompt* untuk melakukan kompilasi pada program.
-3. Jika proses kompilasi berjalan dengan baik, maka akan muncul *file* bernama `main.exe` pada folder `bin`.
+3. Jika proses kompilasi berjalan dengan baik, maka akan muncul *file* bernama `main` pada folder `bin`.
 4. jalankan *command* `bin/main` untuk menjalankan program. Jika berhasil, maka Anda akan tiba pada program utama.
 
 ## Screenshot

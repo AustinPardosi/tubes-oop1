@@ -195,25 +195,28 @@ void Player::askForAction() {
 
 void Player::calculateCombo(vector<Card> tableCard, int mIdx) {
     // Mencari kombinasi maksimum yang dimiliki, mengubah atribut maxCombo
-    currCombo.clear();
-    currCombo.push_back(new HighCard(this->listOfCard,tableCard));
-    currCombo.push_back(new Pair(this->listOfCard,tableCard));
-    currCombo.push_back(new TwoPair(this->listOfCard,tableCard));
-    currCombo.push_back(new ThreeKind(this->listOfCard,tableCard));
-    currCombo.push_back(new Straight(this->listOfCard,tableCard));
-    currCombo.push_back(new Flush(this->listOfCard,tableCard));
-    currCombo.push_back(new FullHouse(this->listOfCard,tableCard));
-    currCombo.push_back(new FourKind(this->listOfCard,tableCard));
-    currCombo.push_back(new StraightFlush(this->listOfCard,tableCard, mIdx-9));
+    for (int i = 0; i < this->currCombo.size(); i++) {
+        delete this->currCombo[i];
+    }
+    this->currCombo.clear();
+    this->currCombo.push_back(new HighCard(this->listOfCard,tableCard));
+    this->currCombo.push_back(new Pair(this->listOfCard,tableCard));
+    this->currCombo.push_back(new TwoPair(this->listOfCard,tableCard));
+    this->currCombo.push_back(new ThreeKind(this->listOfCard,tableCard));
+    this->currCombo.push_back(new Straight(this->listOfCard,tableCard));
+    this->currCombo.push_back(new Flush(this->listOfCard,tableCard));
+    this->currCombo.push_back(new FullHouse(this->listOfCard,tableCard));
+    this->currCombo.push_back(new FourKind(this->listOfCard,tableCard));
+    this->currCombo.push_back(new StraightFlush(this->listOfCard,tableCard, mIdx-9));
     while (mIdx > 9) {
         mIdx--;
     }
 
     for (int i=0; i<mIdx; i++) {
-        currCombo[i]->check();
+        this->currCombo[i]->check();
     }
 
-    this->maxCombo = currCombo[getMax<Combination*>(currCombo)];
+    this->maxCombo = this->currCombo[getMax<Combination*>(this->currCombo)];
 }
 
 /*--------------------------------------------------------------------*/

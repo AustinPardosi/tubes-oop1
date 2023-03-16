@@ -49,12 +49,6 @@ class Player : public InventoryHolder {
         // get player name
         string getName() const;
 
-        // get listCard
-        vector<Card> getCardList() const;
-
-        // set listCard
-        void setCardList(vector<Card>);
-
         // set ability id
         void setAbilityID(int abilityId);
 

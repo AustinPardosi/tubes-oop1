@@ -165,7 +165,6 @@ void Game::giveAbility() {
 }
 
 void Game::resetGame() {
-    roundRobin();
     this->bonusPoint = 64;
     this->bet = 0;
     this->cardTable.removeCards(5);
@@ -297,7 +296,6 @@ void Game::determineWinner() {
             }
         }
     }
-    cout << "Combination number : " << counter << endl;
     this->playerList[this->winner] = this->playerList[this->winner] + (this->bonusPoint + this->bet);
     cout << "\033[1;33m";
     cout << "\n===========         GAME RESULT          ===========" << endl;
