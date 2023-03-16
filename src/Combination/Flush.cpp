@@ -30,10 +30,10 @@ void Flush::check() {
         score = 7.0;
         while (counter < 5) {
             if (totalHand[j].getCardColor() == i) {
-                score += totalHand[j].getCardNumber()/(10.0 * pow(100,counter));
+                score += totalHand[j].getCardNumber()/(10.0 * pow(100.0,counter));
+                counter++;
             }
             j--;
-            counter++;
         }
         score += i*3/(10.0 * pow(100,counter+1));
     }

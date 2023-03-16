@@ -17,13 +17,21 @@ void Straight::check() {
     bool foundStraight = false;
     int i = 6;
     while (!foundStraight && i >= 4) {
+        int counter = 0;
         int j = i-1;
         int previous = totalHand[i].getCardNumber();
-        while (j >= i-4 && previous-totalHand[j].getCardNumber() <= 1) {
-            previous = totalHand[j].getCardNumber();
+        while (j >= 0 && previous-totalHand[j].getCardNumber() <= 1 && counter < 5) {
+            if (previous-totalHand[j].getCardNumber() == 1) {
+                previous = totalHand[j].getCardNumber();
+                counter++;
+            } else if (totalHand[j] > totalHand[j+1]) {
+                Card temp = totalHand[j+1];
+                totalHand[j+1] = totalHand[j];
+                totalHand[j] = temp;
+            }
             j--;
         }
-        if (j < i-4) {
+        if (counter >= 5) {
             foundStraight= true;
         } else {
             i--;

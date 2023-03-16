@@ -217,6 +217,7 @@ void Player::calculateCombo(vector<Card> tableCard, int mIdx) {
     }
 
     this->maxCombo = this->currCombo[getMax<Combination*>(this->currCombo)];
+    cout << name << " : " << maxCombo->value() << endl;
 }
 
 /*--------------------------------------------------------------------*/
