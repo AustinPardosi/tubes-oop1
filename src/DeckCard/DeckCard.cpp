@@ -6,6 +6,7 @@
 #include <map>
 
 #include "DeckCard.hpp"
+#include "../ExceptionHandling/BaseException.hpp"
 #include "../Parsing/Parse.hpp"
 
 /*--------------------------------------------------------------------*/
@@ -46,18 +47,22 @@ void DeckCard::addCards(const InventoryHolder& other) {
 
 void DeckCard::addCards(string inputfile) {
     Parse p1;
-    ifstream inputFile(inputfile);
-    p1.parsing(inputfile);
-    vector<pair<int,int>> result = p1.getCards();
+    try {
+        p1.parsing(inputfile);
+        vector<pair<int,int>> result = p1.getCards();
 
-    // Masukin nilai
-    vector<Card> cards;
-    for (auto i : result) {
-        Card card(i.second, i.first);
-        cards.push_back(card);
+        // Masukin nilai
+        vector<Card> cards;
+        for (auto i : result) {
+            Card card(i.second, i.first);
+            cards.push_back(card);
+        }
+        for (auto i : cards) {
+            *this = *this + i;
+        }
     }
-    for (auto i : cards) {
-        *this = *this + i;
+    catch (BaseException* e) {
+        throw e;
     }
 }
 

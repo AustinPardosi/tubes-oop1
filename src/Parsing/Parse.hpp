@@ -16,7 +16,6 @@ class Parse {
     private:
         vector<pair<int,int>> cards;
         int totalLine;
-        bool safe;
 
     public:
         /*--------------------------------------------------------------------*/
@@ -33,9 +32,6 @@ class Parse {
 
         // get the total line parsed
         int getTotalLine() const;
-
-        // get the validity of parsing
-        bool getSafe() const;
 
         /*--------------------------------------------------------------------*/
         /*--------------------------PARSING SEGMENT---------------------------*/

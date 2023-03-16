@@ -246,26 +246,27 @@ void Game::determineInputMethod() {
             cout << "Input file format (52 cards) : <CardNumber> <ColorCode>" << endl;
             cout << "Your input file must be on folder test" << "\033[0m" << endl;
             cout << ">> test/" << "\033[34m";
-            string inputs = "test/";
             cin >> inputfile;
             cout << "\033[0m";
-            inputs += inputfile;
+            string inputs = fix + inputfile;
             ifstream inputFile(inputs);
             try {
                 if (inputs.find(".txt") > inputs.length()) {
+                    inputFile.close();
                     throw new InvalidFileException;
                 }
                 if(!inputFile.is_open()) {
+                    inputFile.close();
                     throw new InvalidFileException;
                 }
-                fix += inputfile;
+                inputFile.close();
+                this->deckCard.addCards(inputs);
+
                 checkdone = true;
             } catch (BaseException *e) {
                 e->printMessage();
             }
         }
-
-        this->deckCard.addCards(fix);
     } else {
         DeckCard temp;
         this->deckCard.addCards(temp);
