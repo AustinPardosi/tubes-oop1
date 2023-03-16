@@ -17,7 +17,7 @@ void Straight::check() {
     bool foundStraight = false;
     int i = 6;
     while (!foundStraight && i >= 4) {
-        int counter = 0;
+        int counter = 1;
         int j = i-1;
         int previous = totalHand[i].getCardNumber();
         while (j >= 0 && previous-totalHand[j].getCardNumber() <= 1 && counter < 5) {

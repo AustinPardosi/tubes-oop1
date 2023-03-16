@@ -221,7 +221,7 @@ void Game::determineInputMethod() {
             cout << "\033[0m";
 
             if (!(!temp.empty() && all_of(temp.begin(), temp.end(), ::isdigit)) 
-                 || (stoll(temp) < 0 || stoll(temp) > 2)) {
+                 || (stoll(temp) <= 0 || stoll(temp) > 2)) {
                 InvalidInputException e;
                 throw e;
             }
