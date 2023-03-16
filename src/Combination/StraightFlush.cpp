@@ -28,13 +28,16 @@ void StraightFlush::check() {
     }   
     while (!foundStraightFlush && i >= 4) {
         int j = i-1;
+        int counter = 1;
         Card previous = totalHand[i];
-        while (j >= i-4 && previous.getCardNumber()-totalHand[j].getCardNumber() == 1 && 
-                previous.getCardColor() == totalHand[j].getCardColor()) {
-            previous = totalHand[j];
+        while (j >= 0 && previous.getCardNumber()-totalHand[j].getCardNumber() <= 1 && counter < 5) {
+            if (previous.getCardColor() == totalHand[j].getCardColor()) {
+                previous = totalHand[j];
+                counter++;
+            }
             j--;
         }
-        if (j < i-4) {
+        if (counter >= 5) {
             foundStraightFlush= true;
         } else {
             i--;
