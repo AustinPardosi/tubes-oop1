@@ -22,7 +22,7 @@ Combination::Combination(vector<Card> playerCard, vector<Card> tableCard) {
 /*--------------------------------------------------------------------*/
 /*------------------------COMBO VALUE SEGMENT-------------------------*/
 
-float Combination::value() const {
+double Combination::value() const {
     return this->score;
 }
 

@@ -69,7 +69,7 @@ void Card::colorPalette() {
 /*--------------------------------------------------------------------*/
 /*-------------------------CARD VALUE SEGMENT-------------------------*/
 
-float Card::value() const {
+double Card::value() const {
     float val = (this->cardNumber/10) + (this->cardColor*0.03);
     return val;
 }

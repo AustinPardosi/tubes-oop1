@@ -49,7 +49,7 @@ class Card : public Score {
         /*-------------------------CARD VALUE SEGMENT-------------------------*/
         
         // implement the value function
-        float value() const;
+        double value() const;
 
         // check if this card is lesser than other
         bool operator< (const Card&);

@@ -16,7 +16,7 @@ class Score {
         /*---------------------------VALUE SEGMENT----------------------------*/
         
         // abstract method to get a value, too abstract to implement
-        virtual float value() const = 0;
+        virtual double value() const = 0;
 };
 
 #endif

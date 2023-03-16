@@ -31,7 +31,7 @@ class Combination : public Score {
         virtual void check() = 0;
         
         // get the score of this combination
-        float value() const;
+        double value() const;
 
         // check if this combo is greater than other combo
         bool operator>(const Combination&);
