@@ -7,12 +7,14 @@
 #include "Combination.hpp"
 
 class StraightFlush : public Combination {
+    private :
+        int checkParam;
     public :
         /*--------------------------------------------------------------------*/
         /*------------------CREATION AND DESTRUCTION SEGMENT------------------*/
 
         // user defined ctor
-        StraightFlush(vector<Card>, vector<Card>);
+        StraightFlush(vector<Card>, vector<Card>, int);
 
         /*--------------------------------------------------------------------*/
         /*------------------------COMBO VALUE SEGMENT-------------------------*/

@@ -279,7 +279,7 @@ void Game::determineInputMethod() {
 // get the player with the highest combo, and give the prize point
 void Game::determineWinner() {
     bool winnerDetermined = false;
-    int counter=9;
+    int counter=11;
     while (!winnerDetermined) {
         winnerDetermined = true;
         for_each(this->playerList.begin(),this->playerList.end(), [this,counter] (Player& p) {
@@ -296,6 +296,7 @@ void Game::determineWinner() {
             }
         }
     }
+    cout << "Combination number : " << counter << endl;
     this->playerList[this->winner] = this->playerList[this->winner] + (this->bonusPoint + this->bet);
     cout << "\033[1;33m";
     cout << "\n===========         GAME RESULT          ===========" << endl;
